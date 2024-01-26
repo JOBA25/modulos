@@ -1,0 +1,48 @@
+sys@jbadip01> @s-01-privilegios.sql
+drop user jorge02 cascade
+          *
+ERROR at line 1:
+ORA-01918: user 'JORGE02' does not exist 
+
+
+conectando como sysdba
+Connected.
+
+                                                                                                    
+
+
+User created.
+
+
+Grant succeeded.
+
+entrando a sesión con jorge02
+Connected.
+
+                                                                                                    
+
+creando una tabla de prueba
+
+Table created.
+
+conectando como sysdba
+Connected.
+
+                                                                                                    
+
+verificando privilegios en dba_sys_privs
+
+GRANTEE              PRIVILEGE                                ADM                                   
+-------------------- ---------------------------------------- ---                                   
+JORGE02              CREATE TABLE                             NO                                    
+JORGE02              CREATE SESSION                           NO                                    
+
+actividades de limpieza [Enter] para continuar
+
+
+User dropped.
+
+sys@jbadip01> --conclusiones
+sys@jbadip01> ---me parecio importante recordar los conocimientos básicos
+sys@jbadip01> --de privilegios
+sys@jbadip01> spool off

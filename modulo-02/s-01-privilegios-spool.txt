@@ -1,0 +1,42 @@
+idle> !ls
+
+idle> @s-01-privilegios.sql
+conenctando como sys dba
+Connected.
+
+                                                                                
+
+SP2-0734: unknown command beginning "propmt cre..." - rest of line ignored.
+
+User created.
+
+asignado privilegios
+grant create session, create table to jorge 02
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SP2-0734: unknown command beginning "promt crea..." - rest of line ignored.
+ERROR:
+ORA-01045: user JORGE02 lacks CREATE SESSION privilege; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+crear tabla de prueba
+SP2-0640: Not connected
+conectando como sys dba
+Connected.
+
+                                                                                
+
+verificando privilegios en dba_sys_privs
+
+no rows selected
+
+acctividades de limpieza [Enter] para continuar
+
+
+User dropped.
+
+sys@jbadip01> exit
