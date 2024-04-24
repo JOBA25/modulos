@@ -1,0 +1,91 @@
+sys@ajbadip02> @s-19-suspender-bd.sql
+conectando como sysdba
+Connected.
+
+                                                                                
+
+creando usuarios
+User created.
+
+
+Grant succeeded.
+Reiniciando instancia [Enter] para continuar
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                       
+Fixed Size                  8904776 bytes                                       
+Variable Size             910163968 bytes                                       
+Database Buffers           41943040 bytes                                       
+Redo Buffers                7868416 bytes                                       
+In-Memory Area            104857600 bytes                                       
+Database mounted.
+Database opened.
+Abrir una nueva terminal T1 y entrar a sesión con user03_s1
+[Enter] para continuar
+
+suspendiendo la BD Considerado que el usuario user03_s1 esta en sesión,
+¿Qué sucederá?, [Enter] para continuar
+Nada, el usuario inició sesión correctamente.
+
+
+System altered.
+
+Salir de sesión en T1 , intentar autenticar nuevamente
+¿Qué sucederá? Considerar que la BD está suspendida. [Enter para continuar]
+El usuario pudo acceder sin problema alguno
+
+En la terminal T1, intentar crear una tabla y un registro.
+¿Qué sucederá? [Enter] para continuar
+No va a permitir la operación, porque está suspendida
+
+mostrando status de la BD
+
+DATABASE_STATUS                                                                 
+-----------------                                                               
+SUSPENDED                                                                       
+
+¿Qué sucederá si se termina la suspensión?
+[Enter] para continuar
+Permitirá la creación de la tabla
+
+System altered.
+
+mostrando status de la BD
+
+DATABASE_STATUS                                                                 
+-----------------                                                               
+ACTIVE                                                                          
+
+realizando limpieza. En T1 salir de sesión
+[Enter] para continuar
+
+
+User dropped.
+
+sys@ajbadip02> spool off
+
+---- CONCLUSIONES ----
+1. En este ejercicio aprendimos sobre la suspensión de una base de datos.
+2. Aprendimos de manera práctica lo que sucede cuando un usuario intenta
+   acceder y ejecutar operaciones de tipo DDL sobre una base de datos suspendida.
+3. Si hubo problemas de ejecución, ya que no podíamos iniciar sesión en el segundo
+   paso, sin embargo, al reiniciar mi maquina y volver a intentarlo funcionó justo
+   como a la profesora.
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio aprendimos sobre la suspensión de una base de datos.
+Ademas aprendimos de manera práctica lo que sucede cuando un usuario intenta
+acceder y ejecutar operaciones de tipo DDL sobre una base de datos suspendida.
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

@@ -1,0 +1,97 @@
+RMAN> backup database plus archivelog tag inical_full_backup;
+Starting backup at 27-JAN-24
+current log archived
+using channel ORA_DISK_1
+channel ORA_DISK_1: starting archived log backup set
+channel ORA_DISK_1: specifying archived log(s) in backup set
+input archived log thread=1 sequence=111 RECID=1 STAMP=1159127129
+input archived log thread=1 sequence=112 RECID=3 STAMP=1159284226
+input archived log thread=1 sequence=113 RECID=5 STAMP=1159308143
+input archived log thread=1 sequence=114 RECID=7 STAMP=1159326442
+input archived log thread=1 sequence=115 RECID=15 STAMP=1159354224
+input archived log thread=1 sequence=116 RECID=17 STAMP=1159354238
+input archived log thread=1 sequence=117 RECID=13 STAMP=1159354216
+channel ORA_DISK_1: starting piece 1 at 27-JAN-24
+channel ORA_DISK_1: finished piece 1 at 27-JAN-24
+piece handle=/unam-diplomado-bd/fast-recovery-area/JBADIP02/backupset/2024_01_27/o1_mf_annnn_INICAL_FULL_BACKUP_lvboz9xh_.bkp tag=INICAL_FULL_BACKUP comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:25
+channel ORA_DISK_1: starting archived log backup set
+channel ORA_DISK_1: specifying archived log(s) in backup set
+input archived log thread=1 sequence=1 RECID=20 STAMP=1159363331
+channel ORA_DISK_1: starting piece 1 at 27-JAN-24
+channel ORA_DISK_1: finished piece 1 at 27-JAN-24
+piece handle=/unam-diplomado-bd/fast-recovery-area/JBADIP02/backupset/2024_01_27/o1_mf_annnn_INICAL_FULL_BACKUP_lvbp02mf_.bkp tag=INICAL_FULL_BACKUP comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:03
+Finished backup at 27-JAN-24
+Starting backup at 27-JAN-24
+using channel ORA_DISK_1
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00001 name=/u01/app/oracle/oradata/JBADIP02/system01.dbf
+input datafile file number=00002 name=/u01/app/oracle/oradata/JBADIP02/sysaux01.dbf
+input datafile file number=00004 name=/u01/app/oracle/oradata/JBADIP02/users01.dbf
+input datafile file number=00003 name=/u01/app/oracle/oradata/JBADIP02/undotbs01.dbf
+channel ORA_DISK_1: starting piece 1 at 27-JAN-24
+channel ORA_DISK_1: finished piece 1 at 27-JAN-24
+piece handle=/unam-diplomado-bd/fast-recovery-area/JBADIP02/backupset/2024_01_27/o1_mf_nnndf_TAG20240127T132247_lvbp0gro_.bkp tag=TAG20240127T132247 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:02:46
+Finished backup at 27-JAN-24
+Starting backup at 27-JAN-24
+current log archived
+using channel ORA_DISK_1
+channel ORA_DISK_1: starting archived log backup set
+channel ORA_DISK_1: specifying archived log(s) in backup set
+input archived log thread=1 sequence=2 RECID=22 STAMP=1159363546
+channel ORA_DISK_1: starting piece 1 at 27-JAN-24
+channel ORA_DISK_1: finished piece 1 at 27-JAN-24
+piece handle=/unam-diplomado-bd/fast-recovery-area/JBADIP02/backupset/2024_01_27/o1_mf_annnn_INICAL_FULL_BACKUP_lvbp5xl0_.bkp tag=INICAL_FULL_BACKUP comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:09
+Finished backup at 27-JAN-24
+Starting Control File and SPFILE Autobackup at 27-JAN-24
+piece handle=/unam-diplomado-bd/fast-recovery-area/JBADIP02/autobackup/2024_01_27/o1_mf_s_1159363564_lvbp6sf1_.bkp comment=NONE
+Finished Control File and SPFILE Autobackup at 27-JAN-24
+RMAN> list backup summary;
+List of Backups
+===============
+Key     TY LV S Device Type Completion Time #Pieces #Copies Compressed Tag
+------- -- -- - ----------- --------------- ------- ------- ---------- ---
+3       B  F  A DISK        27-JAN-24       1       1       NO         TAG20240127T124956
+4       B  A  A DISK        27-JAN-24       1       1       NO         INICAL_FULL_BACKUP
+5       B  A  A DISK        27-JAN-24       1       1       NO         INICAL_FULL_BACKUP
+6       B  F  A DISK        27-JAN-24       1       1       NO         TAG20240127T132247
+7       B  A  A DISK        27-JAN-24       1       1       NO         INICAL_FULL_BACKUP
+8       B  F  A DISK        27-JAN-24       1       1       NO         TAG20240127T132559
+RMAN> list backup by file;
+List of Datafile Backups
+========================
+File Key     TY LV S Ckp SCN    Ckp Time  #Pieces #Copies Compressed Tag
+---- ------- -  -- - ---------- --------- ------- ------- ---------- ---
+1    6       B  F  A 2999451    27-JAN-24 1       1       NO         TAG20240127T132247
+2    6       B  F  A 2999451    27-JAN-24 1       1       NO         TAG20240127T132247
+3    6       B  F  A 2999451    27-JAN-24 1       1       NO         TAG20240127T132247
+4    6       B  F  A 2999451    27-JAN-24 1       1       NO         TAG20240127T132247
+List of Archived Log Backups
+============================
+Thrd Seq     Low SCN    Low Time  BS Key  S #Pieces #Copies Compressed Tag
+---- ------- ---------- --------- ------- - ------- ------- ---------- ---
+1    111     2782570    20-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    112     2801980    24-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    113     2907864    26-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    114     2935708    26-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    115     2957526    27-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    116     2971078    27-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    117     2988264    27-JAN-24 4       A 1       1       NO         INICAL_FULL_BACKUP
+1    1       2990921    27-JAN-24 5       A 1       1       NO         INICAL_FULL_BACKUP
+1    2       2999416    27-JAN-24 7       A 1       1       NO         INICAL_FULL_BACKUP
+List of Control File Backups
+============================
+CF Ckp SCN Ckp Time  BS Key  S #Pieces #Copies Compressed Tag
+---------- --------- ------- - ------- ------- ---------- ---
+2999541    27-JAN-24 8       A 1       1       NO         TAG20240127T132559
+2997432    27-JAN-24 3       A 1       1       NO         TAG20240127T124956
+List of SPFILE Backups
+======================
+Modification Time BS Key  S #Pieces #Copies Compressed Tag
+----------------- ------- - ------- ------- ---------- ---
+27-JAN-24         8       A 1       1       NO         TAG20240127T132559
+27-JAN-24         3       A 1       1       NO         TAG20240127T124956

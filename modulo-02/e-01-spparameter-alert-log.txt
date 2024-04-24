@@ -1,0 +1,20 @@
+processes                = 320
+nls_language             = 'AMERICAN'
+nls_territory            = 'AMERICA'
+sga_target               = 940M
+control_files            = '/u01/app/oracle/oradata/JBADIP01/control01.ctl'
+control_files            = '/u01/app/oracle/oradata/JBADIP01/control02.ctl'
+db_block_size            = 8192
+compatible               = '19.0.0'
+undo_tablespace          = 'UNDOTBS1'
+remote_login_passwordfile= 'EXCLUSIVE'
+db_domain                = 'fi.unam'
+dispatchers              = '(PROTOCOL=TCP) (SERVICE=jbadip01XDB)'
+local_listener           = 'LISTENER_JBADIP01'
+audit_file_dest          = '/u01/app/oracle/admin/jbadip01/adump'
+audit_trail              = 'DB'
+db_name                  = 'jbadip01'
+open_cursors             = 300
+star_transformation_enabled= 'TRUE'
+pga_aggregate_target     = 314M
+diagnostic_dest          = '/u01/app/oracle'

@@ -1,0 +1,213 @@
+idle> start e-06-flashback-drop.sql
+conectando como sys
+Connected.
+1. Activando la papelera de reciclado y verificando contenido
+
+Session altered.
+
+
+no rows selected
+
+2.Conectando con usario jorge06
+Connected.
+creando tabla fb_drop
+
+Table created.
+
+insertando registros
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+mostrando contenido
+
+	ID DATO
+---------- ----------
+	 1 dato1
+	 2 dato2
+	 3 dato3
+	 4 dato4
+
+3. eliminando tabla
+
+Table dropped.
+
+verificando borrado
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+4. Mostrando contenido de papelera
+
+OBJECT_NAME			    ORIGINAL_NAME			CREATETIME
+----------------------------------- ----------------------------------- -------------------
+BIN$D/DU+/2ufazgYwEAAH9x3w==$0	    FB_DROP				2024-01-27:10:23:24
+
+5. Mostrando contenido
+Enter value for object_name: BIN$D/DU+/2ufazgYwEAAH9x3w==$0
+
+	ID DATO
+---------- ----------
+	 1 dato1
+	 2 dato2
+	 3 dato3
+	 4 dato4
+
+[enter]
+
+6. Recuperando tabla eliminada
+
+Flashback complete.
+
+mostrando contenido
+
+	ID DATO
+---------- ----------
+	 1 dato1
+	 2 dato2
+	 3 dato3
+	 4 dato4
+
+7.eliminando nuevamente la tabla
+
+Table dropped.
+
+verificando borrado
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+8. Crear la misma tabla con datos distintos
+
+Table created.
+
+insertando registros
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+mostrnado nueva tabla
+
+	ID DATO
+---------- ----------
+	 5 dato5
+	 6 dato6
+	 7 dato7
+	 8 dato8
+
+9. consultando papelera
+
+OBJECT_NAME			    ORIGINAL_NAME			CREATETIME
+----------------------------------- ----------------------------------- -------------------
+BIN$D/DU+/2vfazgYwEAAH9x3w==$0	    FB_DROP				2024-01-27:10:23:24
+
+10. Elimnar nuevamente y verificar
+
+Table dropped.
+
+verificando borrado
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+11.consultando papelera
+
+OBJECT_NAME			    ORIGINAL_NAME			CREATETIME
+----------------------------------- ----------------------------------- -------------------
+BIN$D/DU+/2vfazgYwEAAH9x3w==$0	    FB_DROP				2024-01-27:10:23:24
+BIN$D/DU+/2wfazgYwEAAH9x3w==$0	    FB_DROP				2024-01-27:10:23:42
+
+12.Recuperando las tablas
+Enter value for object_name1: BIN$D/DU+/2vfazgYwEAAH9x3w==$0
+
+Flashback complete.
+
+consultando fb_drop1
+
+	ID DATO
+---------- ----------
+	 1 dato1
+	 2 dato2
+	 3 dato3
+	 4 dato4
+
+Enter value for object_name2: BIN$D/DU+/2wfazgYwEAAH9x3w==$0
+
+Flashback complete.
+
+consultando fb_drop1
+
+	ID DATO
+---------- ----------
+	 5 dato5
+	 6 dato6
+	 7 dato7
+	 8 dato8
+
+13. Desactivar la papelera
+
+Session altered.
+
+Connected.
+
+Recyclebin purged.
+
+14.eliminando ambas tablas
+
+Table dropped.
+
+
+Table dropped.
+
+verificando que ya no existe la papelera
+
+OBJECT_NAME			    ORIGINAL_NAME			CREATETIME
+----------------------------------- ----------------------------------- -------------------
+BIN$D/DXJepXfdDgYwEAAH/WNQ==$0	    FB_DROP1				2024-01-27:10:23:24
+BIN$D/DXJepYfdDgYwEAAH/WNQ==$0	    FB_DROP2				2024-01-27:10:23:42
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba modulo-06]$ 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se pudo configurar el fb drop con lo cual se pudo realizar 
+la recuperación de un par de tablas que fueron dropeadas gracias al uso de los 
+datos undo 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

@@ -1,0 +1,123 @@
+idle> start s-02-modos-inicio.sql
+autenticando como sysdba
+Connected.
+
+                                                                                
+
+Iniciando en modo restringido
+
+System altered.
+
+creando al usuario  user01
+
+User created.
+
+
+Grant succeeded.
+
+intentando abrir sesión con user01
+ERROR:
+ORA-01035: ORACLE only available to users with RESTRICTED SESSION privilege 
+
+
+Warning: You are no longer connected to ORACLE.
+[¿Qué sucedió?, Enter para continuar]
+**No se pudo ingresar ya que la base se encuentra en modo restringido y 
+**el usario no tiene permisos para inicar sesión en este modo 
+
+asignando el privilegio restricted session a user01
+Connected.
+
+                                                                                
+
+
+Grant succeeded.
+
+intentando crear sesión con user01
+Connected.
+
+                                                                                
+
+[¿Qué sucedió ?, Enter para continuar]
+** al ya tener permisos yua fue posible ingresar
+
+regresando al modo no restringido
+Connected.
+
+                                                                                
+
+
+System altered.
+
+[Enter para continuar]
+
+Abrir en modo read only, primero la bd debe detenerse.
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+Abriendo la BD en modo read only.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                       
+Fixed Size                  8904776 bytes                                       
+Variable Size             738197504 bytes                                       
+Database Buffers          318767104 bytes                                       
+Redo Buffers                7868416 bytes                                       
+Database mounted.
+Database opened.
+Conectando como user01, intentando crear una tabla
+Connected.
+
+                                                                                
+
+create table test(id number)
+*
+ERROR at line 1:
+ORA-16000: database or pluggable database open for read-only access 
+
+
+[¿Qué sucedió ? Enter para continuar]
+**No se ha podido crear una tabla ya que es una instrucción DML
+**lo cual no está permitido en el modo read only
+
+Regresar al modo de escritura y lectura
+Connected.
+
+                                                                                
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                       
+Fixed Size                  8904776 bytes                                       
+Variable Size             738197504 bytes                                       
+Database Buffers          318767104 bytes                                       
+Redo Buffers                7868416 bytes                                       
+Database mounted.
+Database opened.
+Haciendo limpieza (borrar a user01)
+
+User dropped.
+
+Listo!
+sys@jbadip02> spool off
+
+
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio aprendí el concepto de los modos en como 
+podemos usar nuestra instancia, restricted session nos permite tener 
+una base a la que solo usarios asignado puedan ingresar y read only
+nos permite tener una base para actividades de analítica 
+en la que no se permiten modificaciones de registros, operaciones DDL
+y DML
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

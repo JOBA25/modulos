@@ -1,0 +1,93 @@
+----------------------------
+********usando variables bind
+
+idle> start s-05-bind-variables.sql
+Connected.
+creando usuario user01
+
+User created.
+
+
+Grant succeeded.
+
+creando tabla de prueba
+
+Table created.
+
+Remover toda la información del shated pool (reset).
+
+System altered.
+
+1. Sentencias SQL con bind variables
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:30.09
+mostrando datos de la sentencia SQL con bind variables
+
+EXECUTIONS	LOADS           PARSE_CALLS   DISK_READS    BUFFER_GETS     CPU_TIME_MS ELAPSED_TIME_MS
+---------- ----------       ----------- ----------      -----------     ----------- ---------------
+    100000	    1		            1	        1	        104714          551.78	    29585.92
+
+Elapsed: 00:00:00.01
+limpieza
+Connected.
+
+User dropped.
+
+-------------------------------------
+***** sin usar variable bind
+sys@jbadip02> start s-05-bind-variables.sql
+Connected.
+creando usuario user01
+
+User created.
+
+
+Grant succeeded.
+
+creando tabla de prueba
+
+Table created.
+
+Remover toda la información del shated pool (reset).
+
+System altered.
+
+2. Sentencias SQL sin bind variables
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:49.60
+mostrando datos de la sentencia SQL sin bind variables
+
+    T_ROWS EXECUTIONS	   LOADS PARSE_CALLS DISK_READS BUFFER_GETS CPU_TIME_MS ELAPSED_TIME_MS
+---------- ---------- ---------- ----------- ---------- ----------- ----------- ---------------
+      4094	 2069	    4094	    2069	      0        4193	    547.012 	 553.97
+
+Elapsed: 00:00:00.03
+limpieza
+Connected.
+
+User dropped.
+
+sys@jbadip02> 
+
+
+
+
+-------------------------------------
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio pudimos observar las diferencias de usar variables bind
+en nuestros programas pl/sql, observamos un menor tiempo de ejecución 
+utilizando estas.
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

@@ -1,0 +1,107 @@
+idle> start s-03-modos-conexion.sql
+configurando modo compartido.
+Connected.
+
+                                                                                
+
+Configurando modo compartido
+configurando dispatchers
+
+System altered.
+
+configurando shared servers
+
+System altered.
+
+inicando el DRCP por default
+
+PL/SQL procedure successfully completed.
+
+min pooled servers
+
+PL/SQL procedure successfully completed.
+
+max pooled servers
+
+PL/SQL procedure successfully completed.
+
+tiempo máximo de vida sin uso en el pool (seg) - 1h
+
+PL/SQL procedure successfully completed.
+
+tiempo máximo de inactividad del pooled server -5 min
+
+PL/SQL procedure successfully completed.
+
+Mostrando  db_domain:
+
+NAME                                 TYPE        VALUE                                                                                    
+------------------------------------ ----------- ------------------------------                                                           
+db_domain                            string      fi.unam                                                                                  
+Notificando al listener los servicios disponibles
+
+System altered.
+
+mostrando los servicios que ofrece el listener
+
+Abrir netmgr, agregar nombres de servicio en tnsnames.ora [Enter] al terminar
+
+Explorar tnsnames.ora, [Enter] al terminar
+--con usuario oracle usar el comando netmgr
+--pc-joba.fi.unam hostname
+--jbadip02.fi.unam service name
+
+
+probando conexión en modo dedicado
+Connected.
+
+SYSDATE                                                                                                                                   
+------------------                                                                                                                        
+09-DEC-23                                                                                                                                 
+
+[Enter] para continuar
+
+
+
+probando conexión en modo compartido
+Connected.
+
+SYSDATE                                                                                                                                   
+------------------                                                                                                                        
+09-DEC-23                                                                                                                                 
+
+[Enter] para continuar
+
+mostrando datos de v$circuit
+
+CIRCUIT          DISPATCHER       STATUS                  KBS                                                                             
+---------------- ---------------- ---------------- ----------                                                                             
+000000006A4637D8 0000000075F49EF8 NORMAL           7.28515625                                                                             
+
+probando conexión en modo pooled
+Connected.
+
+                                                                                                                                          
+
+
+SYSDATE                                                                                                                                   
+------------------                                                                                                                        
+09-DEC-23                                                                                                                                 
+
+[Enter] para continuar
+
+sys@jbadip02> spool off
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio pudimos identificar el procedimiento y parámetros necesarios
+para implementar convexiones en modo compartido y usando un pool (ademas del modo 
+dedicado que es el modo que ya habiamos estado usando anteriormente)
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

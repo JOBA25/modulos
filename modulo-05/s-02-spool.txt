@@ -1,0 +1,276 @@
+*****t2
+[oracle@pc-joba modulo-05]$ ls -la /home/oracle/backups
+total 20
+drwxr-xr-x.  3 oracle oinstall 4096 Jan 19 18:54 .
+drwx------. 14 oracle oinstall 4096 Jan 19 18:55 ..
+-rw-rw-r--.  1 oracle oinstall 7494 Jan 19 18:54 controlfile-ej11.bkp.sql
+drwxr-xr-x.  2 oracle oinstall 4096 Nov 24 17:42 modulo-03
+[oracle@pc-joba modulo-05]$ cat /home/oracle/backups/controlfile-ej11.bkp.sql 
+-- The following are current System-scope REDO Log Archival related
+-- parameters and can be included in the database initialization file.
+--
+-- LOG_ARCHIVE_DEST=''
+-- LOG_ARCHIVE_DUPLEX_DEST=''
+--
+-- LOG_ARCHIVE_FORMAT=%t_%s_%r.dbf
+--
+-- DB_UNIQUE_NAME="jbadip02"
+--
+-- LOG_ARCHIVE_CONFIG='SEND, RECEIVE, NODG_CONFIG'
+-- LOG_ARCHIVE_MAX_PROCESSES=4
+-- STANDBY_FILE_MANAGEMENT=MANUAL
+-- FAL_CLIENT=''
+-- FAL_SERVER=''
+--
+-- LOG_ARCHIVE_DEST_1='LOCATION=/u01/app/oracle/product/19.3.0/dbhome_1/dbs/arch'
+-- LOG_ARCHIVE_DEST_1='MANDATORY REOPEN=300 NODELAY'
+-- LOG_ARCHIVE_DEST_1='ARCH NOAFFIRM NOVERIFY SYNC'
+-- LOG_ARCHIVE_DEST_1='NOREGISTER'
+-- LOG_ARCHIVE_DEST_1='NOALTERNATE'
+-- LOG_ARCHIVE_DEST_1='NODEPENDENCY'
+-- LOG_ARCHIVE_DEST_1='NOMAX_FAILURE NOQUOTA_SIZE NOQUOTA_USED NODB_UNIQUE_NAME'
+-- LOG_ARCHIVE_DEST_1='VALID_FOR=(PRIMARY_ROLE,ONLINE_LOGFILES)'
+-- LOG_ARCHIVE_DEST_STATE_1=ENABLE
+
+--
+-- Below are two sets of SQL statements, each of which creates a new
+-- control file and uses it to open the database. The first set opens
+-- the database with the NORESETLOGS option and should be used only if
+-- the current versions of all online logs are available. The second
+-- set opens the database with the RESETLOGS option and should be used
+-- if online logs are unavailable.
+-- The appropriate set of statements can be copied from the trace into
+-- a script file, edited as necessary, and executed when there is a
+-- need to re-create the control file.
+--
+--     Set #1. NORESETLOGS case
+--
+-- The following commands will create a new control file and use it
+-- to open the database.
+-- Data used by Recovery Manager will be lost.
+-- Additional logs may be required for media recovery of offline
+-- Use this only if the current versions of all online logs are
+-- available.
+
+-- After mounting the created controlfile, the following SQL
+-- statement will place the database in the appropriate
+-- protection mode:
+--  ALTER DATABASE SET STANDBY DATABASE TO MAXIMIZE PERFORMANCE
+
+STARTUP NOMOUNT
+CREATE CONTROLFILE REUSE DATABASE "JBADIP02" NORESETLOGS  NOARCHIVELOG
+    MAXLOGFILES 16
+    MAXLOGMEMBERS 3
+    MAXDATAFILES 1024
+    MAXINSTANCES 1
+    MAXLOGHISTORY 292
+LOGFILE
+  GROUP 1 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo01a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo01b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo01c.log'
+  ) SIZE 50M BLOCKSIZE 512,
+  GROUP 2 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo02a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo02b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo02c.log'
+  ) SIZE 50M BLOCKSIZE 512,
+  GROUP 3 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo03a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo03b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo03c.log'
+  ) SIZE 50M BLOCKSIZE 512
+-- STANDBY LOGFILE
+DATAFILE
+  '/u01/app/oracle/oradata/JBADIP02/system01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/sysaux01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/undotbs01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/users01.dbf',
+  '/disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf',
+  '/disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf',
+  '/disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf',
+  '/disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf',
+  '/disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf',
+  '/disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf'
+CHARACTER SET AL32UTF8
+;
+
+-- Commands to re-create incarnation table
+-- Below log names MUST be changed to existing filenames on
+-- disk. Any one log file from each branch can be used to
+-- re-create incarnation records.
+-- ALTER DATABASE REGISTER LOGFILE '/u01/app/oracle/product/19.3.0/dbhome_1/dbs/arch1_1_1153327870.dbf';
+-- Recovery is required if any of the datafiles are restored backups,
+-- or if the last shutdown was not normal or immediate.
+RECOVER DATABASE
+
+-- Database can now be opened normally.
+ALTER DATABASE OPEN;
+
+-- Commands to add tempfiles to temporary tablespaces.
+-- Online tempfiles have complete space information.
+-- Other tempfiles may require adjustment.
+ALTER TABLESPACE TEMPTS1 ADD TEMPFILE '/u01/app/oracle/oradata/JBADIP02/temp01.dbf'
+     SIZE 20971520  REUSE AUTOEXTEND ON NEXT 655360  MAXSIZE 32767M;
+-- End of tempfile additions.
+--
+--     Set #2. RESETLOGS case
+--
+-- The following commands will create a new control file and use it
+-- to open the database.
+-- Data used by Recovery Manager will be lost.
+-- The contents of online logs will be lost and all backups will
+-- be invalidated. Use this only if online logs are damaged.
+
+-- After mounting the created controlfile, the following SQL
+-- statement will place the database in the appropriate
+-- protection mode:
+--  ALTER DATABASE SET STANDBY DATABASE TO MAXIMIZE PERFORMANCE
+
+STARTUP NOMOUNT
+CREATE CONTROLFILE REUSE DATABASE "JBADIP02" RESETLOGS  NOARCHIVELOG
+    MAXLOGFILES 16
+    MAXLOGMEMBERS 3
+    MAXDATAFILES 1024
+    MAXINSTANCES 1
+    MAXLOGHISTORY 292
+LOGFILE
+  GROUP 1 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo01a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo01b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo01c.log'
+  ) SIZE 50M BLOCKSIZE 512,
+  GROUP 2 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo02a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo02b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo02c.log'
+  ) SIZE 50M BLOCKSIZE 512,
+  GROUP 3 (
+    '/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo03a.log',
+    '/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo03b.log',
+    '/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo03c.log'
+  ) SIZE 50M BLOCKSIZE 512
+-- STANDBY LOGFILE
+DATAFILE
+  '/u01/app/oracle/oradata/JBADIP02/system01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/sysaux01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/undotbs01.dbf',
+  '/u01/app/oracle/oradata/JBADIP02/users01.dbf',
+  '/disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf',
+  '/disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf',
+  '/disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf',
+  '/disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf',
+  '/disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf',
+  '/disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf'
+CHARACTER SET AL32UTF8
+;
+
+-- Commands to re-create incarnation table
+-- Below log names MUST be changed to existing filenames on
+-- disk. Any one log file from each branch can be used to
+-- re-create incarnation records.
+-- ALTER DATABASE REGISTER LOGFILE '/u01/app/oracle/product/19.3.0/dbhome_1/dbs/arch1_1_1153327870.dbf';
+-- Recovery is required if any of the datafiles are restored backups,
+-- or if the last shutdown was not normal or immediate.
+RECOVER DATABASE USING BACKUP CONTROLFILE
+
+-- Database can now be opened zeroing the online logs.
+ALTER DATABASE OPEN RESETLOGS;
+
+-- Commands to add tempfiles to temporary tablespaces.
+-- Online tempfiles have complete space information.
+-- Other tempfiles may require adjustment.
+ALTER TABLESPACE TEMPTS1 ADD TEMPFILE '/u01/app/oracle/oradata/JBADIP02/temp01.dbf'
+     SIZE 20971520  REUSE AUTOEXTEND ON NEXT 655360  MAXSIZE 32767M;
+-- End of tempfile additions.
+--
+
+*****t1 
+
+alter database backup controlfile to trace 
+  2    as '/home/oracle/backups/controlfile-ej11.bkp.sql';
+
+Database altered.
+
+col name format a80
+sys@jbadip02> select status from v$instance;
+
+STATUS
+------------
+OPEN
+
+sys@jbadip02> set linesize window;
+sys@jbadip02> SELECT * FROM v$controlfile;
+
+STATUS	NAME										 IS_ BLOCK_SIZE FILE_SIZE_BLKS	   CON_ID
+------- -------------------------------------------------------------------------------- --- ---------- -------------- ----------
+	/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/control01.ctl		 NO	  16384 	  1134		0
+	/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/control02.ctl		 NO	  16384 	  1134		0
+	/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/control03.ctl		 NO	  16384 	  1134		0
+
+sys@jbadip02> SELECT * FROM v$controlfile_record_section;
+
+TYPE			     RECORD_SIZE RECORDS_TOTAL RECORDS_USED FIRST_INDEX LAST_INDEX LAST_RECID	  CON_ID
+---------------------------- ----------- ------------- ------------ ----------- ---------- ---------- ----------
+DATABASE			     316	     1		  1	      0 	 0	    0	       0
+CKPT PROGRESS			    8180	     4		  0	      0 	 0	    0	       0
+REDO THREAD			     256	     1		  1	      0 	 0	    0	       0
+REDO LOG			      72	    16		  3	      0 	 0	    3	       0
+DATAFILE			     520	  1024		 10	      0 	 0	   82	       0
+FILENAME			     524	  4146		 21	      0 	 0	    0	       0
+TABLESPACE			     180	  1024		  8	      0 	 0	   39	       0
+TEMPORARY FILENAME		      56	  1024		  1	      0 	 0	    1	       0
+RMAN CONFIGURATION		    1108	    50		  0	      0 	 0	    0	       0
+LOG HISTORY			      56	   292		106	      1        106	  106	       0
+OFFLINE RANGE			     200	  1063		  0	      0 	 0	    0	       0
+ARCHIVED LOG			     584	    28		  0	      0 	 0	    0	       0
+BACKUP SET			      96	  1022		  0	      0 	 0	    0	       0
+BACKUP PIECE			     780	  1006		  0	      0 	 0	    0	       0
+BACKUP DATAFILE 		     200	  1063		  0	      0 	 0	    0	       0
+BACKUP REDOLOG			      76	   215		  0	      0 	 0	    0	       0
+DATAFILE COPY			     736	  1000		  0	      0 	 0	    0	       0
+
+TYPE			     RECORD_SIZE RECORDS_TOTAL RECORDS_USED FIRST_INDEX LAST_INDEX LAST_RECID	  CON_ID
+---------------------------- ----------- ------------- ------------ ----------- ---------- ---------- ----------
+BACKUP CORRUPTION		      44	  1115		  0	      0 	 0	    0	       0
+COPY CORRUPTION 		      40	  1227		  0	      0 	 0	    0	       0
+DELETED OBJECT			      20	   818		  5	      1 	 5	    5	       0
+PROXY COPY			     928	  1004		  0	      0 	 0	    0	       0
+BACKUP SPFILE			     124	   131		  0	      0 	 0	    0	       0
+DATABASE INCARNATION		      56	   292		  1	      1 	 1	    1	       0
+FLASHBACK LOG			      84	  2048		  0	      0 	 0	    0	       0
+RECOVERY DESTINATION		     180	     1		  0	      0 	 0	    0	       0
+INSTANCE SPACE RESERVATION	      28	  1055		  1	      0 	 0	    0	       0
+REMOVABLE RECOVERY FILES	      32	  1000		  0	      0 	 0	    0	       0
+RMAN STATUS			     116	   141		  0	      0 	 0	    0	       0
+THREAD INSTANCE NAME MAPPING	      80	     1		  1	      0 	 0	    0	       0
+MTTR				     100	     1		  1	      0 	 0	    0	       0
+DATAFILE HISTORY		     568	    57		  0	      0 	 0	    0	       0
+STANDBY DATABASE MATRIX 	     400	   128		128	      0 	 0	    0	       0
+GUARANTEED RESTORE POINT	     256	  2048		  0	      0 	 0	    0	       0
+RESTORE POINT			     256	  2108		  0	      0 	 0	    0	       0
+
+TYPE			     RECORD_SIZE RECORDS_TOTAL RECORDS_USED FIRST_INDEX LAST_INDEX LAST_RECID	  CON_ID
+---------------------------- ----------- ------------- ------------ ----------- ---------- ---------- ----------
+DATABASE BLOCK CORRUPTION	      80	  8384		  0	      0 	 0	    0	       0
+ACM OPERATION			     104	    64		 11	      0 	 0	    0	       0
+FOREIGN ARCHIVED LOG		     604	  1002		  0	      0 	 0	    0	       0
+PDB RECORD			     780	    10		  0	      0 	 0	    0	       0
+AUXILIARY DATAFILE COPY 	     584	   128		  0	      0 	 0	    0	       0
+MULTI INSTANCE REDO APPLY	     556	     1		  0	      0 	 0	    0	       0
+PDBINC RECORD			     144	   113		  0	      0 	 0	    0	       0
+TABLESPACE KEY HISTORY		     108	   151		  0	      0 	 0	    0	       0
+
+42 rows selected.
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio pudimos comprender una técnica para mitigar la perdida 
+de un control file así como la importancia de este archivo 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

@@ -1,0 +1,83 @@
+***Se hizo una carga menor en t01_id por falta de memoria 
+************
+
+idle> satrt e-02-rowids.sql
+SP2-0734: unknown command beginning "satrt e-02..." - rest of line ignored.
+idle> start e-02-rowids.sql
+Connected.
+
+                                                                                
+
+mostrando los primeros 10 registros y sus rowids.
+
+ROW_ID                     ID                                                   
+------------------ ----------                                                   
+AAAOuBAAEAAANJ2AAA          1                                                   
+AAAOuBAAEAAANJ2AAB          2                                                   
+AAAOuBAAEAAANJ2AAC          3                                                   
+AAAOuBAAEAAANJ2AAD          4                                                   
+AAAOuBAAEAAANJ2AAE          5                                                   
+AAAOuBAAEAAANJ2AAF          6                                                   
+AAAOuBAAEAAANJ2AAG          7                                                   
+AAAOuBAAEAAANJ2AAH          8                                                   
+AAAOuBAAEAAANJ2AAI          9                                                   
+AAAOuBAAEAAANJ2AAJ         10                                                   
+
+10 rows selected.
+
+mostrando segmentos generados
+
+SEGMENTO                 TOTAL_REGISTROS                                        
+------------------------ ---------------                                        
+AAAOuB                              9000                                        
+
+[Enter] para continuar
+
+mostrando data file y registros asignados
+
+DATA_FILE    TOTAL_REGISTROS                                                    
+------------ ---------------                                                    
+AAE                     9000                                                    
+
+[Enter] para continuar
+
+mostrando bloque de datos y registros incluidos en el.
+
+BLOQUE                   TOTAL_REGISTROS                                        
+------------------------ ---------------                                        
+AAANJz                               660                                        
+AAANQO                               660                                        
+AAANJ2                               660                                        
+AAANQL                               660                                        
+AAANQM                               660                                        
+AAANQe                               420                                        
+AAANJ0                               660                                        
+AAANQI                               660                                        
+AAANJ3                               660                                        
+AAANJ1                               660                                        
+AAANQK                               660                                        
+
+BLOQUE                   TOTAL_REGISTROS                                        
+------------------------ ---------------                                        
+AAANQJ                               660                                        
+AAANQN                               660                                        
+AAANQP                               660                                        
+
+14 rows selected.
+
+jorge05@jbadip02> exit
+
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Gracias a este ejericio pudimos identificar las partes por las que se compone
+un rowid
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

@@ -1,0 +1,49 @@
+idle> start s-04-componentes-sga.sql
+Connected.
+Reporte 1
+
+POOL			                NUM_COMPONENTES MEGAS_USADOS    MEGAS_LIBRES MB_ASIGNADOS
+--------------------------      --------------- ------------    ------------ ------------
+buffer_cache				            0	        280 	        -1	        280
+shared pool			                   1414	        241.4           42.59	    283.99
+shared_io_pool				            0	        24 	            -1	        24
+fixed_sga				                0           8.49225616 	    -1          8.49225616
+log_buffer				                0           7.50390625 	    -1          7.50390625
+large pool				                1	        .46 	        3.53	     3.99
+
+6 rows selected.
+
+
+Reporte 2
+
+
+NAME				            MB_ASIGNADOS
+-------------------------------- ------------
+Memoria total			            635.99
+Free SGA Memory Available		    412
+Buffer Cache Size			        304
+Shared Pool Size			        284
+Shared IO Pool Size			        24
+Fixed SGA Size				        8.49
+Redo Buffers				        7.5
+Java Pool Size				         4
+Large Pool Size 			        4
+Data Transfer Cache Size		    0
+In-Memory Area Size			        0
+Streams Pool Size			        0
+
+12 rows selected.
+
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio pudimos observar las cantidades de memoria reservada y usada para 
+las diferentes áreas de la SGA
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

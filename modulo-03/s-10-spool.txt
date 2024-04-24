@@ -1,0 +1,80 @@
+idle> start s-10-column-store.sql
+Autenticando como sys
+Connected.
+
+                                                                                
+
+Alterando parametro inmemory_size
+
+System altered.
+
+Reiniciando base de datos
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                       
+Fixed Size                  8904776 bytes                                       
+Variable Size             738197504 bytes                                       
+Database Buffers          213909504 bytes                                       
+Redo Buffers                7868416 bytes                                       
+In-Memory Area            104857600 bytes                                       
+Database mounted.
+Database opened.
+Mostrando parametro inmemory_size
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+inmemory_size                        big integer 100M                           
+
+PL/SQL procedure successfully completed.
+
+Creando usuario user03imc
+
+User created.
+
+
+Grant succeeded.
+
+Iniciando sesión como user03imc
+Connected.
+
+                                                                                
+
+creando tabla movie
+
+Table created.
+
+Ejecutar script s-11-movie-carga-inicial.sql [Enter] para iniciar
+
+Contando registros, se esperan 58788
+
+  COUNT(*)                                                                      
+----------                                                                      
+     58788                                                                      
+
+1 row selected.
+
+Revisar resultados [Enter] para hacer commit
+
+haciendo commit
+
+Commit complete.
+
+Listo!
+&prompt_value> spool off
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio unicamente asignamos valor al parámetro 
+inmemory_size que usaremos en el siguiente ejercicio junto con la 
+tabla creada
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

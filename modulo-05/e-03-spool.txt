@@ -1,0 +1,156 @@
+jorge05@jbadip02> start e-03-pctfree.sql
+Connected.
+creando tabla con pctfree 0
+
+Table created.
+
+creando tabla con pctfree 50
+
+Table created.
+
+presione [Enter] para comenzar con la carga
+
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+consultando  bloques y sus registros para t02_random_str_0
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54307	     336
+	  4	   54308	     336
+	  4	   54309	     336
+	  4	   54310	     336
+	  4	   54311	     336
+	  4	   54328	     336
+	  4	   54329	     336
+	  4	   54330	     336
+	  4	   54331	     336
+	  4	   54332	     336
+	  4	   54333	     336
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54334	     336
+	  4	   54335	     336
+	  4	   54353	     336
+	  4	   54354	     336
+	  4	   54355	     336
+	  4	   54356	     336
+	  4	   54357	     336
+	  4	   54358	     336
+	  4	   54359	     336
+	  4	   54376	     336
+	  4	   54377	     336
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54378	     336
+	  4	   54379	     336
+	  4	   54380	     336
+	  4	   54381	     336
+	  4	   54382	     336
+	  4	   54383	     336
+	  4	   54406	     336
+	  4	   54407	     256
+
+30 rows selected.
+
+consultando  bloques y sus registros para t02_random_str_50
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54315	     168
+	  4	   54316	     168
+	  4	   54317	     168
+	  4	   54318	     168
+	  4	   54319	     168
+	  4	   54320	     168
+	  4	   54321	     168
+	  4	   54322	     168
+	  4	   54323	     168
+	  4	   54324	     168
+	  4	   54325	     168
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54326	     168
+	  4	   54327	     168
+	  4	   54337	     168
+	  4	   54338	     168
+	  4	   54339	     168
+	  4	   54340	     168
+	  4	   54341	     168
+	  4	   54342	     168
+	  4	   54343	     168
+	  4	   54344	     168
+	  4	   54345	     168
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54346	     168
+	  4	   54347	     168
+	  4	   54348	     168
+	  4	   54349	     168
+	  4	   54350	     168
+	  4	   54351	     168
+	  4	   54361	     168
+	  4	   54362	     168
+	  4	   54363	     168
+	  4	   54364	     168
+	  4	   54365	     168
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54366	     168
+	  4	   54367	     168
+	  4	   54368	     168
+	  4	   54369	     168
+	  4	   54370	     168
+	  4	   54371	     168
+	  4	   54372	     168
+	  4	   54373	     168
+	  4	   54374	     168
+	  4	   54375	     168
+	  4	   54385	     168
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54386	     168
+	  4	   54387	     168
+	  4	   54388	     168
+	  4	   54389	     168
+	  4	   54390	     168
+	  4	   54391	     168
+	  4	   54392	     168
+	  4	   54393	     168
+	  4	   54394	     168
+	  4	   54395	     168
+	  4	   54396	     168
+
+FILE_NUMBER BLOCK_NUMBER TOTAL_REGISTROS
+----------- ------------ ---------------
+	  4	   54397	     168
+	  4	   54398	     168
+	  4	   54399	     168
+	  4	   54414	     168
+	  4	   54415	      88
+
+60 rows selected.
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+Con este ejercicio pudimos ver el aumento en la necesidad de la creación de bloques, esto 
+por la modificación del parámetro pctfree en la tabla 2
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

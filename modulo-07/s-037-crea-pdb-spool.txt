@@ -1,0 +1,166 @@
+Creando proxy PDB
+iniciar jbadip03
+
+iniciar jbadip04
+
+Preparando jbadip03_s2
+Connected.
+
+                                                                                
+
+creando common user
+
+User created.
+
+
+Grant succeeded.
+
+Abriendo PDB
+alter pluggable database jbadip03_s2 open read write
+*
+ERROR at line 1:
+ORA-65019: pluggable database JBADIP03_S2 already open 
+
+
+
+Session altered.
+
+
+Tablespace created.
+
+Creando un usuario de prueba
+
+User created.
+
+
+Grant succeeded.
+
+creando tabla  test_proxy
+
+Table created.
+
+insertando datos de prueba
+
+1 row created.
+
+
+Commit complete.
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+Revisar datos, [Enter] para continuar
+start temp-s-037-crea-pdb.sql
+conectando  a jbadip04 para crear liga y proxy PDB
+Connected.
+
+                                                                                
+
+creando liga
+
+Database link created.
+
+creando Proxy PDB
+
+Pluggable database created.
+
+Probando proxy PDB [Enter] para continuar
+start temp-s-037-crea-pdb.sql
+abrir la proxy PDB
+
+Pluggable database altered.
+
+accediendo a jbadip03_s2 a través de la Proxy PDB
+Connected.
+
+                                                                                
+
+mostrando dastos desde proxy
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+insertando datos desde proxy
+
+1 row created.
+
+
+Commit complete.
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+
+validando en jbadip03_s2
+Connected.
+
+                                                                                
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+
+Analizar resultados [Enter] para hacer limpieza
+
+limpieza en jbadip03_s2
+
+Session altered.
+
+
+User dropped.
+
+
+Session altered.
+
+
+Tablespace dropped.
+
+
+User dropped.
+
+limpieza en jbadip04
+Connected.
+
+                                                                                
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Database link dropped.
+
+sys@jbadip04> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ERROR:
+ORA-12514: TNS:listener does not currently know of service requested in connect
+descriptor 
+
+
+Warning: You are no longer connected to ORACLE.
+sys@jbadip04> exit
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró crear una pdb que funcione como un proxy la cual nos ayuda teniendo una 
+especie de pdb espejo 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

@@ -1,0 +1,140 @@
+idle> start s-11-actualiza-params.sql
+Connected.
+
+                                                                                
+
+1 consultando v$parameter
+
+NAME                           VALUE                          ISSES_MODI ISSYS_MODIFI                                                    
+------------------------------ ------------------------------ ---------- ------------                                                    
+nls_date_format                DD-MON-RR                      TRUE       FALSE                                                           
+db_domain                      fi.unam                        FALSE      FALSE                                                           
+deferred_segment_creation      TRUE                           TRUE       IMMEDIATE                                                       
+
+2 respaldo del spfile
+
+File created.
+
+intentando modificar parámetros
+nls_date_format
+nivel sesión valor esperado: OK  enter para comprobar
+
+
+Session altered.
+
+nivel memory valor esperado: error  enter para comprobar
+
+alter system set nls_date_format='dd/mm/yyyy hh24:mi:ss'
+                 *
+ERROR at line 1:
+ORA-02096: specified initialization parameter is not modifiable with this option 
+
+
+nivel both valor esperado: error  enter para comprobar
+
+alter system set nls_date_format='dd/mm/yyyy hh24:mi:ss'
+                 *
+ERROR at line 1:
+ORA-02096: specified initialization parameter is not modifiable with this option 
+
+
+nivel spfile valor esperado: OK  enter para comprobar
+
+
+System altered.
+
+db_domain
+NIVEL SESION: valor esperado: [OK] enter para comprobar
+
+alter session set db_domain='jorge.fi'
+                  *
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+NIVEL MEMORY: valor esperado: ERROR enter para comprobar
+
+alter system set db_domain='jorge.fi' scope=memory
+                 *
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+NIVEL BOTH: valor esperado: ERROR enter para comprobar
+
+alter system set db_domain='jorge.fi' scope=both
+                 *
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+NIVEL SPFILE: valor esperado: OK enter para comprobar
+
+
+System altered.
+
+deferred_segment_creation
+NIVEL SESION: valor esperado: [OK] enter para comprobar
+
+
+Session altered.
+
+NIVEL MEMORY: valor esperado: ERROR enter para comprobar
+
+
+System altered.
+
+NIVEL BOTH: valor esperado: ERROR enter para comprobar
+
+
+System altered.
+
+NIVEL SPFILE: valor esperado: OK enter para comprobar
+
+
+System altered.
+
+reset para nls_date_format
+reset para nls_date_format scope=spfile
+
+System altered.
+
+alter system reset nls_date_format scope=memory
+*
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+alter system reset nls_date_format scope=both
+*
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+reset para db_domain scope=spfile
+
+System altered.
+
+alter system reset db_domain scope=memory
+*
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+alter system reset db_domain scope=both
+*
+ERROR at line 1:
+ORA-02095: specified initialization parameter cannot be modified 
+
+
+reset para deferred_segment_creation scope=spfile
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+sys@jbadip01> exit

@@ -1,0 +1,169 @@
+hacer unplug en jbadip03_s3  -> plug en jbadip04_s3
+Iniciar jbadip03
+
+Connectar a jbadip03 a cdb$root
+Connected.
+
+                                                                                
+
+Crear PDB  jbadip03_s3  a partir de Seed
+old   4:         '&jbadip03_seed' ,
+new   4:         '/u01/app/oracle/oradata/JBADIP03/pdbseed' ,
+old   5:         '&unplug_jbadip03_s3'
+new   5:         '/u01/app/oracle/oradata/JBADIP03/jbadip03_s3'
+
+Pluggable database created.
+
+hacer unplug de  jbadip03_s3, no se requiere cerrarla ya que no ha sido abierta
+old   2:     into '&unplug_jbadip03_s3/jbadip03_s3.xml'
+new   2:     into '/u01/app/oracle/oradata/JBADIP03/jbadip03_s3/jbadip03_s3.xml'
+
+Pluggable database altered.
+
+Mostrando datos de las PDBs
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                 
+---------- ------------------------------ ---------- ----------                 
+         2 PDB$SEED                       READ ONLY  NO                         
+         3 JBADIP03_S1                    READ WRITE NO                         
+         4 JBADIP03_S2                    READ WRITE NO                         
+         5 JBADIP03_S3                    MOUNTED                               
+Mostrando datos de las PDBs  (dba_pdbs)
+
+    PDB_ID PDB_NAME                       STATUS                                
+---------- ------------------------------ ----------                            
+         3 JBADIP03_S1                    NORMAL                                
+         2 PDB$SEED                       NORMAL                                
+         4 JBADIP03_S2                    NORMAL                                
+         5 JBADIP03_S3                    UNPLUGGED                             
+
+Analizar [enter] para continuar
+
+mostrando metadatos
+
+
+Revisar XML, revisar rutas [enter] para continuar
+
+El siguiente paso es hacer plug en jbadip04
+Iniciar jbadip04
+
+Validar compatibilidad, conectando a jbadip04
+Connected.
+
+                                                                                
+
+
+CON_ID                                                                          
+------------------------------                                                  
+1                                                                               
+
+CON_NAME                                                                        
+------------------------------                                                  
+CDB$ROOT                                                                        
+old   5:     pdb_descr_file => '&unplug_jbadip03_s3/jbadip03_s3.xml'
+new   5:     pdb_descr_file => '/u01/app/oracle/oradata/JBADIP03/jbadip03_s3/jbadip03_s3.xml'
+    pdb_name => 'jbadip03_s3'
+    *
+ERROR at line 6:
+ORA-06550: line 6, column 5:
+PLS-00103: Encountered the symbol "PDB_NAME" when expecting one of the
+following: 
+) , * & = - + < / > at in is mod remainder not rem 
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2 
+like4 likec between || multiset member submultiset
+The symbol "," was substituted for "PDB_NAME" to continue.
+ORA-06550: line 12, column 5:
+PLS-00103: Encountered the symbol "END" when expecting one of the following: 
+:= . ( % ;
+The symbol ";" was substituted for "END" to continue. 
+
+
+Validar resultados [enter] para continuar
+
+agregar la nueva PDB
+old   2:     using  '&unplug_jbadip03_s3/jbadip03_s3.xml'
+new   2:     using  '/u01/app/oracle/oradata/JBADIP03/jbadip03_s3/jbadip03_s3.xml'
+old   4:         '&unplug_jbadip03_s3',
+new   4:         '/u01/app/oracle/oradata/JBADIP03/jbadip03_s3',
+old   5:         '&plug_jbadip04_s3'
+new   5:         '/u01/app/oracle/oradata/JBADIP04/jbadip04_s3'
+
+Pluggable database created.
+
+mostrando datafiles en origen
+
+[Enter] para continuar
+
+mostrando datos de las PDBS
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                 
+---------- ------------------------------ ---------- ----------                 
+         2 PDB$SEED                       READ ONLY  NO                         
+         3 JBADIP04_S1                    MOUNTED                               
+         4 JBADIP04_S3                    MOUNTED                               
+
+    PDB_ID PDB_NAME                       STATUS                                
+---------- ------------------------------ ----------                            
+         3 JBADIP04_S1                    NORMAL                                
+         2 PDB$SEED                       NORMAL                                
+         4 JBADIP04_S3                    NEW                                   
+
+Analizar [enter] para continuar
+
+Abriendo jbadip04_s3
+
+Pluggable database altered.
+
+conectar a jbadip04_s3
+
+Session altered.
+
+mostrando datos de la nueva PDB
+
+CON_ID                                                                          
+------------------------------                                                  
+4                                                                               
+
+CON_NAME                                                                        
+------------------------------                                                  
+JBADIP04_S3                                                                     
+Analizar resultado [Enter] para comenzar con Limpieza
+
+eliminar jbadip03_s3
+Connected.
+
+                                                                                
+
+alter pluggable database jbadip03_s3 close
+*
+ERROR at line 1:
+ORA-65020: pluggable database JBADIP03_S3 already closed 
+
+
+
+Pluggable database dropped.
+
+eliminar jbadip04_s3
+Connected.
+
+                                                                                
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+eliminando archivo XML
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos hacer una operación de unplug de una pdb para despues
+realizar un plug de esta dentro de una cdb diferente 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

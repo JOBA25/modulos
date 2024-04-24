@@ -1,0 +1,129 @@
+idle> start e-13-archive-mode.sql
+Habilitar archive mode
+1 respaldando spfile  a través del pfile.
+Connected.
+
+                                                                                
+
+
+File created.
+
+2 configurando parámetros
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+Mostrando parámetros antes de continuar.
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_max_processes     integer     5                            
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_dest_1            string      LOCATION=/unam-diplomado-bd/ 
+                                                   disk-041/archivelogs/jbadip0 
+                                                   2/disk_a MANDATORY           
+*        log_archive_dest_10           string                                   
+*        log_archive_dest_11           string                                   
+*        log_archive_dest_12           string                                   
+*        log_archive_dest_13           string                                   
+*        log_archive_dest_14           string                                   
+*        log_archive_dest_15           string                                   
+*        log_archive_dest_16           string                                   
+*        log_archive_dest_17           string                                   
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_dest_18           string                                   
+*        log_archive_dest_19           string                                   
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_dest_2            string      LOCATION=/unam-diplomado-bd/ 
+                                                   disk-042/archivelogs/jbadip0 
+                                                   2/disk_b                     
+*        log_archive_dest_20           string                                   
+*        log_archive_dest_21           string                                   
+*        log_archive_dest_22           string                                   
+*        log_archive_dest_23           string                                   
+*        log_archive_dest_24           string                                   
+*        log_archive_dest_25           string                                   
+*        log_archive_dest_26           string                                   
+*        log_archive_dest_27           string                                   
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_dest_28           string                                   
+*        log_archive_dest_29           string                                   
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_format            string      arch_gbldip02_%t_%s_%r.arc   
+
+SID      NAME                          TYPE        VALUE                        
+-------- ----------------------------- ----------- ---------------------------- 
+*        log_archive_min_succeed_dest  integer     1                            
+Revisar configuracion, [enter] para reiniciar instancia en modo mount
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+3 iniciando en modo mount
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                       
+Fixed Size                  8904776 bytes                                       
+Variable Size             692060160 bytes                                       
+Database Buffers          260046848 bytes                                       
+Redo Buffers                7868416 bytes                                       
+In-Memory Area            104857600 bytes                                       
+Database mounted.
+habilitar el modo archive
+
+Database altered.
+
+4 abrir la BD  para comprobar configuración
+
+Database altered.
+
+comprobando resultados
+Database log mode              Archive Mode
+Automatic archival             Enabled
+Archive destination            /unam-diplomado-bd/disk-042/archivelogs/jbadip02/disk_b
+Oldest online log sequence     111
+Next log sequence to archive   111
+Current log sequence           111
+Revisar, [enter] para continuar
+
+5 respaldando nuevamente el spfile
+
+File created.
+
+mostrando procesos ARCn
+
+Listo.
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio pudimos activar el modo de archivado de redo logs 
+en nuestra BD
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

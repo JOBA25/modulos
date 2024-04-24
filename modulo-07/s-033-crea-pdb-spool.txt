@@ -1,0 +1,101 @@
+Hacer Clon jbadip03_s1 -> jbadip04_s2  Ahora con DB links
+Iniciando jbadip03
+
+Iniciando jbadip04
+
+conectando a jbadip03
+Connected.
+
+                                                                                
+
+creando usuario en jbadip03
+create user c##jorge_remote identified by jorge container=all 
+            *
+ERROR at line 1:
+ORA-01920: user name 'C##JORGE_REMOTE' conflicts with another user or role name 
+
+
+
+Grant succeeded.
+
+conectando a jbadip04 para crear DB Link
+
+es correcto el valor ¿?
+[enter] para continuar
+
+Connected.
+
+                                                                                
+
+create database link clone_link
+                     *
+ERROR at line 1:
+ORA-02011: duplicate database link name 
+
+
+Creando pdb jbadip04_s2
+
+Pluggable database created.
+
+Abriendo y verificando la nueva pdb
+
+Pluggable database altered.
+
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                 
+---------- ------------------------------ ---------- ----------                 
+         2 PDB$SEED                       READ ONLY  NO                         
+         3 JBADIP04_S1                    READ WRITE NO                         
+         4 JBADIP04_S2                    READ WRITE NO                         
+mostrando datafiles de la CDB
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- ------------------------------------------------------------                                                               
+         1 /u01/app/oracle/oradata/JBADIP04/system01.dbf                                                                              
+         3 /u01/app/oracle/oradata/JBADIP04/sysaux01.dbf                                                                              
+         4 /u01/app/oracle/oradata/JBADIP04/undotbs01.dbf                                                                             
+         7 /u01/app/oracle/oradata/JBADIP04/users01.dbf                                                                               
+        13 /u01/app/oracle/oradata/JBADIP04/jbadip04_s2/system01.dbf                                                                  
+        14 /u01/app/oracle/oradata/JBADIP04/jbadip04_s2/sysaux01.dbf                                                                  
+        15 /u01/app/oracle/oradata/JBADIP04/jbadip04_s2/undotbs01.dbf                                                                 
+        16 /u01/app/oracle/oradata/JBADIP04/jbadip04_s2/users01.dbf                                                                   
+         9 /u01/app/oracle/oradata/JBADIP04/jbadip04_s1/system01.dbf                                                                  
+        10 /u01/app/oracle/oradata/JBADIP04/jbadip04_s1/sysaux01.dbf                                                                  
+        11 /u01/app/oracle/oradata/JBADIP04/jbadip04_s1/undotbs01.dbf                                                                 
+        12 /u01/app/oracle/oradata/JBADIP04/jbadip04_s1/users01.dbf                                                                   
+
+12 rows selected.
+
+Analizar resultados, [Enter] para continuar con Limpieza
+
+borrar PDB
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Database link dropped.
+
+eliminando usuario en jbadip03
+Connected.
+
+                                                                                                                                      
+
+
+User dropped.
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos hacer la clonación de una pdb partiendo de una que se encuentra en 
+una cdb diferente, para esto comprendimo el cncepto de un "link"   
+ademas de que fue necesario un usario comun dentro de la cdb donde se encuentra la 
+cdb origen y se verifico que los datos existieran en ambas pdb
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

@@ -1,0 +1,58 @@
+sys@jbadip02> SET SERVEROUTPUT OFF
+sys@jbadip02> 
+sys@jbadip02> Rem *********************************************************************
+sys@jbadip02> Rem END CATJAVA.SQL
+sys@jbadip02> Rem *********************************************************************
+sys@jbadip02> 
+sys@jbadip02> Prompt comprobando la instalación, El status debe ser  VALID
+comprobando la instalación, El status debe ser  VALID
+sys@jbadip02> 
+sys@jbadip02> col comp_name format a30
+sys@jbadip02> col status format a15
+sys@jbadip02> select comp_name, version, status from dba_registry where comp_name like '%JAVA%' ;
+
+COMP_NAME                      VERSION                        STATUS
+------------------------------ ------------------------------ ---------------
+JServer JAVA Virtual Machine   19.0.0.0.0                     VALID
+
+1 row selected.
+
+sys@jbadip02> 
+sys@jbadip02> Prompt mostrando objetos de la instalación
+mostrando objetos de la instalación
+sys@jbadip02> select count(*), object_type from all_objects
+  2     where object_type like '%JAVA%' group by object_type;
+
+  COUNT(*) OBJECT_TYPE
+---------- -----------------------
+      1209 JAVA DATA
+     33223 JAVA CLASS
+         2 JAVA SOURCE
+      1569 JAVA RESOURCE
+
+4 rows selected.
+
+sys@jbadip02> 
+sys@jbadip02> Pause Listo! Reiniciando instancia, [enter] para continuar
+Listo! Reiniciando instancia, [enter] para continuar
+
+sys@jbadip02> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+sys@jbadip02> startup
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size                  8904776 bytes
+Variable Size             822083584 bytes
+Database Buffers          234881024 bytes
+Redo Buffers                7868416 bytes
+Database mounted.
+Database opened.
+sys@jbadip02> spool off
+
+sys@jbadip02> !$ORACLE_HOME/jdk/bin/java -version
+java version "1.8.0_201"
+Java(TM) SE Runtime Environment (build 1.8.0_201-b09)
+Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)

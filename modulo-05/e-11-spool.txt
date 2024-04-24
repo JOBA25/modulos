@@ -1,0 +1,279 @@
+[oracle@pc-joba modulo-05]$ find /unam-diplomado-bd/disk-*/app/oracle/oradata/JBADIP02/redo*.log -name "*redo*.log" -type f -exec ls -l {} \;
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 06:01 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo01a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 09:34 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo02a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 00:00 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo03a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 06:01 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo01b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 09:34 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo02b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 00:00 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo03b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 06:01 /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo01c.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 09:34 /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo02c.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan 20 00:00 /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo03c.log
+[oracle@pc-joba modulo-05]$ export ORACLE_SID=jbadip02
+[oracle@pc-joba modulo-05]$ sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Jan 20 09:35:42 2024
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> spool e-11-spool.txt
+SP2-0606: Cannot create SPOOL file "e-11-spool.txt"
+idle> start e-11-redo-log-oracle.sql
+1. mostrando Redo logs en S.O
+find: missing argument to `-exec'
+
+Connected.
+2. Mostrando datos de los grupos de Redo Logs
+
+    GROUP#  SEQUENCE#	  TAM_MB  BLOCKSIZE    MEMBERS STATUS		FIRST_CHANGE# FIRST_TIME		    NEXT_CHANGE#
+---------- ---------- ---------- ---------- ---------- ---------------- ------------- ----------------------------- ------------
+	 1	  109	      50	512	     3 INACTIVE 	      2751387 20-JAN-2024 12:00:52		 2770885
+	 2	  110	      50	512	     3 CURRENT		      2770885 20-JAN-2024 06:01:23	      1.8447E+19
+	 3	  108	      50	512	     3 INACTIVE 	      2736521 19-JAN-2024 10:01:50		 2751387
+
+3. Que grupo de Redo Log es el que se esta empleando
+4. Mostrando datos de los miembros de cada grupo de Redo Logs
+
+    GROUP# STATUS  TYPE    MEMBER
+---------- ------- ------- -------------------------------------------------------------------
+	 1	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo01a.log
+	 1	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo01b.log
+	 1	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo01c.log
+	 2	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo02a.log
+	 2	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo02b.log
+	 2	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo02c.log
+	 3	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo03a.log
+	 3	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo03b.log
+	 3	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo03c.log
+
+9 rows selected.
+
+5 . Agregar grupos nuevos.
+Connected.
+creando grupo 4
+
+Database altered.
+
+creando grupo 5
+
+Database altered.
+
+creando grupo 6
+
+Database altered.
+
+6. Agregar miembros
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+7. consultar nuevamente  grupos.
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     109   52428800	   512		3 NO  INACTIVE		     2751387 20-JAN-24		     2770885 20-JAN-24			 0
+	 2	    1	     110   52428800	   512		3 NO  CURRENT		     2770885 20-JAN-24		  1.8447E+19				 0
+	 3	    1	     108   52428800	   512		3 NO  INACTIVE		     2736521 19-JAN-24		     2751387 20-JAN-24			 0
+	 4	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar y [enter] para continuar
+
+8. consultar nuevamente  miembros
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+	 1	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo01a.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo01b.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo01c.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo02a.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo02b.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo02c.log
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo03a.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo03b.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo03c.log
+
+	 4	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo04a_60.log
+
+	 4	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo04b_60.log
+
+	 5	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+			   IP02/redo05a_60.log
+
+	 5	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo05b_60.log
+
+	 6	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo06a_60.log
+
+	 6	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo06b_60.log
+
+	 4 INVALID ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo04c_60.log
+
+	 5 INVALID ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo05c_60.log
+
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+	 6 INVALID ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/JBAD NO	   0
+			   IP02/redo06c_60.log
+
+
+18 rows selected.
+
+9 Forzar log switch para liberar grupos 1,2 y 3
+Grupo en uso: 2
+Grupo en uso: 4
+
+PL/SQL procedure successfully completed.
+
+10. Confirmando grupo actual.
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     109   52428800	   512		3 NO  INACTIVE		     2751387 20-JAN-24		     2770885 20-JAN-24			 0
+	 2	    1	     110   52428800	   512		3 NO  ACTIVE		     2770885 20-JAN-24		     2782570 20-JAN-24			 0
+	 3	    1	     108   52428800	   512		3 NO  INACTIVE		     2736521 19-JAN-24		     2751387 20-JAN-24			 0
+	 4	    1	     111   62914560	   512		3 NO  CURRENT		     2782570 20-JAN-24		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar y [enter] para continuar
+
+11.  Validando que los grupo 1 a 3 no tengan status active
+Forzando checkpoint para sicronizar data files con db buffer
+
+PL/SQL procedure successfully completed.
+
+12. Confirmando que no existen grupos con status ACTIVE.
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     109   52428800	   512		3 NO  INACTIVE		     2751387 20-JAN-24		     2770885 20-JAN-24			 0
+	 2	    1	     110   52428800	   512		3 NO  INACTIVE		     2770885 20-JAN-24		     2782570 20-JAN-24			 0
+	 3	    1	     108   52428800	   512		3 NO  INACTIVE		     2736521 19-JAN-24		     2751387 20-JAN-24			 0
+	 4	    1	     111   62914560	   512		3 NO  CURRENT		     2782570 20-JAN-24		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar y [enter] para continuar
+
+13. Eliminar grupos 1, 2, y 3
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+14. Confirmando que se han eliminado grupos 1, 2 y 3.
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 4	    1	     111   62914560	   512		3 NO  CURRENT		     2782570 20-JAN-24		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+Analizar y [enter] para continuar OJO! validar que todo esta OK.
+
+15 y 16 Eliminar archivos via S.O.
+eliminando redo logs grupo 1
+rm: cannot remove '/u02/app/oracle/oradata/JBADIP02/redo01a.log': No such file or directory
+
+rm: cannot remove '/u03/app/oracle/oradata/JBADIP02/redo01b.log': No such file or directory
+
+rm: cannot remove '/u04/app/oracle/oradata/JBADIP02/redo01c.log': No such file or directory
+
+eliminando redo logs grupo 2
+rm: cannot remove '/u02/app/oracle/oradata/JBADIP02/redo02a.log': No such file or directory
+
+rm: cannot remove '/u03/app/oracle/oradata/JBADIP02/redo02b.log': No such file or directory
+
+rm: cannot remove '/u04/app/oracle/oradata/JBADIP02/redo02c.log': No such file or directory
+
+eliminando redo logs grupo 3
+rm: cannot remove '/u02/app/oracle/oradata/JBADIP02/redo03a.log': No such file or directory
+
+rm: cannot remove '/u03/app/oracle/oradata/JBADIP02/redo03b.log': No such file or directory
+
+rm: cannot remove '/u04/app/oracle/oradata/JBADIP02/redo03c.log': No such file or directory
+
+17. revisar archivos esperados a nivel s.o.
+find: missing argument to `-exec'
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo01a.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo01b.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo01c.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo02a.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo02b.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo02c.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo03a.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo03b.log
+[oracle@pc-joba modulo-05]$ rm /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo03c.log
+[oracle@pc-joba modulo-05]$ find /unam-diplomado-bd/disk-*/app/oracle/oradata/JBADIP02/redo*.log -name "*redo*.log" -type f -exec ls -l {} \;
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:44 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo04a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:36 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo05a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:37 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo06a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:37 /unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/redo06c_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:44 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo04b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:36 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo05b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:37 /unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/redo06b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:44 /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo04c_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan 20 09:37 /unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/redo05c_60.log
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio podemos pudimos practicar con la creación de grupos
+de redo, la asignación de nuevos miembros a los nuevos grupos 
+y el borrado de los grupos que ya existian 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

@@ -1,0 +1,226 @@
+idle> start s-14-monitor-mem.sql
+conectando como sysdba
+Connected.
+
+                                                                                
+
+Creando al usuario USER04MONITOR                                                                                                                                                                                                                                                  
+Creando tabla MEMORY_AREAS                                                                                                                                                                                                                                                        
+
+PL/SQL procedure successfully completed.
+
+Agregando un nuevo registro en USER04MONITOR.memory_areas
+
+1 row created.
+
+
+Commit complete.
+
+
+Session altered.
+
+
+        ID FECHA               TOTAL_SGA_1 TOTAL_SGA_2 TOTAL_SGA_3   SGA_FREE  PGA_PARAM PGA_TOTAL_2 PGA_RESERVADA PGA_RESERVADA_MAX PGA_EN_USO  PGA_LIBRE PGA_AUTO_W_AREAS PGA_MANUAL_W_AREAS LOG_BUFFER DB_BUFFER_CACHE SHARED_POOL LARGE_POOL  JAVA_POOL STREAM_POOL   INMEMORY
+---------- ------------------- ----------- ----------- ----------- ---------- ---------- ----------- ------------- ----------------- ---------- ---------- ---------------- ------------------ ---------- --------------- ----------- ---------- ---------- ----------- ----------
+         1 02/12/2023 09:40:31      535.99      531.99      531.99        488        492         488        294.65            501.32     206.66      64.18                0                  0        7.5             140         268          4          4           0        100
+
+listo!
+sys@jbadip02> start s-15-create-workers.sql
+conectando como sys
+Connected.
+
+                                                                                                                                                                                                                                                                                  
+
+creando usuarios
+Creando usuario WORKER_M03_1                                                                                                                                                                                                                                                      
+Creando usuario WORKER_M03_2                                                                                                                                                                                                                                                      
+Creando usuario WORKER_M03_3                                                                                                                                                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+invocando s-16-create-worker-objects.sql para cada worker
+[Enter para comenzar]
+
+conectando como usuario WORKER_M03_1/WORKER_M03_1, creando objetos
+Connected.
+
+                                                                                                                                                                                                                                                                                  
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Procedure created.
+
+No errors.
+
+Procedure created.
+
+No errors.
+conectando como usuario WORKER_M03_2/WORKER_M03_2, creando objetos
+Connected.
+
+                                                                                                                                                                                                                                                                                  
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Procedure created.
+
+No errors.
+
+Procedure created.
+
+No errors.
+conectando como usuario WORKER_M03_3/WORKER_M03_3, creando objetos
+Connected.
+
+                                                                                                                                                                                                                                                                                  
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Procedure created.
+
+No errors.
+
+Procedure created.
+
+No errors.
+
+**************salida s-17************
+worker_m03_3@jbadip02> start s-17-create-jobs.sql
+conectando como sys
+Connected.
+
+                                                                                                                                                                                                                                                                                  
+
+registrando jobs para realizar la carga de datos
+creando job para WORKER_M03_1                                                                                                                                                                                                                                                     
+creando job para WORKER_M03_2                                                                                                                                                                                                                                                     
+creando job para WORKER_M03_3                                                                                                                                                                                                                                                     
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.46
+esperando a que los jobs terminen - carga de datos
+0 jobs pendientes                                                                                                                                                                                                                                                                 
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:43:30.62
+Carga de datos concluida [Enter] para comenzar etapa de análisis
+
+creando job para WORKER_M03_1                                                                                                                                                                                                                                                     
+creando job para WORKER_M03_2                                                                                                                                                                                                                                                     
+creando job para WORKER_M03_3                                                                                                                                                                                                                                                     
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:03.94
+esperando a que los jobs terminen - procesamiento de datos
+0 jobs pendientes                                                                                                                                                                                                                                                                 
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 01:16:30.25
+analisis concluido, mostrando resultados
+worker_1
+
+P TOTAL_COUNT TOTAL_ROWS                                                                                                                                                                                                                                                             
+- ----------- ----------                                                                                                                                                                                                                                                             
+1      189487      50000                                                                                                                                                                                                                                                             
+w      984017      50000                                                                                                                                                                                                                                                             
+|    51250000      50000                                                                                                                                                                                                                                                             
+
+worker_2
+
+P TOTAL_COUNT TOTAL_ROWS                                                                                                                                                                                                                                                             
+- ----------- ----------                                                                                                                                                                                                                                                             
+6      190330      50000                                                                                                                                                                                                                                                             
+e      983935      50000                                                                                                                                                                                                                                                             
+t      537601      50000                                                                                                                                                                                                                                                             
+
+worker_3
+
+P TOTAL_COUNT TOTAL_ROWS                                                                                                                                                                                                                                                             
+- ----------- ----------                                                                                                                                                                                                                                                             
+7      189866      50000                                                                                                                                                                                                                                                             
+o      985466      50000                                                                                                                                                                                                                                                             
+{      538806      50000                                                                                                                                                                                                                                                             
+
+guarda un nuevo registro para visualizar cambios
+Invocando nuevamente al script s-14-monitor-mem.sql
+conectando como sysdba
+Connected.
+
+                                                                                                                                                                                                                                                                                     
+
+El usuario USER04MONITOR ya existe                                                                                                                                                                                                                                                   
+
+PL/SQL procedure successfully completed.
+
+Agregando un nuevo registro en USER04MONITOR.memory_areas
+
+1 row created.
+
+
+Commit complete.
+
+
+Session altered.
+
+
+        ID FECHA               TOTAL_SGA_1 TOTAL_SGA_2 TOTAL_SGA_3   SGA_FREE  PGA_PARAM PGA_TOTAL_2 PGA_RESERVADA PGA_RESERVADA_MAX PGA_EN_USO  PGA_LIBRE PGA_AUTO_W_AREAS PGA_MANUAL_W_AREAS LOG_BUFFER DB_BUFFER_CACHE SHARED_POOL LARGE_POOL  JAVA_POOL STREAM_POOL   INMEMORY   
+---------- ------------------- ----------- ----------- ----------- ---------- ---------- ----------- ------------- ----------------- ---------- ---------- ---------------- ------------------ ---------- --------------- ----------- ---------- ---------- ----------- ----------   
+         1 02/12/2023 09:40:31      535.99      531.99      531.99        488        492         488        294.65            501.32     206.66      64.18                0                  0        7.5             140         268          4          4           0        100   
+        21 02/12/2023 11:59:38      555.99      555.99      555.99        468        468         468        203.52            501.32     151.17      30.62                0                  0        7.5             160         272          4          4           0        100   
+
+listo!
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> 
+sys@jbadip02> spool off
+
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio logramos observar el aumento necesario que hizo la base
+para la memoria sga debido a una carga improtante de datos, así como, 
+en mi caso, el uso de DB_BUFFER_CACHE y del SHARED_POOL
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

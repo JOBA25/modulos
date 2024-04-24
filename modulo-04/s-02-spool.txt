@@ -1,0 +1,114 @@
+idle> start s-02-conexion-sesion.sql
+conectando como sysdba
+Connected.
+
+                                                                                
+
+creando user04
+
+User created.
+
+
+Grant succeeded.
+
+Abrir nueva terminal, crear una nueva sesión como user04, [Enter] al terminar.
+
+mostrando datos de las sesiones de user04
+
+USERNAME                              SID    SERIAL# SERVER    PADDR              STATUS
+------------------------------ ---------- ---------- --------- ----------------   --------                                                                        
+USER04                                262      31425 DEDICATED 0000000075F48998   INACTIVE                                                                        
+                                                                                
+
+Analizar resultados, [Enter] para continuar
+
+configurando el rol plustrace
+otorgando el rol plustrace a user04
+
+Grant succeeded.
+
+En T2 reiniciar la sesión y habilitar el modo autotrace statistics
+[Enter] al terminar
+
+mostrando datos de las sesiones creadas para user04
+
+USERNAME                              SID    SERIAL# SERVER    PADDR            STATUS
+------------------------------ ---------- ---------- --------- ---------------- --------
+                                                                          
+                                                                        
+USER04                                 20      13448 DEDICATED 0000000075F49EF8 INACTIVE
+                                                                        
+                                                                                
+USER04                                262      27707 DEDICATED 0000000075F48998 INACTIVE
+                                                                        
+                                                                                
+
+¿Qué diferencias se observan respecto a la primera consulta ?
+el mimo usuario cuenta con dos sesiones creadas
+
+[Enter] para continuar
+
+En T1 deshabilitar la recolección automática de estadísticas [Enter] al terminar
+
+Mostrando datos de las sesiones nuevamente
+¿Cuántos registros se esperan? [Enter] para continuar
+
+
+USERNAME                              SID    SERIAL# SERVER    PADDR            STATUS
+------------------------------ ---------- ---------- --------- ---------------- --------
+                                                                          
+                                                                        
+USER04                                262      27707 DEDICATED 0000000075F48998 INACTIVE
+                                                                        
+                                                                                
+
+Analizar resultados [Enter] para continuar
+
+en T2 cerrar sesión, dejar la conexión de user04 activa [Enter] al terminar
+
+mostrando nuevamente las sesiones para user04
+¿Cuántos registros se esperan?  [Enter] para continuar
+cero 
+
+no rows selected
+
+Analizar resultados [Enter] para continuar
+
+mostrando los datos de la conexión, proporcionar el valor de PADDR
+Enter value for p_paddr: 0000000075F48998
+old   3: where addr = hextoraw('&p_paddr')
+new   3: where addr = hextoraw('0000000075F48998')
+
+SOSID                    USERNAME                        PROGRAM                       
+------------------------ ------------------------------   ------------------------------------------------                      
+                                                                         
+                                
+46672                    jorge                            oracle@pc-joba.fi.unam (TNS V1-V3)                        
+                                            
+                                                                                
+
+Analizar resultados [Enter] para continuar
+
+mostrando los datos del server process a nivel s.o. Especificar SOSID
+Enter value for p_sosid: 46672
+
+Realizar limpieza, [Enter] para continuar
+
+
+User dropped.
+
+SP2-0734: unknown command beginning "er user04 ..." - rest of line ignored.
+sys@jbadip02> spool off
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+
+Con este ejercicio pudinmos observar la diferencia entree una sesión y una conexión
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

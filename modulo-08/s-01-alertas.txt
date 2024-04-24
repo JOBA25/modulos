@@ -1,0 +1,119 @@
+conectando como sys
+Connected.
+
+                                                                                                                                      
+
+creando usuario  jorge08 en caso de no existir
+old   6:   where username=upper('&t_user');
+new   6:   where username=upper('jorge08');
+old   8:     execute immediate 'drop user &t_user cascade';
+new   8:     execute immediate 'drop user jorge08 cascade';
+
+PL/SQL procedure successfully completed.
+
+creando un nuevo TS
+
+Tablespace created.
+
+creando usuario jorge08
+old   1: create  user &t_user identified by &t_user  quota unlimited on users
+new   1: create  user jorge08 identified by jorge08  quota unlimited on users
+
+User created.
+
+old   1: alter user &t_user quota unlimited on m08_alerts_tbs
+new   1: alter user jorge08 quota unlimited on m08_alerts_tbs
+
+User altered.
+
+old   1: grant create session, create table to &t_user
+new   1: grant create session, create table to jorge08
+
+Grant succeeded.
+
+configurando alertas
+
+PL/SQL procedure successfully completed.
+
+poblando tablespace
+old   1: create table &t_user..mensaje(str char(1024)) nologging tablespace m08_alerts_tbs
+new   1: create table jorge08.mensaje(str char(1024)) nologging tablespace m08_alerts_tbs
+
+Table created.
+
+old   5:     insert /*+ append */ into &t_user..mensaje values('A');
+new   5:     insert /*+ append */ into jorge08.mensaje values('A');
+
+PL/SQL procedure successfully completed.
+
+esperando un minuto 130 seg
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+mostrando alertas existentes
+Connected.
+
+                                                                                                                                      
+
+
+OBJECT_NAME          OBJECT_TYPE     REASON                         TIME_SUGGESTED  SUGGESTED_ACTION               METRIC_VALUE       
+-------------------- --------------- ------------------------------ --------------- ------------------------------ ------------       
+MESSAGE_TYPE                                                                                                                          
+------------                                                                                                                          
+M08_ALERTS_TBS       TABLESPACE      Tablespace [M08_ALERTS_TBS] is 09-MAR-24 09.26 Add space to the tablespace              96       
+                                      [96 percent] full             .45.922548 AM -                                                   
+                                                                    06:00                                                             
+Warning                                                                                                                               
+                                                                                                                                      
+M08_ALERTS_TBS       TABLESPACE      Tablespace [M08_ALERTS_TBS] on 09-MAR-24 09.26 Add space to the tablespace               1       
+                                     ly has [1 megabytes] free spac .46.168873 AM -                                                   
+                                     e                              06:00                                                             
+Warning                                                                                                                               
+                                                                                                                                      
+
+[Enter] para limpieza
+
+reestableciendo alertas
+
+PL/SQL procedure successfully completed.
+
+eliminando TS
+
+Tablespace dropped.
+
+sys@jbadip02> parameter cursor_sharing
+SP2-0734: unknown command beginning "parameter ..." - rest of line ignored.
+sys@jbadip02> connect jorge/jorge
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+sys@jbadip02> alter system register
+  2  ;
+SP2-0640: Not connected
+sys@jbadip02> alter system register;
+SP2-0640: Not connected
+sys@jbadip02> alter system register;
+SP2-0640: Not connected
+sys@jbadip02> alter system register;
+SP2-0640: Not connected
+sys@jbadip02> alter system register;
+SP2-0640: Not connected
+sys@jbadip02> exit
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logro configurar alertas en un tablespace por cantidad de espacio libre
+o por porcentaje de espacio libre, las alertas las podemos revisar en la dba_outstanding_alerts;
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvieron Problemas
+
+Comentarios, sugerencias.

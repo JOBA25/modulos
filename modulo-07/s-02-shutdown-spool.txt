@@ -1,0 +1,113 @@
+Antes de continuar asegurarse que la CDB esté iniciada, asi como oracle_sid= jbadip03
+
+[enter] para continuar
+
+conectando a jbadip03_s1
+Connected.
+
+                                                                                
+
+¿que sucederá al ejecutar shutdown immediate? [enter]
+
+Pluggable Database closed.
+pregunta 2
+
+Session altered.
+
+
+    CON_ID NAME                 OPEN_MODE                                       
+---------- -------------------- ----------                                      
+         2 PDB$SEED             READ ONLY                                       
+         3 JBADIP03_S1          MOUNTED                                         
+         4 JBADIP03_S2          READ WRITE                                      
+
+Analizar resultados [enter] para continuar
+
+pregunta 3 detener a la CDB
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ERROR:
+ORA-12514: TNS:listener does not currently know of service requested in connect
+descriptor 
+
+
+Warning: You are no longer connected to ORACLE.
+pregunta 4 , iniciando nuevamente
+
+Asegurar que ORACLE_SID =  jbadip03, [Enter] para continuar
+
+Connected to an idle instance.
+select lower(sys_context('userenv','current_user')
+*
+ERROR at line 1:
+ORA-01034: ORACLE not available
+Process ID: 0
+Session ID: 0 Serial number: 0 
+
+
+ORACLE instance started.
+
+Total System Global Area  805304152 bytes                                       
+Fixed Size                  9140056 bytes                                       
+Variable Size             306184192 bytes                                       
+Database Buffers          482344960 bytes                                       
+Redo Buffers                7634944 bytes                                       
+Database mounted.
+Database opened.
+ejecutando nuevamente consulta 2
+
+    CON_ID NAME                 OPEN_MODE                                       
+---------- -------------------- ----------                                      
+         2 PDB$SEED             READ ONLY                                       
+         3 JBADIP03_S1          READ WRITE                                      
+         4 JBADIP03_S2          READ WRITE                                      
+
+Analizar resultados [enter] para continuar
+
+abriendo todas las pdb
+
+Pluggable database altered.
+
+haciendo permanente el cambio
+
+Pluggable database altered.
+
+reiniciando CDB
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+iniciando
+ORACLE instance started.
+
+Total System Global Area  805304152 bytes                                       
+Fixed Size                  9140056 bytes                                       
+Variable Size             306184192 bytes                                       
+Database Buffers          482344960 bytes                                       
+Redo Buffers                7634944 bytes                                       
+Database mounted.
+Database opened.
+mostrando consulta 2 nuevamente
+
+    CON_ID NAME                 OPEN_MODE                                       
+---------- -------------------- ----------                                      
+         2 PDB$SEED             READ ONLY                                       
+         3 JBADIP03_S1          READ WRITE                                      
+         4 JBADIP03_S2          READ WRITE                                      
+
+Analizar resultados [enter] para continuar
+
+idle> spool off
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos identificar que por defecto al hacer un reinicio de la CDB
+las PDB quedan en estatus MOUNTED, es posible cambiar esta configuración para que se 
+inicien la PDB junto con la CDB
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

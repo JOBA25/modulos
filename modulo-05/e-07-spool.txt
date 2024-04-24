@@ -1,0 +1,65 @@
+idle> start e-07-tablespace-usr.sql
+connect sys/system2 as sysdba
+Connected.
+
+                                                                                
+
+1 mostrando datos de los tablespaces empleando database_properties
+
+PROPERTY_NAME                  PROPERTY_VALUE                                                                                                                                                                     
+------------------------------ ------------------------------                                                                                                                                                     
+DEFAULT_PERMANENT_TABLESPACE   USERS                                                                                                                                                                              
+DEFAULT_TEMP_TABLESPACE        TEMPTS1                                                                                                                                                                            
+
+2 Mostrar los nombres de los tablespaces asignados al usuario JORGE05
+
+DEFAULT_TABLESPACE	       TEMPORARY_TABLESPACE	      LOCAL_TEMP_TABLESPACE
+------------------------------ ------------------------------ ------------------------------
+USERS			       TEMPTS1			      TEMPTS1
+
+
+3 Mostrar el nombre del tablespace undo empleado por todos los usuarios
+
+NAME                                 TYPE        VALUE                                                                                                                                                            
+------------------------------------ ----------- ------------------------------                                                                                                                                   
+undo_tablespace                      string      UNDOTBS1               
+
+4 Mostrar las cuotas de almacenamiento en MB que tienen los usuarios de la base de datos
+
+TABLESPACE_NAME                USERNAME                         QUOTA_MB     BLOCKS MAX_BLOCKS                                                                                                                    
+------------------------------ ------------------------------ ---------- ---------- ----------                                                                                                                    
+SYSAUX                         AUDSYS                                  0          0         -1                                                                                                                    
+SYSTEM                         OUTLN                               .5625         72         -1                                                                                                                    
+SYSAUX                         DBSFWUSER                               0          0         -1                                                                                                                    
+SYSAUX                         GSMADMIN_INTERNAL                    .875        112         -1                                                                                                                    
+SYSAUX                         APPQOSSYS                               0          0         -1                                                                                                                    
+SYSAUX                         GGSYS                                   0          0         -1                                                                                                                    
+USERS                          USER03IMC                               6        768         -1                                                                                                                    
+USERS                          USER04MONITOR                       .0625          8         -1                                                                                                                    
+USERS                          WORKER_M03_1                     138.9375      17784         -1                                                                                                                    
+USERS                          WORKER_M03_2                     138.9375      17784         -1                                                                                                                    
+USERS                          WORKER_M03_3                     138.9375      17784         -1                                                                                                                    
+DIP_M05_01                     JORGE05                                 0          0         -1                                                                                                                    
+USERS                          JORGE05                              3.25        416         -1                                                                                                                    
+USERS                          USUARIO                                 0          0         -1                                                                                                                    
+
+14 rows selected.
+
+5 Mostrar en MB los siguientes datos del TS temporal: tamaño, espacio libre, espacio asignado
+
+TABLESPACE_NAME                TS_SIZE_MB FREE_SPACE_MB ALLOCATE_SPACE_MB                                                                                                                                         
+------------------------------ ---------- ------------- -----------------                                                                                                                                         
+TEMPTS1                                20            19                12                                                                                                                                         
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio podemos observar los diferentes table spaces que se tienen dentro 
+de nuestras instancias 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

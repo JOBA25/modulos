@@ -1,0 +1,120 @@
+sys@jbadip01> @s-02-objects-privs.sql
+creando usuarios
+Connected.
+
+                                                                                
+
+creando usuarios
+
+User created.
+
+
+User created.
+
+asignando privilegios de sistema a user01
+
+Grant succeeded.
+
+asignando privilegios a guste01
+
+Grant succeeded.
+
+creando el usuario guest02 a partir de la instruccion grant
+
+Grant succeeded.
+
+
+User altered.
+
+Permitirle al guest02 pueda otorgar privilegios de objeto a cualquier usuario
+
+Grant succeeded.
+
+SP2-0734: unknown command beginning "pompt cone..." - rest of line ignored.
+Connected.
+
+                                                                                
+
+creando tabla test01
+
+Table created.
+
+
+1 row created.
+
+verificar que guest01 no puede acceder a datos de user01
+Connected.
+
+                                                                                
+
+select * from user01.test01
+                     *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+¿qué sucedio? ¿guest01 pudo acceder a la tabla user01.test01? No deberia
+no pudo
+otorgar permisos a guest01 para ver la tabla test01 usando user01
+Connected.
+
+                                                                                
+
+
+Grant succeeded.
+
+comporbando acceso a test01 con guest01
+Connected.
+
+                                                                                
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+conectando como guest02
+Connected.
+
+                                                                                
+
+guest02 otrogará permisos de inserción a guest01 sobre test01
+
+Grant succeeded.
+
+comprobando que guest01 puede insertar en test01
+Connected.
+
+                                                                                
+
+intentando insertar en user01.test01
+
+1 row created.
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+      2222                                                                      
+
+limpieza
+Connected.
+
+                                                                                
+
+
+User dropped.
+
+
+User dropped.
+
+
+User dropped.
+
+sys@jbadip01> spool off
+
+conclusiones
+
+me parecio interesante conocer la forma en como podemos dar permisos
+de los diferentes objetos dentro de la base, así como dar el permiso
+a otros usarios de dar permisos

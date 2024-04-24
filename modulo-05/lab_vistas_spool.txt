@@ -1,0 +1,587 @@
+[oracle@pc-joba modulo-05]$ export ORACLE_SID=jbadip02
+[oracle@pc-joba modulo-05]$ sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 19 17:23:44 2024
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start lab_vistas.sql
+0. Conectando como sys
+Connected.
+1. Mostrar el nombre del segmento, nombre del tablespace, número
+de extensiones y el total de espacio reservado en MB hasta el momento.
+
+SEGMENT_NAME			    TABLESPACE_NAME		      NUM_EXT EXTENT_SIZE_MB	 BLOCKS    FILE_ID SEGMENT_TYPE 	BLOCK_ID
+----------------------------------- ------------------------------ ---------- -------------- ---------- ---------- ------------------ ----------
+LLAMADA_911			    M05_911_TS				   16		   1	    128 	 5 TABLE		     128
+LLAMADA_911			    M05_911_TS				   21		   1	    128 	 5 TABLE		     256
+LLAMADA_911			    M05_911_TS				   26		   1	    128 	 5 TABLE		     384
+LLAMADA_911			    M05_911_TS				   31		   1	    128 	 5 TABLE		     512
+LLAMADA_911			    M05_911_TS				   36		   1	    128 	 5 TABLE		     640
+LLAMADA_911			    M05_911_TS				   41		   1	    128 	 5 TABLE		     768
+LLAMADA_911			    M05_911_TS				   46		   1	    128 	 5 TABLE		     896
+LLAMADA_911			    M05_911_TS				   51		   1	    128 	 5 TABLE		    1024
+LLAMADA_911			    M05_911_TS				   56		   1	    128 	 5 TABLE		    1152
+LLAMADA_911			    M05_911_TS				   61		   1	    128 	 5 TABLE		    1280
+LLAMADA_911			    M05_911_TS				    0	       .0625	      8 	 6 TABLE		     128
+LLAMADA_911			    M05_911_TS				    1	       .0625	      8 	 6 TABLE		     136
+LLAMADA_911			    M05_911_TS				    2	       .0625	      8 	 6 TABLE		     144
+LLAMADA_911			    M05_911_TS				    3	       .0625	      8 	 6 TABLE		     152
+LLAMADA_911			    M05_911_TS				    4	       .0625	      8 	 6 TABLE		     160
+LLAMADA_911			    M05_911_TS				    5	       .0625	      8 	 6 TABLE		     168
+LLAMADA_911			    M05_911_TS				    6	       .0625	      8 	 6 TABLE		     176
+
+SEGMENT_NAME			    TABLESPACE_NAME		      NUM_EXT EXTENT_SIZE_MB	 BLOCKS    FILE_ID SEGMENT_TYPE 	BLOCK_ID
+----------------------------------- ------------------------------ ---------- -------------- ---------- ---------- ------------------ ----------
+LLAMADA_911			    M05_911_TS				    7	       .0625	      8 	 6 TABLE		     184
+LLAMADA_911			    M05_911_TS				    8	       .0625	      8 	 6 TABLE		     192
+LLAMADA_911			    M05_911_TS				    9	       .0625	      8 	 6 TABLE		     200
+LLAMADA_911			    M05_911_TS				   10	       .0625	      8 	 6 TABLE		     208
+LLAMADA_911			    M05_911_TS				   11	       .0625	      8 	 6 TABLE		     216
+LLAMADA_911			    M05_911_TS				   12	       .0625	      8 	 6 TABLE		     224
+LLAMADA_911			    M05_911_TS				   13	       .0625	      8 	 6 TABLE		     232
+LLAMADA_911			    M05_911_TS				   14	       .0625	      8 	 6 TABLE		     240
+LLAMADA_911			    M05_911_TS				   15	       .0625	      8 	 6 TABLE		     248
+LLAMADA_911			    M05_911_TS				   20		   1	    128 	 6 TABLE		     256
+LLAMADA_911			    M05_911_TS				   25		   1	    128 	 6 TABLE		     384
+LLAMADA_911			    M05_911_TS				   30		   1	    128 	 6 TABLE		     512
+LLAMADA_911			    M05_911_TS				   35		   1	    128 	 6 TABLE		     640
+LLAMADA_911			    M05_911_TS				   40		   1	    128 	 6 TABLE		     768
+LLAMADA_911			    M05_911_TS				   45		   1	    128 	 6 TABLE		     896
+LLAMADA_911			    M05_911_TS				   50		   1	    128 	 6 TABLE		    1024
+LLAMADA_911			    M05_911_TS				   55		   1	    128 	 6 TABLE		    1152
+
+SEGMENT_NAME			    TABLESPACE_NAME		      NUM_EXT EXTENT_SIZE_MB	 BLOCKS    FILE_ID SEGMENT_TYPE 	BLOCK_ID
+----------------------------------- ------------------------------ ---------- -------------- ---------- ---------- ------------------ ----------
+LLAMADA_911			    M05_911_TS				   60		   1	    128 	 6 TABLE		    1280
+LLAMADA_911			    M05_911_TS				   65		   1	    128 	 6 TABLE		    1408
+LLAMADA_911			    M05_911_TS				   19		   1	    128 	 7 TABLE		     128
+LLAMADA_911			    M05_911_TS				   24		   1	    128 	 7 TABLE		     256
+LLAMADA_911			    M05_911_TS				   29		   1	    128 	 7 TABLE		     384
+LLAMADA_911			    M05_911_TS				   34		   1	    128 	 7 TABLE		     512
+LLAMADA_911			    M05_911_TS				   39		   1	    128 	 7 TABLE		     640
+LLAMADA_911			    M05_911_TS				   44		   1	    128 	 7 TABLE		     768
+LLAMADA_911			    M05_911_TS				   49		   1	    128 	 7 TABLE		     896
+LLAMADA_911			    M05_911_TS				   54		   1	    128 	 7 TABLE		    1024
+LLAMADA_911			    M05_911_TS				   59		   1	    128 	 7 TABLE		    1152
+LLAMADA_911			    M05_911_TS				   64		   1	    128 	 7 TABLE		    1280
+LLAMADA_911			    M05_911_TS				   18		   1	    128 	 8 TABLE		     128
+LLAMADA_911			    M05_911_TS				   23		   1	    128 	 8 TABLE		     256
+LLAMADA_911			    M05_911_TS				   28		   1	    128 	 8 TABLE		     384
+LLAMADA_911			    M05_911_TS				   33		   1	    128 	 8 TABLE		     512
+LLAMADA_911			    M05_911_TS				   38		   1	    128 	 8 TABLE		     640
+
+SEGMENT_NAME			    TABLESPACE_NAME		      NUM_EXT EXTENT_SIZE_MB	 BLOCKS    FILE_ID SEGMENT_TYPE 	BLOCK_ID
+----------------------------------- ------------------------------ ---------- -------------- ---------- ---------- ------------------ ----------
+LLAMADA_911			    M05_911_TS				   43		   1	    128 	 8 TABLE		     768
+LLAMADA_911			    M05_911_TS				   48		   1	    128 	 8 TABLE		     896
+LLAMADA_911			    M05_911_TS				   53		   1	    128 	 8 TABLE		    1024
+LLAMADA_911			    M05_911_TS				   58		   1	    128 	 8 TABLE		    1152
+LLAMADA_911			    M05_911_TS				   63		   1	    128 	 8 TABLE		    1280
+LLAMADA_911			    M05_911_TS				   17		   1	    128 	 9 TABLE		     128
+LLAMADA_911			    M05_911_TS				   22		   1	    128 	 9 TABLE		     256
+LLAMADA_911			    M05_911_TS				   27		   1	    128 	 9 TABLE		     384
+LLAMADA_911			    M05_911_TS				   32		   1	    128 	 9 TABLE		     512
+LLAMADA_911			    M05_911_TS				   37		   1	    128 	 9 TABLE		     640
+LLAMADA_911			    M05_911_TS				   42		   1	    128 	 9 TABLE		     768
+LLAMADA_911			    M05_911_TS				   47		   1	    128 	 9 TABLE		     896
+LLAMADA_911			    M05_911_TS				   52		   1	    128 	 9 TABLE		    1024
+LLAMADA_911			    M05_911_TS				   57		   1	    128 	 9 TABLE		    1152
+LLAMADA_911			    M05_911_TS				   62		   1	    128 	 9 TABLE		    1280
+
+66 rows selected.
+
+dba_extents [ENTER] para continuar
+
+1 Consultando segmentos
+old   3: from &p_user..llamada_911
+new   3: from m05_911_user.llamada_911
+
+SEGMENTO		  TOTAL_REG
+------------------------ ----------
+AAAO1+			     449999
+
+rowid segmentos [ENTER] para continuar
+
+2. Mostrar el nombre del tablespace, id y nombre(path) del data file, tamaño
+en MB, total de bloques, online_status, bandera que indica crecimiento automático.
+
+TABLESPACE_NAME 		  FILE_ID FILE_NAME							      BYTES_MB	   BLOCKS ONLINE_ AUT
+------------------------------ ---------- ----------------------------------------------------------------- ---------- ---------- ------- ---
+M05_911_TS				5 /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf		    15	     1920 ONLINE  NO
+M05_911_TS				6 /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf		    15	     1920 ONLINE  NO
+M05_911_TS				7 /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf		    15	     1920 ONLINE  NO
+M05_911_TS				8 /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf		    15	     1920 ONLINE  NO
+M05_911_TS				9 /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf		    15	     1920 ONLINE  NO
+M05_911_IX_TS			       10 /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf	    26	     3328 ONLINE  YES
+
+6 rows selected.
+
+dba_data_files [ENTER] para continuar
+
+3. Mostrar el nombre del tablespace, nombre del segmento, nombre del data file(path)
+y el total de extensiones que se han reservado para cada data file hasta el momento.
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+M05_911_TS		       LLAMADA_911			   /disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_INCIDENT_NUMBER	   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+
+TABLESPACE_NAME 	       SEGMENT_NAME			   FILE_NAME
+------------------------------ ----------------------------------- -----------------------------------------------------------------
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+M05_911_IX_TS		       IX1_LLAMADA_911_ADDRESS		   /disk-mod5/u31/app/oracle/oradata/JBADIP02/m05_911_ix_ts_05.dbf
+
+383 rows selected.
+
+dba_extents, dba_data_files [ENTER] para continuar
+
+3 Total de extensiones reservadas
+
+SUM(BYTES)/1024/1024   COUNT(*)
+-------------------- ----------
+			      0
+

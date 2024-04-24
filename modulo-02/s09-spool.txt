@@ -1,0 +1,41 @@
+sys@jbadip01> @s-09-archivo-params.sql
+conectando como sys
+Connected.
+
+                                                                                
+
+
+File created.
+
+
+File created.
+
+cambiando permisos
+
+modificar el archivo pfile-memory.ora, enter para continuar
+
+
+Reiniciando BD  , enter para continuar
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+iniciando instancia
+ORACLE instance started.
+
+Total System Global Area  985660496 bytes                                       
+Fixed Size                  8903760 bytes                                       
+Variable Size             260046848 bytes                                       
+Database Buffers          708837376 bytes                                       
+Redo Buffers                7872512 bytes                                       
+Database mounted.
+Database opened.
+que pasará con la siguiente instrucción ?
+alter system undo_retention=1500 scope=spfile
+             *
+ERROR at line 1:
+ORA-02065: illegal option for ALTER SYSTEM 
+
+
+sys@jbadip01> --aquellos parámetros que configuramos de forma manual tienen un asterisco al inicio dentro del spifile
+sys@jbadip01> spool off

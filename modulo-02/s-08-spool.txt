@@ -1,0 +1,196 @@
+sys@jbadip01> start s-06-archivo-pwd.sql
+1 Autenticando como sysdba
+
+Connected.
+
+1 consultando la vista v$pwfile_users
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG
+
+-------------------- ----- ----- ----- ----- -----
+
+SYSKM ACCOUNT_STATUS
+
+----- --------------------
+
+PASSWORD_PROFILE
+
+----------------------------------------------------
+
+LAST_LOGIN
+
+----------------------------------------------------
+
+LOCK_DATE          EXPIRY_DATE
+
+------------------ ------------------
+
+EXTERNAL_NAME
+
+----------------------------------------------------
+
+AUTHENTI COM     CON_ID
+
+-------- --- ----------
+
+SYS                  TRUE  TRUE  FALSE FALSE FALSE
+
+FALSE OPEN
+
+07-NOV-23 06.33.11.000000000 AM -06:00
+
+PASSWORD NO           0
+
+2 reasignando privilegios a usuarios
+
+Grant succeeded.
+
+Grant succeeded.
+
+Grant succeeded.
+
+3 consultando la vista v$pwfile_users
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG
+
+-------------------- ----- ----- ----- ----- -----
+
+SYSKM ACCOUNT_STATUS
+
+----- --------------------
+
+PASSWORD_PROFILE
+
+----------------------------------------------------
+
+LAST_LOGIN
+
+----------------------------------------------------
+
+LOCK_DATE          EXPIRY_DATE
+
+------------------ ------------------
+
+EXTERNAL_NAME
+
+----------------------------------------------------
+
+AUTHENTI COM     CON_ID
+
+-------- --- ----------
+
+SYS                  TRUE  TRUE  FALSE FALSE FALSE
+
+FALSE OPEN
+
+07-NOV-23 06.33.11.000000000 AM -06:00
+
+PASSWORD NO           0
+
+USER01               TRUE  TRUE  FALSE TRUE  FALSE
+
+FALSE OPEN
+
+DEFAULT
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG
+
+-------------------- ----- ----- ----- ----- -----
+
+SYSKM ACCOUNT_STATUS
+
+----- --------------------
+
+PASSWORD_PROFILE
+
+----------------------------------------------------
+
+LAST_LOGIN
+
+----------------------------------------------------
+
+LOCK_DATE          EXPIRY_DATE
+
+------------------ ------------------
+
+EXTERNAL_NAME
+
+----------------------------------------------------
+
+AUTHENTI COM     CON_ID
+
+-------- --- ----------
+
+                   05-MAY-24
+
+PASSWORD NO           0
+
+USER02               TRUE  TRUE  FALSE TRUE  FALSE
+
+FALSE OPEN
+
+DEFAULT
+
+                   05-MAY-24
+
+PASSWORD NO           0
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG
+
+-------------------- ----- ----- ----- ----- -----
+
+SYSKM ACCOUNT_STATUS
+
+----- --------------------
+
+PASSWORD_PROFILE
+
+----------------------------------------------------
+
+LAST_LOGIN
+
+----------------------------------------------------
+
+LOCK_DATE          EXPIRY_DATE
+
+------------------ ------------------
+
+EXTERNAL_NAME
+
+----------------------------------------------------
+
+AUTHENTI COM     CON_ID
+
+-------- --- ----------
+
+USER03               TRUE  TRUE  FALSE TRUE  FALSE
+
+FALSE OPEN
+
+DEFAULT
+
+                   05-MAY-24
+
+PASSWORD NO           0
+
+4 reasignación de password
+
+User altered.
+
+idempotencia
+
+User dropped.
+
+User dropped.
+
+User dropped.
+
+
+Conclusiones
+
+Es importante conocer la forma en como podemos solucionar el problema de no encontrar 
+el archivo de passwords, creando uno nuevo, ademas de que esta información se encuentra ligada 
+a vistas dentro de la base.
+
+para este ejercicio tuvimos el problema de que al ejecutar el archivo shell con oracle debaimos darle 
+permisos a este usuario de leer y ejecutar dentro de nuestra carpeta

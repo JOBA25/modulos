@@ -42,7 +42,8 @@ actividades de limpieza [Enter] para continuar
 
 User dropped.
 
-sys@jbadip01> --conclusiones
-sys@jbadip01> ---me parecio importante recordar los conocimientos básicos
-sys@jbadip01> --de privilegios
-sys@jbadip01> spool off
+conclusiones
+me parecio importante recordar los conocimientos básicos
+de privilegios ademas de conocer la forma en cómo pedemos revisar 
+los privilegios que tienen nuestros usarios
+

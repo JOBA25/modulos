@@ -1,0 +1,94 @@
+Hacer Clon jbadip02 -> jbadip03_s3  Ahora con DB links
+Iniciando jbadip03
+
+Iniciando jbadip02
+
+conectando a jbadip02
+Connected.
+
+                                                                                
+
+creando usuario en jbadip02
+create user jorge_remote identified by jorge 
+            *
+ERROR at line 1:
+ORA-01920: user name 'JORGE_REMOTE' conflicts with another user or role name 
+
+
+
+Grant succeeded.
+
+conectando a jbadip03 para crear DB Link
+[enter] para continuar
+
+Connected.
+
+                                                                                
+
+create database link clone_link
+                     *
+ERROR at line 1:
+ORA-02011: duplicate database link name 
+
+
+Creando pdb jbadip03_s3
+create pluggable database jbadip03_s3
+*
+ERROR at line 1:
+ORA-17628: Oracle error 28365 returned by remote Oracle server
+ORA-28365: wallet is not open 
+
+
+ERROR:
+ORA-65011: Pluggable database JBADIP03_S3 does not exist. 
+
+
+ejecutando el script noncdb_to_pdb.SQL
+sys@jbadip03> SET FEEDBACK 1
+sys@jbadip03> SET NUMWIDTH 10
+sys@jbadip03> SET LINESIZE 80
+sys@jbadip03> SET TRIMSPOOL ON
+sys@jbadip03> SET TAB OFF
+sys@jbadip03> SET PAGESIZE 100
+sys@jbadip03> SET VERIFY OFF
+sys@jbadip03> 
+sys@jbadip03> -- save settings
+sys@jbadip03> STORE SET ncdb2pdb.settings.sql REPLACE
+Wrote file ncdb2pdb.settings.sql
+sys@jbadip03> 
+sys@jbadip03> SET TIME ON
+20:56:50 sys@jbadip03> SET TIMING ON
+20:56:50 sys@jbadip03> 
+20:56:50 sys@jbadip03> WHENEVER SQLERROR EXIT;
+20:56:50 sys@jbadip03> 
+20:56:50 sys@jbadip03> DOC
+20:56:50 DOC>#######################################################################
+20:56:50 DOC>#######################################################################
+20:56:50 DOC>   The following statement will cause an "ORA-01403: no data found"
+20:56:50 DOC>   error if we're not in a PDB.
+20:56:50 DOC>   This script is intended to be run right after plugin of a PDB,
+20:56:50 DOC>   while inside the PDB.
+20:56:50 DOC>#######################################################################
+20:56:50 DOC>#######################################################################
+20:56:50 DOC>#
+20:56:50 sys@jbadip03> 
+20:56:50 sys@jbadip03> VARIABLE cdbname VARCHAR2(128)
+20:56:50 sys@jbadip03> VARIABLE pdbname VARCHAR2(128)
+20:56:50 sys@jbadip03> BEGIN
+20:56:50   2    SELECT sys_context('USERENV', 'CDB_NAME')
+20:56:50   3      INTO :cdbname
+20:56:50   4      FROM dual
+20:56:50   5      WHERE sys_context('USERENV', 'CDB_NAME') is not null;
+20:56:50   6    SELECT sys_context('USERENV', 'CON_NAME')
+20:56:50   7      INTO :pdbname
+20:56:50   8      FROM dual
+20:56:50   9      WHERE sys_context('USERENV', 'CON_NAME') <> 'CDB$ROOT';
+20:56:50  10  END;
+20:56:50  11  /
+BEGIN
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 6
+
+

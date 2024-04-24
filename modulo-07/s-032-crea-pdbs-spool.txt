@@ -1,0 +1,115 @@
+creando PDB a partir de otra
+conectar a jbadip03_s1 para insertar datos de prueba
+Connected.
+
+                                                                                
+
+creando un usuario de prueba
+
+PL/SQL procedure successfully completed.
+
+creando usuario y tabla de prueba
+
+User created.
+
+
+Grant succeeded.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+conectando a cdb$root
+
+Session altered.
+
+clonando jbadip03_s3 a partir de jbadip03_s1
+
+Pluggable database created.
+
+Mostrando los datos de las PDBs con SQL*Plus
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                 
+---------- ------------------------------ ---------- ----------                 
+         2 PDB$SEED                       READ ONLY  NO                         
+         3 JBADIP03_S1                    READ WRITE NO                         
+         4 JBADIP03_S2                    READ WRITE NO                         
+         5 JBADIP03_S3                    MOUNTED                               
+[Enter] para continuar
+
+abrir pdb nueva
+
+Pluggable database altered.
+
+mostrando datafiles de la CDB
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- ------------------------------------------------------------                                                               
+        26 /u01/app/oracle/oradata/JBADIP03/jbadip03_s3/system01.dbf                                                                  
+        27 /u01/app/oracle/oradata/JBADIP03/jbadip03_s3/sysaux01.dbf                                                                  
+        28 /u01/app/oracle/oradata/JBADIP03/jbadip03_s3/undotbs01.dbf                                                                 
+        29 /u01/app/oracle/oradata/JBADIP03/jbadip03_s3/users01.dbf                                                                   
+        13 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/system01.dbf                                                                  
+        14 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/sysaux01.dbf                                                                  
+        15 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/undotbs01.dbf                                                                 
+        16 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/users01.dbf                                                                   
+         9 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/system01.dbf                                                                  
+        10 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/sysaux01.dbf                                                                  
+        11 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/undotbs01.dbf                                                                 
+        12 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/users01.dbf                                                                   
+         1 /u01/app/oracle/oradata/JBADIP03/system01.dbf                                                                              
+         3 /u01/app/oracle/oradata/JBADIP03/sysaux01.dbf                                                                              
+         4 /u01/app/oracle/oradata/JBADIP03/undotbs01.dbf                                                                             
+         7 /u01/app/oracle/oradata/JBADIP03/users01.dbf                                                                               
+
+16 rows selected.
+
+[Enter] para continuar
+
+verificando los datos clonados
+
+Session altered.
+
+
+        ID                                                                                                                            
+----------                                                                                                                            
+         1                                                                                                                            
+         2                                                                                                                            
+         3                                                                                                                            
+
+Revisar datos clonados, [Enter] para continuar
+
+Limpieza
+
+Session altered.
+
+eliminando jbadip03_s3
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos hacer la clonación de una pdb partiendo de una que ya tenia datos
+ambas dentro de la misma cdb  
+y de verifico que los datos existieran en ambas pdb
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

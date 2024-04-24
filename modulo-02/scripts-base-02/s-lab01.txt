@@ -1,0 +1,70 @@
+idle> start s-01-validador-main.sql
+=========================================================
+Iniciando validador - Laboratorio 01 Crear BD
+Presionar Enter si los valores configurados son correctos.
+De lo contario editar el script s-01-validador-main.sql
+O en su defecto proporcionar nuevos valores
+=========================================================
+Nombre (será empleado como prefijo para crear tablas de prueba) [jorge]: jorge
+Proporcionar el password de sys [Configurado en script]: 
+Creando procedimientos para validar.
+Connected.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+No errors.
+realizando limpieza
+======================================================
+=		    Diplomado			     =
+=  Administración, clusterización y analítica de BD  =
+=   Iniciando proceso de validación de validación    =
+=   Incluir en el reporte a partir de este punto     =
+======================================================
+SESSION_TIME:	20/11/2023 11:21:06
+USR_COD HOST:	734904
+OS_USER:	jorge
+BD_USER:	SYS
+CON_NAME:	jbadip02
+b06b5c4e7b8dedfb4e1fdf69befc2c66dc54f28322b6e07438e5ab36c00ea049  s-01p-validador.plb
+
+2023-11-20 11:21:06.654-734904-PJ.J001J.J001S.J001 ==> OK host name ....................pc-joba.fi.unam
+2023-11-20 11:21:06.655-734904-CX.O002B.X002Y.X002 ==> OK startup ......................20/11/2023 11:14:59
+2023-11-20 11:21:06.656-734904-0J.R003A.J003S.J003 ==> OK Global name ..................jbadip02
+2023-11-20 11:21:06.657-734904-JP.G004D.P004S.P004 ==> OK con id .......................0
+2023-11-20 11:21:06.657-734904-OH.E005I.H005Y.H005 ==> OK instance mode ................REGULAR
+2023-11-20 11:21:06.657-734904-BB.J006P.B006S.B006 ==> OK edition ......................EE
+2023-11-20 11:21:06.658-734904-AB.O0070.B007S.B007 ==> OK Instance name ................jbadip02
+2023-11-20 11:21:06.726-734904-0U.R0082.U008Y.U008 ==> OK Objeto Dictionary encontrado
+2023-11-20 11:21:06.731-734904-FW.G009J.W009S.W009 ==> OK Instancia iniciada con SPFILE /u01/app/oracle/product/19.3.0/dbhome_1/dbs/spfilejbadip02.ora
+2023-11-20 11:21:06.790-734904-IQ.E010B.Q010S.Q010 ==> OK Objetos del paquete STANDARD encontrados: 430
+2023-11-20 11:21:06.847-734904-0A.J011A.A011Y.A011 ==> OK Objetos del paquete DBMS_APPLICATION_INFO encontrados: 7
+2023-11-20 11:21:06.957-734904-UU.O012D.U012S.U012 ==> OK Tabla system.SQLPLUS_PRODUCT_PROFILE encontrada
+2023-11-20 11:21:06.995-734904-NI.R013I.I013S.I013 ==> OK Vista system.PRODUCT_PRIVS encontrada
+2023-11-20 11:21:07.235-734904-AX.G014P.X014Y.X014 ==> OK Usuario de prueba jorge0201 creado con exito
+2023-11-20 11:21:09.281-734904-MC.E0150.C015S.C015 ==> OK Usuario de prueba jorge eliminado
+2023-11-20 11:21:09.284-734904-PF.J0162.F016S.F016 ==> OK Validación concluida
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba scripts-base-02]$ 
+
+
+Conclusiones
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+En este caso fue sencilla la creación del script 
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+No se presentaron problemas con la ejecución
+
+*Comentarios, sugerencias.
+Sin Comentarios

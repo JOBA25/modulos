@@ -1,0 +1,106 @@
+idle> start e-07-flashback-database.sql
+conectando como sys
+Connected.
+1. verificando el scn actual
+
+FECHAHORA1	    SCNINICIAL
+------------------- ----------
+27-01-2024 10:48:24    2990912
+
+
+PL/SQL procedure successfully completed.
+
+2. creando punto de restauración
+
+Restore point created.
+
+3. consultando vista v$restore_point
+
+       SCN TIME 								       NAME
+---------- --------------------------------------------------------------------------- -----------------------------------
+   2990919 27-JAN-24 10.48.30.000000000 AM					       PUNTO_REST
+
+4. con el usuario jorge06 crear la tabla fb_database e insertar datos
+Conectando con jorge06
+Connected.
+creando tabla fb_database
+
+Table created.
+
+insertando datos
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando contenido de fb_database
+
+	ID DATO
+---------- ----------
+	 1 dato1
+	 2 dato2
+	 3 dato3
+	 4 dato4
+
+5. reinicar la base en modo mount
+Connected.
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  692060160 bytes
+Database Buffers	  260046848 bytes
+Redo Buffers		    7868416 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+6. Regresando la BD al punto de restauración
+
+Flashback complete.
+
+7. abrir la base y reiniciando redo log
+
+Database altered.
+
+8. Verificando que hay regresado al punto marcado
+se espera error
+select * from jorge06.fb_database
+                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+9. eliminando punto de restauración
+
+Restore point dropped.
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba modulo-06]$ 
+
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se pudo configurar el fb database, con el cual pudimos 
+crear puntos de restauración que podemos usar como puntos de referencia para 
+hacer un cierto punto en el tiempo al cual podemos restaurar la bd 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

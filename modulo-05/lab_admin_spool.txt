@@ -1,0 +1,69 @@
+idle> start lab_admin.sql
+0. Conectando como sys
+Connected.
+
+Tablespace altered.
+
+4. Consulta que muestra nombre, id y online_status de los datafiles
+
+FILE_NAME
+----------------------------------------------------------------------
+   FILE_ID ONLINE_
+---------- -------
+/disk-mod5/u21/app/oracle/oradata/JBADIP02/m05_911_ts_01.dbf
+	 5 OFFLINE
+
+/disk-mod5/u22/app/oracle/oradata/JBADIP02/m05_911_ts_02.dbf
+	 6 OFFLINE
+
+/disk-mod5/u23/app/oracle/oradata/JBADIP02/m05_911_ts_03.dbf
+	 7 OFFLINE
+
+
+FILE_NAME
+----------------------------------------------------------------------
+   FILE_ID ONLINE_
+---------- -------
+/disk-mod5/u24/app/oracle/oradata/JBADIP02/m05_911_ts_04.dbf
+	 8 OFFLINE
+
+/disk-mod5/u25/app/oracle/oradata/JBADIP02/m05_911_ts_05.dbf
+	 9 OFFLINE
+
+
+5. Reasingacion de ubicaciones.
+
+
+
+
+
+
+Tablespace altered.
+
+colocando en modo online el tbs m05_911_ts
+
+Tablespace altered.
+
+[Enter para continuar]
+
+7. Renombrando pero en modo online
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+9. Consultando registros para verificar integridad de la base.
+
+  COUNT(*)
+----------
+    449999

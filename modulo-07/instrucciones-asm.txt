@@ -1,0 +1,222 @@
+##Instalar las siguiente dependencias
+
+sudo dnf -y install wget oracleasm
+
+## Crear los siguientes grupos, emplear root
+groupadd -g 54327 asmdba
+groupadd -g 54328 asmoper
+groupadd -g 54329 asmadmin
+
+###crear al usuario grid
+useradd -u 54322 -g oinstall -G dba,asmdba,asmoper,asmadmin grid
+
+###Asignar password al usuario grid  (asignar el valor grid)
+passwd grid 
+
+####Asignar grupos adicionales al usuario oracle
+usermod  -g oinstall -G dba,oper,asmdba,asmoper,asmadmin oracle
+
+### crear directorios para instalar grid
+mkdir -p /u01/app/grid/19c/grid_home
+
+##cambiar permisos
+chown -R grid:oinstall /u01/app/grid
+chown -R grid:oinstall /u01/app/oraInventory
+
+##configuración de discos.
+gparted
+6 particiones de 4 gb
+
+###
+Editar el archivo /etc/selinux/config cambiar el parámetro SELINUX a permissive
+
+## Configurar el archivo /home/grid/.bash_profile
+cambiarse al usuario grid
+su -l grid 
+export ORACLE_BASE=/u01/app/grid
+export ORACLE_HOME=/u01/app/grid/19c/grid_home
+export PATH=$ORACLE_HOME/bin:$PATH
+
+##Editar el script /home/grid/.bashrc
+ASM()
+{
+  export ORACLE_SID=+ASM
+  echo "ORACLE_SID="$ORACLE_SID
+  echo "ORACLE_BASE="$ORACLE_BASE
+  echo "ORACLE_HOME="$ORACLE_HOME
+}
+###activar cambios de ambos scripts
+source .bash_profile
+source .bashrc
+
+#Copiar el zip del grid a $ORACLE_HOME, emplear root
+/u01/app/grid/19c/grid_home
+
+#cambiar dueño al zip  grid:oinstall
+chown grid:oinstall LINUX.X64_193000_grid_home.zip
+
+#realizar la extracción del zip con usuario grid 
+unzip LINUX.X64_193000_grid_home.zip
+
+#Ejecutar el script gridSetup.sh eN $ORACLE_HOME emplear a usario grid
+#asegurar de configurar el ambiente gráfico 
+xhost -> adminstrador
+configurar DISPLAY
+
+configurar variable
+export CV_ASSUME_DISTID=OEL8
+
+Ejecutar:
+./gridSetup.sh
+
+
+###formar raw devices con root
+fdisk -l 
+raw /dev/raw/raw01 /dev/sda8
+raw /dev/raw/raw02 /dev/sda9
+raw /dev/raw/raw03 /dev/sda10
+raw /dev/raw/raw04 /dev/sda11
+raw /dev/raw/raw05 /dev/sda12
+raw /dev/raw/raw06 /dev/sda13
+chown grid:asmdba /dev/raw/raw*
+chown grid:asmdba /dev/raw
+
+#validar raw devices 
+
+
+
+ls -l /dev/raw/raw* 
+
+#asegurarse que los raw devices le pertenezcan a grid
+#cambiar permisos
+chmod 660 /dev/raw/raw*
+
+
+./gridSetup.sh
+
+############################################################3
+
+<HOME NAME="OraGI19Home1" LOC="/u01/app/grid/19c/grid_home" TYPE="O" IDX="2" CRS="true"/>
+
+
+###configuración de un servicio empleado systemctl
+/etc/systemd/system/
+- crear el script raw-devices.service
+--con permisos 644, le pertenece a root
+
+[Unit]
+Description=Utility script used to initialize raw devices for Oracle ASM
+
+[Service]
+User=root
+WorkingDirectory=/u01/app/grid
+ExecStart=/u01/app/grid/raw-devices-setup.sh
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+----- Crear el script /u01/app/grid/raw-devices-setup.sh empleando al usuario  grid
+-- permisos 755
+
+#!/bin/bash
+echo "Inicializando raw devices para Oracle ASM"
+
+raw /dev/raw/raw01 /dev/sda13
+raw /dev/raw/raw02 /dev/sda14
+raw /dev/raw/raw03 /dev/sda15
+raw /dev/raw/raw04 /dev/sda16
+raw /dev/raw/raw05 /dev/sda17
+raw /dev/raw/raw06 /dev/sda18
+
+chown grid:asmdba /dev/raw/raw*
+chmod 660 /dev/raw/raw*
+
+ls -ltr /dev/raw/raw*
+
+echo "Listo"
+
+
+#########################4
+
+#verificar
+losetup -a
+
+#asociar a dispositivo raw
+raw /dev/raw/raw01 /dev/loop11
+raw /dev/raw/raw02 /dev/loop12
+raw /dev/raw/raw03 /dev/loop13
+raw /dev/raw/raw04 /dev/loop14
+raw /dev/raw/raw05 /dev/loop15
+raw /dev/raw/raw06 /dev/loop16
+
+chown grid:asmdba /dev/raw/raw*
+chmod 660 /dev/raw/raw*
+ls -l /dev/raw/*
+
+## El siguiente paso es activar el servicio  y despues iniciarlo
+
+#Activar
+sudo systemctl enable raw-devices.service
+
+#Ver status
+systemctl status raw-devices.service
+
+#Iniciar servicio
+systemctl start raw-devices.service
+
+#detener servicio
+systemctl stop raw-devices.service
+
+#para comprobar
+ls -l /dev/raw/*
+
+
+
+### instalar grid
+--asegurarse de levantar el listener (con usuario oracle)
+-- grid solo permite crear 1 gpo de discos, se debe crear uno nuevo
+-- empleando asmca
+
+###
+comando para desinstalar
+como grid, ejecutar
+
+/u01/app/grid/19c/grid_home/deinstall/deinstall
+
+
+
+#######Interactuando con la instancia ASM
+[jorge@lap-red-ora grid]$ #auntenticar como grid
+[jorge@lap-red-ora grid]$ su -l grid
+Password: 
+[grid@lap-red-ora ~]$ #no ovidar inicializar variables
+[grid@lap-red-ora ~]$ ASM
+ORACLE_SID=+ASM
+ORACLE_BASE=/u01/app/grid
+ORACLE_HOME=/u01/app/grid/19c/grid_home
+[grid@lap-red-ora ~]$ #entrar a SQL*Plus no como sysdba, ahora como sysasm
+[grid@lap-red-ora ~]$ sqlplus sys as sysasm
+
+SQL> col instance_name format a20
+SQL> set linesize window
+SQL> run
+  1* select instance_number,instance_name,status from v$instance
+
+INSTANCE_NUMBER INSTANCE_NAME        STATUS
+--------------- -------------------- ------------------------------------
+              1 +ASM                 STARTED
+
+
+#uso del comando asmcmd
+Jugar con comandos de ASM 
+
+https://docs.oracle.com/en/database/oracle/oracle-database/19/ostmg/asmcmd-file-commands.htm
+
+
+#Crear una BD nueva (RDBMS) que  haga uso de ASM
+#levantar listener
+
+#configurar ASM en la pantalla "Select database Storage Option"

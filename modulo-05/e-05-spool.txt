@@ -1,0 +1,106 @@
+sys@jbadip02> start e-05-extensiones.sql
+consultando extensiones, conectando como sys
+Connected.
+
+                                                                                                                                            
+
+
+PL/SQL procedure successfully completed.
+
+1- creando tabla de prueba
+
+Table created.
+
+2 -consultando datos de las extensiones
+
+no rows selected
+
+3 reservando una nueva extension
+
+Table altered.
+
+mostrando nuevamente los datos de las extensiones
+
+SEGMENT_TYPE       TABLESPACE_NAME                   FILE_ID  EXTENT_ID   BLOCK_ID EXTENT_SIZE_KB     BLOCKS                                
+------------------ ------------------------------ ---------- ---------- ---------- -------------- ----------                                
+TABLE              USERS                                   4          0      54448             64          8                                
+TABLE              USERS                                   4          1      54456             64          8                                
+
+Anilizar salida, presionar [Enter] para continuar
+
+4 insertando 100 registros
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+5 mostrando datos de las extensiones despues de la inserción
+
+SEGMENT_TYPE       TABLESPACE_NAME                   FILE_ID  EXTENT_ID   BLOCK_ID EXTENT_SIZE_KB     BLOCKS                                
+------------------ ------------------------------ ---------- ---------- ---------- -------------- ----------                                
+TABLE              USERS                                   4          0      54448             64          8                                
+TABLE              USERS                                   4          1      54456             64          8                                
+TABLE              USERS                                   4          2      54464             64          8                                
+
+mostrando estado de los bloques
+Mostrando valores de los bloques despues de insercion de 100 registros                                                                      
+v_unformatted_blocks =  0                                                                                                                   
+v_unformatted_bytes  = 0                                                                                                                    
+v_fs1_blocks = 0                                                                                                                            
+v_fs1_bytes  = 0                                                                                                                            
+v_fs2_blocks = 0                                                                                                                            
+v_fs2_bytes  = 0                                                                                                                            
+v_fs3_blocks = 1          --número de bloques con espacio entre 50% y 75%                                                                                                             
+v_fs3_bytes  = 8192       --bloques en bytes con espacio de 50 hasta 75%                                                                                                                  
+v_fs4_blocks = 5          --número de bloques con espacio entre 75% y 100%                                                                                                                  
+v_fs4_bytes  = 40960       --bloques en bytes con espacio de 75 hasta 100%                                                                                                                 
+v_full_blocks= 14          --número de bytes sin espacio                                                                                                                 
+v_full_bytes = 114688       --bloques en bytes sin espacio                                                                                                                
+
+PL/SQL procedure successfully completed.
+
+Anilizar salida, presionar [Enter] para continuar
+
+7 Eliminando 100 registros
+
+PL/SQL procedure successfully completed.
+
+mostrando datos de las extensiones despues de truncate
+
+SEGMENT_TYPE       TABLESPACE_NAME                   FILE_ID  EXTENT_ID   BLOCK_ID EXTENT_SIZE_KB     BLOCKS                                
+------------------ ------------------------------ ---------- ---------- ---------- -------------- ----------                                
+TABLE              USERS                                   4          0      54448             64          8                                
+
+mostrando estado de los bloques después del truncate
+Mostrando valores de los bloques despues de truncate                                                                                        
+v_unformatted_blocks =  0                                                                                                                   
+v_unformatted_bytes  = 0                                                                                                                    
+v_fs1_blocks = 0                                                                                                                            
+v_fs1_bytes  = 0                                                                                                                            
+v_fs2_blocks = 0                                                                                                                            
+v_fs2_bytes  = 0                                                                                                                            
+v_fs3_blocks = 0                                                                                                                            
+v_fs3_bytes  = 0                                                                                                                            
+v_fs4_blocks = 0                                                                                                                            
+v_fs4_bytes  = 0                                                                                                                            
+v_full_blocks= 0                                                                                                                            
+v_full_bytes = 0                                                                                                                            
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> spool e-06-spool.txt
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio pudimos obserbar el comportamiento de las extenciones al crear una nueva tabla 
+y al momento de insertar datos dentro de esta
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

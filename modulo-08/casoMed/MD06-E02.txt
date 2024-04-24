@@ -1,0 +1,44 @@
+select c.table_name,c.column_name,c.num_distinct,
+  TO_CHAR(UTL_RAW.CAST_TO_NUMBER(c.low_value)) low_value,
+  TO_CHAR(UTL_RAW.CAST_TO_NUMBER(c.high_value)) high_value,
+  c.num_nulls,c.avg_col_len,c.histogram,c.last_analyzed
+from dba_tab_statistics t, 
+    dba_tab_col_statistics c
+where c.table_name=t.table_name
+and t.owner='CONTROL_MEDICO' and c.table_name='MEDICO'
+and c.column_name in('MEDICO_ID')
+union
+select c.table_name,c.column_name,c.num_distinct,
+  UTL_RAW.CAST_TO_VARCHAR2(c.low_value) low_value,
+  UTL_RAW.CAST_TO_VARCHAR2(c.high_value) high_value,
+  c.num_nulls,c.avg_col_len,c.histogram,c.last_analyzed
+from dba_tab_statistics t, dba_tab_col_statistics c
+where c.table_name=t.table_name
+and t.owner='CONTROL_MEDICO' and c.table_name='MEDICO'
+and c.column_name 
+in('NOMBRE','AP_PATERNO','AP_MATERNO','CEDULA','TRAYECTORIA');
+
+----Resultado
+
+"TABLE_NAME"	"COLUMN_NAME"	"NUM_DISTINCT"	"LOW_VALUE"	"HIGH_VALUE"	"NUM_NULLS"	"AVG_COL_LEN"	"HISTOGRAM"	"LAST_ANALYZED"
+"MEDICO"	"AP_MATERNO"	250	"Adams"	"Young"	0	8	"NONE"	09-MAR-24
+"MEDICO"	"AP_PATERNO"	200	"Aaron"	"Willie"	0	7	"NONE"	09-MAR-24
+"MEDICO"	"CEDULA"	5000	"0003843874"	"9998936810"	0	11	"NONE"	09-MAR-24
+"MEDICO"	"MEDICO_ID"	5000	"1"	"5000"	0	4	"NONE"	09-MAR-24
+"MEDICO"	"NOMBRE"	200	"Aaron"	"Willie"	0	7	"NONE"	09-MAR-24
+"MEDICO"	"TRAYECTORIA"	1363	"Aenean auctor gravida sem. Praesent id massa id nisl venenatis l"	"Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus"	0	1027	"NONE"	09-MAR-24
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró obtener las estadisticas de una  tabla
+basadas en los valores de cada una de sus columnas, esto nos permite conocer la 
+distribución de nuestros datos dentro de la tabla 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvieron Problemas
+
+Comentarios, sugerencias.

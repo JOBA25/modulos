@@ -1,0 +1,48 @@
+sys@jbadip01> @s-04-profiles.sql
+***conectando como sysdba
+Connected.
+
+                                                                                
+
+***crear el profile
+
+Profile created.
+
+***creando usuario user01
+
+User created.
+
+***asignando permisos de creacion de sesiones
+
+Grant succeeded.
+
+Abrir 3 terminales e intentar inicar sesion con user01
+En cada termianl mostra datos de la sesion del usuario
+ ¿qué sucedio con la tercer sesion?  la 3er sesion no pudo conectarse
+Respuesta: la 3er sesion no pudo conectarse
+Mostrando las sesiones del usuario user01
+
+       SID    SERIAL# USERNAME             STATUS   SCHEMANAME                  
+---------- ---------- -------------------- -------- --------------------        
+        21       5063 USER01               INACTIVE USER01                      
+       390      41151 USER01               INACTIVE USER01                      
+
+¿cuántas sesiones se obtuvieron ?2
+respuesta: 2
+cerrar sesión en las terminales, despues presionar [Enter]
+
+limpieza
+
+User dropped.
+
+
+Profile dropped.
+
+sys@jbadip01> spool off
+
+Conclusiones
+
+Es importante poder crear perfiles ya que esto nos permitirá 
+tener un mayor control de los usarios, y poder asignar de manera
+más rápida las diferentes configuraciones posibles.
+

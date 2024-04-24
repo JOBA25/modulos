@@ -1,0 +1,27 @@
+[oracle@pc-joba scripts-base-02]$ ./e-01-crea-archivo-pwd-oracle.sh 
+creando archivo de passwords
+asignando el valor a ORACLE_SID: jbadip02
+ORACLE_SID: jbadip02
+Validando si el archivo existe
+Creando archivo de passwords
+
+Enter password for SYS: 
+Comprobando la creación del archivo
+-rw-r-----. 1 oracle oinstall 6144 Nov 19 14:56 /u01/app/oracle/product/19.3.0/dbhome_1/dbs/orapwjbadip02
+
+
+Conclusiones
+
+Como primer paso para la creación de nuestra nueva base de datos
+fue encesario crear nuestro archivo de passwords
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Reforzamos el concepto de archivo de passwords, asi como su uso,
+importancia y forma de creación
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+No se presentaron problemas con la ejecución
+
+*Comentarios, sugerencias.
+Sin Comentarios

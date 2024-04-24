@@ -1,0 +1,85 @@
+sys@jbadip01> @s-03-roles.sql
+Connected.
+
+                                                                                
+
+2. Creando roles
+
+Role created.
+
+
+Role created.
+
+3. Asignando roles
+
+Grant succeeded.
+
+4 asociar roles
+
+Grant succeeded.
+
+5. Creando j_admin
+
+User created.
+
+asignando rol
+
+Grant succeeded.
+
+6. comprobando privilegios para j_admin
+Connected.
+
+                                                                                
+
+¿Fue posible entrar a sesión con j_admin ?si
+Respuesta obtenida: si
+7. creando usuario j_os_admin
+Connected.
+
+                                                                                
+
+
+User created.
+
+8 conectando como j_admin, y validar que puede otorgar privilegios
+ya que se asignó la cláusula with admin option
+Connected.
+
+                                                                                
+
+
+Grant succeeded.
+
+¿Fue posible otorgar el privilegio desde j_admin ?si
+Respuesta obtenida: si
+9 comprobando que j_os_admin puede  crear sessiones
+Connected.
+
+                                                                                
+
+¿Fue posible crear sesiones con j_os_admin ?si
+Respuesta obtenida: si
+10 hacer script idempotente
+Connected.
+
+                                                                                
+
+
+User dropped.
+
+
+User dropped.
+
+
+Role dropped.
+
+
+Role dropped.
+
+Conclusiones
+
+Es importante conocer que podemos crear jerarquias con los roles, 
+lo cual nos permitirá asignar permisos de forma más rápida y nos 
+permitirá tener un mayor control de los usarios, ademas de asignar
+privilegios para poder delegar la responsabilidad de la asignación
+privilegios a otros usarios 

@@ -1,0 +1,60 @@
+idle> !ps -ef | grep -e jbadip02 -e sqlplus | grep  -v grep
+
+idle> start s-01-processes.sql
+mostrando user y server processes con instancia detenida, nadie empleando sqlplus
+
+Mostrando muevamente los procesos. ¿Qué debería mostrarse? [Enter] para continuar
+
+
+conectando como sysdba
+Connected to an idle instance.
+select lower(sys_context('userenv','current_user')
+*
+ERROR at line 1:
+ORA-01034: ORACLE not available
+Process ID: 0
+Session ID: 0 Serial number: 0 
+
+
+Mostrando nuevamente los procesos [Enter] para continuar
+
+
+Mostrando el proceso asociado con el listener
+
+Analizar resultado, [Enter] para continuar
+
+iniciando instancia en modo nomount
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                                                                                   
+Fixed Size                  8904776 bytes                                                                                                   
+Variable Size             784334848 bytes                                                                                                   
+Database Buffers          167772160 bytes                                                                                                   
+Redo Buffers                7868416 bytes                                                                                                   
+In-Memory Area            104857600 bytes                                                                                                   
+Mostrando procesos. ¿ Qué se obtendrá? [Enter] para continuar
+
+
+Analizar resultado, [Enter] para continuar
+
+abriendo BD.
+
+Database altered.
+
+
+Database altered.
+
+cerrando sesión como sysdba
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+creando una nueva sesión como sysdba
+Connected.
+
+                                                                                                                                            
+
+mostrando los procesos de esta nueva conexión a nivel s.o.
+
+Anotar los IDs de los procesos En SQL Developer ejectuar el reporte.
+Presionar [Enter] hasta que se haya visualizado el reporte.
+
+sys@jbadip02> spool off

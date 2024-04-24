@@ -1,0 +1,144 @@
+
+
+control_medico@jbadip02> start s-05-predicate-pushing.sql
+Enter value for 1: traceonly
+conectando como control_medico
+Connected.
+Generando índices
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+conectando como SYS
+Connected.
+B. Recolectando estadísticas
+
+PL/SQL procedure successfully completed.
+
+conectando como control_medico
+Connected.
+Configurando autotrace 'set autotrace '
+====  Consulta 1
+
+Table created.
+
+=== Consulta 2 sin predicate pushing (manual por optimizador)
+
+614 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3937638362
+
+---------------------------------------------------------------------------------------
+| Id  | Operation           | Name            | Rows  | Bytes | Cost (%CPU)| Time     |
+---------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |                 |   250 |  8750 |   265   (0)| 00:00:01 |
+|   1 |  VIEW               |                 |   250 |  8750 |   265   (0)| 00:00:01 |
+|   2 |   UNION-ALL         |                 |       |       |            |          |
+|*  3 |    TABLE ACCESS FULL| MEDICO          |   179 |  3938 |   238   (0)| 00:00:01 |
+|*  4 |    TABLE ACCESS FULL| MEDICO_SUPLENTE |    71 |  1562 |    27   (0)| 00:00:01 |
+---------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("NOMBRE" LIKE 'A%' OR "CEDULA" LIKE '15%')
+   4 - filter("CEDULA" LIKE '15%' OR "NOMBRE" LIKE 'A%')
+
+
+Statistics
+----------------------------------------------------------
+         83  recursive calls
+         17  db block gets
+       1025  consistent gets
+         85  physical reads
+       3124  redo size
+      15386  bytes sent via SQL*Net to client
+       1088  bytes received via SQL*Net from client
+         42  SQL*Net roundtrips to/from client
+          5  sorts (memory)
+          0  sorts (disk)
+        614  rows processed
+
+=== Consulta 3 con predicate pushing
+
+614 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3937638362
+
+---------------------------------------------------------------------------------------
+| Id  | Operation           | Name            | Rows  | Bytes | Cost (%CPU)| Time     |
+---------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |                 |   250 |  8750 |   265   (0)| 00:00:01 |
+|   1 |  VIEW               |                 |   250 |  8750 |   265   (0)| 00:00:01 |
+|   2 |   UNION-ALL         |                 |       |       |            |          |
+|*  3 |    TABLE ACCESS FULL| MEDICO          |   179 |  3938 |   238   (0)| 00:00:01 |
+|*  4 |    TABLE ACCESS FULL| MEDICO_SUPLENTE |    71 |  1562 |    27   (0)| 00:00:01 |
+---------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("NOMBRE" LIKE 'A%' OR "CEDULA" LIKE '15%')
+   4 - filter("CEDULA" LIKE '15%' OR "NOMBRE" LIKE 'A%')
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        948  consistent gets
+          0  physical reads
+          0  redo size
+      15386  bytes sent via SQL*Net to client
+       1136  bytes received via SQL*Net from client
+         42  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        614  rows processed
+
+eliminando indices
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Table dropped.
+
+control_medico@jbadip02> 
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró verificar las optimizaciones que hace el manejador, en este 
+caso al extraer de la consulta principal los predicados y agregarlos a la subconsulta
+Por los resultados podemos notar que no hay una gran diferencia entre la query optimizada 
+y la que no, en cuestion de tiempo y en el plan de ejecución gracias al optimizador.
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

@@ -1,0 +1,82 @@
+idle> start s-20-inactivar-bd.sql
+conectando como sysdba
+Connected.
+
+                                                                                
+
+creando usuarios
+
+User created.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+Grant succeeded.
+
+otorgando privilegio sysbackup al usuario user03_a1
+
+Grant succeeded.
+
+Abrir 2 terminales T1 y T2. en T1 Autenticar user03_a1,
+en T2 autenticar con el usuario user03_a2, crear una tabla y un registro.
+Inactivando la base de datos, ¿Qué sucederá?
+En caso de ser necesario ejecutar s-21-terminar-sesione.sql
+[Enter] para continuar
+
+
+System altered.
+
+BD inactiva.
+Abrir  una terminal T3, intentar autenticar con user03_a3
+Abrir una terminal T4, intentar autenticar con user03_a1 como sysbackup
+¿Qué sucederá? [Enter] para continuar
+unicamente el usuario user03_a1 podrá acceder a la sesión por su rol
+mostrando el status de la BD (active_state)
+
+ACTIVE_ST                                                                       
+---------                                                                       
+QUIESCED                                                                        
+
+reactivando la BD ¿Qué sucederá? [Enter] para continuar
+la sesión de user03_a3 ya podrá acceder a sus sesión
+
+System altered.
+
+Cerrar las sesiones de los usuarios en todas las terminales
+[Enter] para terminar y realiza limpieza
+
+
+User dropped.
+
+
+User dropped.
+
+
+User dropped.
+
+sys@jbadip02> spool off
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio pudimos ejecutar las instrucciones necesarias 
+para inactivar una base de datos, ademas de observar lo que susederia 
+en caso de tener sesiones abiertas y si se quiere iniciar sesiones 
+con usuarios sin privilegios y con usuarios con roles de administración
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

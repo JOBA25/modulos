@@ -1,0 +1,43 @@
+sys@jbadip02> start s-01-configura-autotrace.sql
+configurando autotrace
+conectando como sys
+Connected.
+conectando con control_medico
+Connected.
+creando plan_table
+
+PL/SQL procedure successfully completed.
+
+contando registros de tabla citas
+
+  COUNT(*)
+----------
+     20000
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 171836600
+
+-------------------------------------------------------------------------
+| Id  | Operation	      | Name	| Rows	| Cost (%CPU)| Time	|
+-------------------------------------------------------------------------
+|   0 | SELECT STATEMENT      | 	|     1 |    12   (0)| 00:00:01 |
+|   1 |  SORT AGGREGATE       | 	|     1 |	     |		|
+|   2 |   INDEX FAST FULL SCAN| CITA_PK | 20000 |    12   (0)| 00:00:01 |
+-------------------------------------------------------------------------
+
+
+Statistics
+----------------------------------------------------------
+	 61  recursive calls
+	  0  db block gets
+	155  consistent gets
+	 53  physical reads
+	  0  redo size
+	550  bytes sent via SQL*Net to client
+	387  bytes received via SQL*Net from client
+	  2  SQL*Net roundtrips to/from client
+	  6  sorts (memory)
+	  0  sorts (disk)
+	  1  rows processed

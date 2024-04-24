@@ -1,0 +1,41 @@
+idle> start examen-01.sql
+Connected.
+
+                                                                                
+
+creando usuarios
+
+User created.
+
+
+Grant succeeded.
+
+configurando dispatchers
+
+System altered.
+
+configurando shared servers
+
+System altered.
+
+inicando el DRCP por default
+
+PL/SQL procedure successfully completed.
+
+min pooled servers
+
+PL/SQL procedure successfully completed.
+
+max pooled servers
+
+PL/SQL procedure successfully completed.
+
+tiempo máximo de vida sin uso en el pool (seg) - 1h
+
+PL/SQL procedure successfully completed.
+
+tiempo máximo de inactividad del pooled server -5 min
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> spool off

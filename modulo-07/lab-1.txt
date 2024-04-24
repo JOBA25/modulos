@@ -1,0 +1,117 @@
+iniciando en  jbadip03
+Connected.
+
+                                                                                
+
+Creando application container jbadip03_appVentas
+
+Pluggable database created.
+
+abriendo jbadip03_appVentas
+
+Pluggable database altered.
+
+conectando a jbadip03_appVentas
+
+Session altered.
+
+mostrando datos del contenedor
+
+CON_ID                                                                          
+------------------------------                                                  
+5                                                                               
+
+CON_NAME                                                                        
+------------------------------                                                  
+JBADIP03_APPVENTAS                                                              
+Analizar resultados, [Enter] para continuar
+
+crear PDB jbadip03_appVentas_Provedores
+
+Pluggable database created.
+
+Abrir  jbadip03_appVentas_Provedores
+
+Pluggable database altered.
+
+realizar sync entre pdb y app container
+
+Session altered.
+
+
+Pluggable database altered.
+
+Crear un application  jbadip03_appVentas_app1
+
+Session altered.
+
+
+Pluggable database altered.
+
+creando objetos compartidos
+creando un TS
+
+System altered.
+
+
+Tablespace created.
+
+creando usuario
+
+User created.
+
+
+Grant succeeded.
+
+creando una tabla
+
+Table created.
+
+Insertando datos
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+asociando objetos comunes
+
+Pluggable database altered.
+
+Probando realizando sync
+
+Session altered.
+
+
+Pluggable database altered.
+
+Mostrando datos de objetos comunes
+
+        ID NOMBRE                                                               
+---------- ----------------------------------------                             
+         1 Computadoras                                                         
+         2 Termos                                                               
+         3 Coca                                                                 
+
+Revisar resultados, [Enter] para continuar
+
+sys@jbadip03> spool off
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se pudo crear un aplicaction container el cual nos ayuda en caso en los que se necesite
+crear submodulos dentro de un mismo contexto de una base de datos 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

@@ -1,0 +1,134 @@
+idle> start lab_911.sql
+Conectando como sys
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+[ENTER] para continuar
+
+Creando tablespaces
+
+Tablespace created.
+
+
+Tablespace created.
+
+Creando directorio en el S.O. para la tabla externa
+mkdir: cannot create directory ‘/home/oracle/911’: File exists
+
+[Enter] para continuar
+
+old   4:   select count(*) into v_count from  all_users where username='&p_user';
+new   4:   select count(*) into v_count from  all_users where username='m05_911_user';
+old   6:     dbms_output.put_line('Creando al usuario &p_user');
+new   6:     dbms_output.put_line('Creando al usuario m05_911_user');
+old   8:     dbms_output.put_line('El usuario &p_user ya existe, se eliminara');
+new   8:     dbms_output.put_line('El usuario m05_911_user ya existe, se eliminara');
+old   9:     execute immediate 'drop user &p_user cascade';
+new   9:     execute immediate 'drop user m05_911_user cascade';
+
+PL/SQL procedure successfully completed.
+
+Creando directorio 'ext_tab_data' para tabla externa
+
+Directory created.
+
+[ENTER] para continuar
+
+old   1: create user &p_user identified by &p_user
+new   1: create user m05_911_user identified by m05_911_user
+
+User created.
+
+old   1: grant create session, create table to &p_user
+new   1: grant create session, create table to m05_911_user
+
+Grant succeeded.
+
+old   1: alter user &p_user quota unlimited on m05_911_ix_ts
+new   1: alter user m05_911_user quota unlimited on m05_911_ix_ts
+
+User altered.
+
+old   1: grant all on directory ext_tab_data to &p_user
+new   1: grant all on directory ext_tab_data to m05_911_user
+
+Grant succeeded.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+Creando tabla externa
+
+Table created.
+
+Validando tabla externa
+
+ADDRESS
+--------------------------------------------------
+TYPE						   CALL_TS		LATITUDE
+-------------------------------------------------- ------------------ ----------
+ LONGITUDE REPORT_LOCATION			    INCIDENT_NUM
+---------- ---------------------------------------- ------------
+904 7th Av
+Car Fire					   22-MAY-19		 47.6069
+-122.32905 POINT (-122.329051 47.6069)		    F190051945
+
+9610 53rd Av S
+Aid Response					   22-MAY-19	       47.515984
+-122.26653 POINT (-122.266529 47.515984)	    F190051946
+
+ADDRESS
+--------------------------------------------------
+TYPE						   CALL_TS		LATITUDE
+-------------------------------------------------- ------------------ ----------
+ LONGITUDE REPORT_LOCATION			    INCIDENT_NUM
+---------- ---------------------------------------- ------------
+
+106 Pike St
+Aid Response					   22-MAY-19	       47.608849
+-122.33995 POINT (-122.339945 47.608849)	    F190051950
+
+
+Analizar, [enter] para continuar
+
+
+Table created.
+
+Crando	indices
+
+Index created.
+
+
+Index created.
+
+poblando tabla llamada_911 desde la tabla externa
+
+449999 rows created.
+
+
+Commit complete.
+
+Validando tabla permanente
+select * from llamada_911 where rownum <=3;911_ext
+                                          *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+
+Commit complete.
+
+Validando tabla permanente
+
+ADDRESS 					   TYPE 					      CALL_TS		   LATITUDE  LONGITUDE REPORT_LOCATION				INCIDENT_NUM
+-------------------------------------------------- -------------------------------------------------- ------------------ ---------- ---------- ---------------------------------------- ------------
+904 7th Av					   Car Fire					      22-MAY-19 	    47.6069 -122.32905 POINT (-122.329051 47.6069)		F190051945
+9610 53rd Av S					   Aid Response 				      22-MAY-19 	  47.515984 -122.26653 POINT (-122.266529 47.515984)		F190051946
+106 Pike St					   Aid Response 				      22-MAY-19 	  47.608849 -122.33995 POINT (-122.339945 47.608849)		F190051950
+
+m05_911_user@jbadip02> exit

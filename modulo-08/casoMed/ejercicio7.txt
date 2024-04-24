@@ -1,0 +1,42 @@
+
+sentencias usadas en sql developer para conocer el sid y sosid
+
+
+select * from v$session where username = 'CONTROL_MEDICO';
+
+select p.PID,p.SPID,s.SID, sosid
+from v$process p,v$session s 
+where s.paddr = p.addr 
+and s.sid = 244;
+
+
+
+sys@jbadip02> oradebug setospid 26796
+Oracle pid: 39, Unix process pid: 26796, image: oracle@pc-joba.fi.unam
+sys@jbadip02> oradebug unlimit
+Statement processed.
+sys@jbadip02> oradebug event 10046 trace name context forever,level 12;
+Statement processed.
+sys@jbadip02> 
+
+[oracle@pc-joba ~]$ cd $ORACLE_BASE
+[oracle@pc-joba oracle]$ pwd
+/u01/app/oracle
+[oracle@pc-joba oracle]$ cd diag/rdbms/jbadip02/jbadip02/trace/ 
+[oracle@pc-joba trace]$ ls -lt | grep 26796
+-rw-rw----. 1 oracle oinstall   28948 Mar 15 18:10 jbadip02_ora_26796.trc
+-rw-rw----. 1 oracle oinstall    5313 Mar 15 18:10 jbadip02_ora_26796.trm
+[oracle@pc-joba trace]$ 
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logroó obtener el sid y sosid de una sesión y con esto activar oradebug
+lo cual nos generó un archivo trc con el que nos dio un mayor detalle de lo que se hace en esa 
+sesión
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvieron Problemas
+
+Comentarios, sugerencias.

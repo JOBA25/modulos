@@ -1,0 +1,150 @@
+idle> start s-01-inicia-bd-oracle.sql
+Connected.
+deteniendo instancia
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+creando directorio de respaldos
+
+Moviendo spfile y pfile
+
+
+Moviendo un solo archivo de control
+
+Moviendo un archivo redo log de cada grupo
+
+
+
+Moviendo  datafiles
+
+
+mostrando archivos en el directorio de respaldos ( verificar 8 archivos)
+total 1.4G
+-rw-rw----. 1 oracle oinstall  18M Nov 24 17:40 control01.ctl
+-rw-r--r--. 1 oracle oinstall  269 Nov 19 15:13 initjbadip02.ora
+-rw-rw----. 1 oracle oinstall  51M Nov 24 16:42 redo01a.log
+-rw-rw----. 1 oracle oinstall  51M Nov 24 16:42 redo01b.log
+-rw-rw----. 1 oracle oinstall  51M Nov 24 16:42 redo01c.log
+-rw-rw----. 1 oracle oinstall 2.5K Nov 24 16:42 spfilejbadip02.ora
+-rw-rw----. 1 oracle oinstall 701M Nov 24 17:40 system01.dbf
+-rw-rw----. 1 oracle oinstall 501M Nov 24 17:40 users01.dbf
+
+[Archivos en directorio de respaldos, enter para continuar]
+
+intentando iniciar instancia modo nomount
+ORA-01078: failure in processing system parameters
+LRM-00109: could not open parameter file '/u01/app/oracle/product/19.3.0/dbhome_1/dbs/initjbadip02.ora'
+[Enter para corregir y reintentar]
+
+restaurando archivos de parámetros
+
+
+iniciando instancia
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+[¿ Se corrigió el error? Enter para continuar]
+
+Intentando pasar al modo mount
+alter database mount
+*
+ERROR at line 1:
+ORA-00205: error in identifying control file, check alert log for more info
+
+
+[Enter para corregir y reintentar]
+
+restaurando el archivo de control
+
+cambiando al modo mount
+
+Database altered.
+
+[¿ Se corrigió el error? Enter para continuar]
+
+intentar pasar al modo open
+alter database open
+*
+ERROR at line 1:
+ORA-01157: cannot identify/lock data file 1 - see DBWR trace file
+ORA-01110: data file 1: '/u01/app/oracle/oradata/JBADIP02/system01.dbf'
+
+
+[Enter para restaurar datafile del tablespace system]
+
+restaurando datafile para el tablespace system
+
+intentando abrir nuevamente
+alter database open
+*
+ERROR at line 1:
+ORA-01157: cannot identify/lock data file 4 - see DBWR trace file
+ORA-01110: data file 4: '/u01/app/oracle/oradata/JBADIP02/users01.dbf'
+
+
+[¿Se corrigió el error? Enter para restaurar datafile del TS users]
+
+
+intentando abrir nuevamente
+alter database open
+*
+ERROR at line 1:
+ORA-03113: end-of-file on communication channel
+Process ID: 25383
+Session ID: 89 Serial number: 11091
+
+
+[¿Se corrigió el error?, Revisar alert Log!, Enter - Restaurar Redo Logs]
+
+restaurando redo logs
+
+
+
+intentando iniciar nuevamente en modo OPEN, requiere autenticar y volver a iniciar
+Connected to an idle instance.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+Database mounted.
+Database opened.
+Mostrando status
+
+STATUS
+------------
+OPEN
+
+[¿La Base ha regresado a la normalidad ? Enter para terminar]
+
+idle> 
+
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio aprendí el concepto del comando startup, las formas 
+en que podemos levantar una instancia, así como algunos casos en los que 
+podemos tener errores y fallar en algun paso al levantar la instancia 
+
+startup nomount 
+- archivos pfile y spfile
+
+alter database mount
+- archivos de control
+
+alter database open
+- archivos .dbf
+- archivos redo log
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

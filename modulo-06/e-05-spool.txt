@@ -1,0 +1,156 @@
+idle> start e-05-flashback-table.sql
+1. conectando como jorge06
+Connected.
+creando tabla
+
+Table created.
+
+
+PL/SQL procedure successfully completed.
+
+2. configurando tabla con enable row movement
+
+Table altered.
+
+
+PL/SQL procedure successfully completed.
+
+3. tomando scn actual y tiempo
+
+FECHAHORA1		  SCN1
+------------------- ----------
+26-01-2024 21:04:13    2928658
+
+
+PL/SQL procedure successfully completed.
+
+4. agregar primer registro a la tabla venta
+
+1 row created.
+
+
+Commit complete.
+
+
+PL/SQL procedure successfully completed.
+
+5. tomando tiempo  y scn
+
+FECHAHORA2		  SCN2
+------------------- ----------
+26-01-2024 21:04:24    2928671
+
+
+PL/SQL procedure successfully completed.
+
+6. repitiendo paso 4 y 5 dos veces
+
+1 row created.
+
+
+   IDVENTA	MONTO
+---------- ----------
+	 1	   10
+	 2	   11
+
+
+Commit complete.
+
+
+PL/SQL procedure successfully completed.
+
+
+FECHAHORA3		  SCN3
+------------------- ----------
+26-01-2024 21:04:34    2928679
+
+
+1 row created.
+
+
+   IDVENTA	MONTO
+---------- ----------
+	 1	   10
+	 2	   11
+	 3     100000
+
+
+Commit complete.
+
+
+PL/SQL procedure successfully completed.
+
+
+FECHAHORA4		  SCN4
+------------------- ----------
+26-01-2024 21:04:42    2928683
+
+7. Mostrando datos de tabla, eliminando y confirmando cambios
+mostrando
+
+   IDVENTA	MONTO
+---------- ----------
+	 1	   10
+	 2	   11
+	 3     100000
+
+borrando
+
+3 rows deleted.
+
+
+Commit complete.
+
+
+PL/SQL procedure successfully completed.
+
+mostrando
+
+no rows selected
+
+8.tomando hora y scn
+
+FECHAHORA5		  SCN5
+------------------- ----------
+26-01-2024 21:04:47    2928687
+
+9.
+con scn
+Enter value for scn: 2928683
+
+Flashback complete.
+
+
+   IDVENTA	MONTO
+---------- ----------
+	 1	   10
+	 2	   11
+	 3     100000
+
+con fecha hora
+Enter value for fechahora: 26-01-2024 21:04:13
+
+Flashback complete.
+
+
+no rows selected
+
+10. mostrando tabla por ultima vez
+
+no rows selected
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba modulo-06]$ 
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se pudo configurar el fb table en una tabla con la cual 
+pudimos revertir los cambios en esta hasta cierto punto ataras en el tiempo
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

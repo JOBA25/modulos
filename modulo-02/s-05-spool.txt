@@ -1,0 +1,157 @@
+sys@jbadip01> @s-05-usuarios-admon.sql
+++++++++++conectando como sys
+Connected.
+
+                                                                                
+
+++++++++++creando al usario user01
+
+User created.
+
+++++++++++Asignando permisos de sesion y creacion tablas a user01
+
+Grant succeeded.
+
+++++++++++otorgando privilegios de administración as user01
+
+Grant succeeded.
+
+++++++++++creando user02 y user03
+
+User created.
+
+
+User created.
+
+++++++++++Asignando roles de inicio de sesion
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+++++++++++iniciando sesion como user01 sin permisos de admin
+Connected.
+
+                                                                                
+
+++++++++++mostrando esquema y usuario actuales
+
+ESQUEMA                                                                         
+--------------------                                                            
+USER01                                                                          
+
+ ¿qué valor se espera del nombre de usuario? user01
+Respuesta: user01
+USER is "USER01"
+creando tabla test01 del usuario user01
+
+Table created.
+
+
+1 row created.
+
+++++++otorgando permisos select al esquema public para hcer publica la tabla
+
+Grant succeeded.
+
++++++++Empleando al usuario user01 autenticar como sysdba
+Connected.
+
+                                                                                
+
+mostrando esquema y usuario actuales
+
+ESQUEMA                                                                         
+--------------------                                                            
+SYS                                                                             
+
+ ¿qué valor se espera del nombre de usuario?sys
+++++++++++Respuesta: sys
+USER is "SYS"
+++++++++++consultando la tabla user01.test
+ ¿Marcara error?no
+++++++++++Respuesta: no
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+++++++++++Empleando al usuario user01 autenticar como sysoper
+Connected.
+
+                                                                                
+
+++++++++++mostrando esquema y usuario actuales
+
+ESQUEMA                                                                         
+--------------------                                                            
+PUBLIC                                                                          
+
+
+ESQUEMA                                                                         
+--------------------                                                            
+PUBLIC                                                                          
+
+ ¿qué valor se espera del nombre de usuario?public
+++++++++++Respuesta: public
+USER is "PUBLIC"
+++++++++++consultando la tabla user01.test
+ ¿Marcara error?no
+++++++++++Respuesta: no
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+ ¿Marcara error consultar test01?si
+Respuesta: si
+select * from test01
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+Empleando a los usuario user02 y user03 para comprobar que se
+puede leer el contenido de la tabla user01.test a través del
+esquema PUBLIC
+
+Connected.
+
+                                                                                
+
+++++++++++resultado usando user02
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+Connected.
+
+                                                                                
+
+++++++++++resultado usando user03
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+++++++++++limpieza
+Connected.
+
+                                                                                
+
+
+User dropped.
+
+
+User dropped.
+
+
+User dropped.
+
+Conclusiones
+Es importante conocer la relación uno a uno entre usarios y esquemas,
+ya que gracias a esto podremos compartir y hacer uso de los objetos 
+entre diferentes usuarios
+

@@ -1,0 +1,58 @@
+sys@jbadip02> @s-07-ejemplo-java.sql
+SP2-0310: unable to open file "s-07-ejemplo-java.sql"
+sys@jbadip02> @ejemplo-java-pool/s-07-ejemplo-java.sql
+sys@jbadip02> prompt conectando como sys
+conectando como sys
+sys@jbadip02> connect sys/system2 as sysdba
+Connected.
+1 row selected.
+sys@jbadip02> 
+sys@jbadip02> declare
+  2    v_count number;
+  3  begin
+  4    select count(*) into v_count from all_users where username='USERJAVA';
+  5    if v_count > 0 then
+  6      execute immediate 'drop user userJava cascade';
+  7    end if;
+  8  end;
+  9  /
+PL/SQL procedure successfully completed.
+sys@jbadip02> 
+sys@jbadip02> prompt creando usuario userJava
+creando usuario userJava
+sys@jbadip02> create user userJava identified by userJava quota unlimited on users;
+User created.
+sys@jbadip02> grant create table, create session, create procedure to userJava;
+Grant succeeded.
+sys@jbadip02> 
+sys@jbadip02> Prompt otorgar permisos para cargar archivos jars
+otorgar permisos para cargar archivos jars
+sys@jbadip02> 
+sys@jbadip02> begin
+  2    dbms_java.grant_permission( 'USERJAVA',
+  3      'java.util.PropertyPermission','*', 'read,write');
+  4    dbms_java.grant_permission( 'USERJAVA',
+  5      'java.util.PropertyPermission','*','read');
+  6    dbms_java.grant_permission( 'USERJAVA',
+  7      'SYS:java.lang.RuntimePermission', 'getClassLoader', ' ' );
+  8    dbms_java.grant_permission( 'USERJAVA',
+  9      'SYS:oracle.aurora.security.JServerPermission', 'Verifier', ' ' );
+ 10    dbms_java.grant_permission( 'USERJAVA',
+ 11      'SYS:java.lang.RuntimePermission', 'accessClassInPackage.sun.util.calendar', ' ' ) ;
+ 12    dbms_java.grant_permission( 'USERJAVA',
+ 13      'java.net.SocketPermission', '*', 'connect,resolve' );
+ 14    dbms_java.grant_permission( 'USERJAVA',
+ 15      'SYS:java.lang.RuntimePermission', 'createClassLoader', ' ');
+ 16    --Permiso de lectura del archivo de entrada
+ 17    dbms_java.grant_permission( 'USERJAVA',
+ 18      'SYS:java.io.FilePermission', '/tmp/paisaje.png', 'read');
+ 19    --permiso de lectura y escritura para el archivo de salida
+ 20    dbms_java.grant_permission( 'USERJAVA',
+ 21      'SYS:java.io.FilePermission', '/tmp/output-paisaje.png', 'read,write,delete');
+ 22  end;
+ 23  /
+PL/SQL procedure successfully completed.
+sys@jbadip02> 
+sys@jbadip02> prompt Listo!
+Listo!
+sys@jbadip02> spool off

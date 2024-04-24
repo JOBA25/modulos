@@ -1,0 +1,109 @@
+[jorge@pc-joba ~]$ sqlplus sys/system2 as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Mar 26 20:15:25 2024
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Last Successful login time: Tue Mar 26 2024 19:38:49 -06:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+sys@jbadip02> 
+sys@jbadip02> 
+begin
+  2    dbms_workload_repository.create_snapshot();
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> create table medicamento_r as select * from control_medico.medicamento;
+
+Table created.
+
+sys@jbadip02> create table medicamento_r as select * from control_medico.medico;
+create table medicamento_r as select * from control_medico.medico
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+sys@jbadip02> create table medicamento_r2 as select * from control_medico.medico;
+
+Table created.
+
+begin
+  2    dbms_workload_repository.create_snapshot();
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> create table medico_r as select * from control_medico.medico;
+
+Table created.
+
+sys@jbadip02> create table paciente_r as select * from control_medico.paciente;
+
+Table created.
+
+begin
+  2    dbms_workload_repository.create_snapshot();
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> update paciente_r set email='ejemplo@dominio.com'
+  2  ;
+
+15000 rows updated.
+
+sys@jbadip02> update paciente_r set direccion='dirección ejemplo ejemplo ejemplo';
+
+15000 rows updated.
+
+sys@jbadip02> update paciente_r set num_seguro=9283928392893 ;
+
+15000 rows updated.
+
+begin
+  2    dbms_workload_repository.create_snapshot();
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+sys@jbadip02> 
+
+
+--- sentencia
+select * 
+from dba_hist_snapshot
+order by 1 desc;
+
+
+"SNAP_ID"	"DBID"	"INSTANCE_NUMBER"	"STARTUP_TIME"	"BEGIN_INTERVAL_TIME"	"END_INTERVAL_TIME"	"FLUSH_ELAPSED"	"SNAP_LEVEL"	"ERROR_COUNT"	"SNAP_FLAG"	"SNAP_TIMEZONE"	"BEGIN_INTERVAL_TIME_TZ"	"END_INTERVAL_TIME_TZ"	"CON_ID"
+234	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 08.22.44.132000000 PM	26-MAR-24 08.27.56.709000000 PM	+00 00:00:00.300000	1	0	1	-00 06:00:00.000000	26-MAR-24 08.22.44.132000000 PM -06:00	26-MAR-24 08.27.56.709000000 PM -06:00	0
+233	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 08.20.57.911000000 PM	26-MAR-24 08.22.44.132000000 PM	+00 00:00:01.900000	1	0	1	-00 06:00:00.000000	26-MAR-24 08.20.57.911000000 PM -06:00	26-MAR-24 08.22.44.132000000 PM -06:00	0
+232	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 08.15.32.667000000 PM	26-MAR-24 08.20.57.911000000 PM	+00 00:00:01.100000	1	0	1	-00 06:00:00.000000	26-MAR-24 08.15.32.667000000 PM -06:00	26-MAR-24 08.20.57.911000000 PM -06:00	0
+231	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 08.00.28.648000000 PM	26-MAR-24 08.15.32.667000000 PM	+00 00:00:04.300000	1	0	1	-00 06:00:00.000000	26-MAR-24 08.00.28.648000000 PM -06:00	26-MAR-24 08.15.32.667000000 PM -06:00	0
+230	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 06.33.47.778000000 PM	26-MAR-24 08.00.28.648000000 PM	+00 00:00:04.400000	1	0	0	-00 06:00:00.000000	26-MAR-24 06.33.47.778000000 PM -06:00	26-MAR-24 08.00.28.648000000 PM -06:00	0
+229	1427127934	1	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 06.23.10.000000000 PM	26-MAR-24 06.33.47.778000000 PM	+00 00:00:12.200000	1	0	0	-00 06:00:00.000000	26-MAR-24 06.23.10.000000000 PM -06:00	26-MAR-24 06.33.47.778000000 PM -06:00	0
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró crear los snapshots que nos ayudaran a obtener 
+detalles del funcionamiento de la base cuando esta recibe carga de datos
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvieron Problemas
+
+Comentarios, sugerencias.

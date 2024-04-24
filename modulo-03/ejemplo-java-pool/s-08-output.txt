@@ -1,0 +1,23 @@
+./s-08-carga-jar-ordinario.sh
+Creando archivo ResizeImage.java
+creando la clase ResizeImage.java
+Creando archivo jar
+Mostrando el contenido del archivo Jar
+Archive:  ejemplo-java-img.jar
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  11-25-2023 13:45   META-INF/
+       69  11-25-2023 13:45   META-INF/MANIFEST.MF
+        0  11-25-2023 13:35   mx/
+        0  11-25-2023 13:35   mx/edu/
+        0  11-25-2023 13:35   mx/edu/unam/
+        0  11-25-2023 13:35   mx/edu/unam/fi/
+        0  11-25-2023 13:35   mx/edu/unam/fi/dipbd/
+     1444  11-25-2023 13:45   mx/edu/unam/fi/dipbd/ResizeImage.java
+---------                     -------
+     1513                     8 files
+Dar de baja la clase Java de la BD, se intenta eliminar en caso de existir
+Warning: not found:  mx/edu/unam/fi/dipbd/ResizeImage
+Cargando archivo Jar en BD
+copiando imagen al directorio /tmp
+Listo!

@@ -1,0 +1,133 @@
+idle> start e-02-configuracion-fra.sql
+conectando como sys
+Connected.
+
+                                                                                                                                                 
+
+1. verificando el parámetro db_recovery
+
+NAME                                 TYPE        VALUE                                                                                           
+------------------------------------ ----------- ------------------------------                                                                  
+db_recovery_file_dest                string                                                                                                      
+db_recovery_file_dest_size           big integer 0                                                                                               
+2. verificando modo archive log habilitado
+Database log mode              Archive Mode
+Automatic archival             Enabled
+Archive destination            /unam-diplomado-bd/disk-042/archivelogs/jbadip02/disk_b
+Oldest online log sequence     111
+Next log sequence to archive   113
+Current log sequence           113
+[Enter] para continuar
+
+3. especificando tamaño y ubicación de la FRA
+
+System altered.
+
+
+System altered.
+
+4. reiniciando la BD
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                                                                                        
+Fixed Size                  8904776 bytes                                                                                                        
+Variable Size             692060160 bytes                                                                                                        
+Database Buffers          260046848 bytes                                                                                                        
+Redo Buffers                7868416 bytes                                                                                                        
+In-Memory Area            104857600 bytes                                                                                                        
+Database mounted.
+5. configurando el periodo de retención para flashback
+
+System altered.
+
+6. habilitando el modo flashback
+alter  database flashback on
+*
+ERROR at line 1:
+ORA-01264: Unable to create flash back file name
+ORA-19800: Unable to initialize Oracle Managed Destination
+Linux-x86_64 Error: 13: Permission denied 
+
+
+7. abriendo la BD
+
+Database altered.
+
+8. Verificando modo flashback activado
+
+FLASHBACK_ON                                                                                                                                     
+------------------                                                                                                                               
+NO                                                                                                                                               
+
+9. mostrando tiempo de retención de datos undo y modicando a 30 mins
+
+NAME                                 TYPE        VALUE                                                                                           
+------------------------------------ ----------- ------------------------------                                                                  
+undo_retention                       integer     900                                                                                             
+
+System altered.
+
+10. Mostrando nuevamente tiempo de retención de datos undo
+
+NAME                                 TYPE        VALUE                                                                                           
+------------------------------------ ----------- ------------------------------                                                                  
+undo_retention                       integer     1800                                                                                            
+sys@jbadip02> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+sys@jbadip02> strtup mount
+SP2-0734: unknown command beginning "strtup mou..." - rest of line ignored.
+sys@jbadip02> startup mount
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes                                                                                                        
+Fixed Size                  8904776 bytes                                                                                                        
+Variable Size             692060160 bytes                                                                                                        
+Database Buffers          260046848 bytes                                                                                                        
+Redo Buffers                7868416 bytes                                                                                                        
+In-Memory Area            104857600 bytes                                                                                                        
+Database mounted.
+sys@jbadip02> alter database flashback on;
+alter database flashback on
+*
+ERROR at line 1:
+ORA-01264: Unable to create flash back file name
+ORA-19800: Unable to initialize Oracle Managed Destination
+Linux-x86_64 Error: 13: Permission denied 
+
+
+sys@jbadip02> alter database flashback on;
+
+Database altered.
+
+sys@jbadip02> alter database  open;
+
+Database altered.
+
+sys@jbadip02> select flashback_on from v$database;
+
+FLASHBACK_ON                                                                                                                                     
+------------------                                                                                                                               
+YES                                                                                                                                              
+
+sys@jbadip02> spool off
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se creo la hubicación donde se configuró la FRA, con comandos de SO 
+y a nivel de BD se especificó la ubicación, tamaño (memoria) y politica de retención 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+Se tuvo problemas con dar permisos a la carpeta creada para la FRA, es por ello que en el 
+recorrido normal del programa se ve que no se tenia habilitada, se resolvio dando los permisos
+al usario Oracle para la carpeta
+
+Comentarios, sugerencias.

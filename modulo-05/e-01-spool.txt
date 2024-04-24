@@ -1,0 +1,83 @@
+****se relizaron cargas de menor número por temas de falta de memoria 
+
+
+idle> start e-01-bloques-indices.sql
+conectando como sys
+Connected.
+
+                                                                                
+
+revisando si el usario JORGE05 existe, en caso de exisitir se elimina y se crea de nuevo
+
+PL/SQL procedure successfully completed.
+
+creando usuario
+
+User created.
+
+
+Grant succeeded.
+
+conectando como jorge05
+Connected.
+
+                                                                                
+
+
+Table created.
+
+insertando registro 1
+
+1 row created.
+
+mostrando datos del índice.
+
+INDEX_TYPE                  TABLE_NAME           UNIQUENES TABLESPACE_NAME                STATUS       BLEVEL DISTINCT_KEYS                 
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- -------------                 
+NORMAL                      T01_ID               UNIQUE    USERS                          VALID                                             
+
+Analizar resultados, presionar [Enter] para continuar
+
+Recolectando estadísticas
+
+PL/SQL procedure successfully completed.
+
+mostrando datos del índice despues de la recolección
+
+INDEX_TYPE                  TABLE_NAME           UNIQUENES TABLESPACE_NAME                STATUS       BLEVEL DISTINCT_KEYS                 
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- -------------                 
+NORMAL                      T01_ID               UNIQUE    USERS                          VALID             0             1                 
+
+Analizar resultados, presionar [Enter] para realizar la carga
+
+
+PL/SQL procedure successfully completed.
+
+recolectando estadisticas despues de la carga
+
+PL/SQL procedure successfully completed.
+
+mostrar los datos del índice despues de la carga
+
+INDEX_TYPE                  TABLE_NAME           UNIQUENES TABLESPACE_NAME                STATUS       BLEVEL DISTINCT_KEYS LEAF_BLOCKS     
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- ------------- -----------     
+NORMAL                      T01_ID               UNIQUE    USERS                          VALID             1          9000          16     
+
+
+
+¿ Cuántos bloques del índice se tendrían que leer para recuperar cualquer ROWID de un índice con 1,000,000 de ids ?
+se relizarian 2 lecturas
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+
+Con este ejercicio pudimos obserbar la eficiencia de los b tree usados para elmacenamiento 
+de los rowid
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

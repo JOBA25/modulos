@@ -1,0 +1,42 @@
+[root@pc-joba scripts-base-02]# ./e-05-crea-directorios-root.sh 
+Creando directorios para crear la BD
+creando directorios para datafiles
+El directorio existe, contenido: 
+total 0
+Enter para borrar *.dbf, ctrl C - cancelar
+creando directorios
+moviendonos a /u01/app/oracle/oradata
+Cambiando dueño
+Cambiando permisos a la carpeta de datafiles
+Crear Carpteas para Redo logs y Control files
+Directorios de redo logs existen
+Enter para eliminar, Ctrl c - cancelar
+Creando carpetas de redo logs
+cambiando permisos a la carpeta de redo logs
+
+[root@pc-joba scripts-base-02]# cd /unam-diplomado-bd/
+[root@pc-joba unam-diplomado-bd]# ll
+total 24
+drwxr-x---. 4 oracle oinstall 4096 Nov 19 16:10 disk-01
+drwxr-x---. 3 oracle oinstall 4096 Nov 19 15:25 disk-02
+drwxr-x---. 3 oracle oinstall 4096 Nov 19 15:26 disk-03
+drwxr-xr-x. 2 root   root     4096 Nov 19 15:25 loop-devices
+drwxrw-r-x. 2 jorge  jorge    4096 Nov  7 02:54 modulo-01
+drwxrw-r-x. 4 jorge  jorge    4096 Nov 11 14:02 modulos
+
+Conclusiones
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio reforzamos los conocimientos para la creación de 
+directorios 
+
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+En este caso fue necesario modificar el script para dar permisos 
+al usuario oracle a las carpetas disk   
+/unam-diplomado-bd
+
+
+*Comentarios, sugerencias.
+Sin Comentarios

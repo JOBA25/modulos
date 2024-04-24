@@ -1,0 +1,331 @@
+[oracle@pc-joba modulo-05]$ export ORACLE_SID=jbadip02
+[oracle@pc-joba modulo-05]$ sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Jan 18 21:43:40 2024
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start e-09-tablespaces.sql
+Conectando como sys
+Connected.
+1. Crear un tablespace llamado m05_store_tbs1
+
+Tablespace created.
+
+2. Crear un tablespace llamado m05_store_multiple_tbs
+
+Tablespace created.
+
+3. Crear un tablespace llamado m05_store_tbs_custom
+
+Tablespace created.
+
+4. Mostrar el nombre del tablespace, status, tipo de contenido que almacena para todos los tablespaces existentes
+
+TABLESPACE_NAME 	       STATUS	 CONTENTS
+------------------------------ --------- ---------------------
+SYSTEM			       ONLINE	 PERMANENT
+SYSAUX			       ONLINE	 PERMANENT
+UNDOTBS1		       ONLINE	 UNDO
+TEMPTS1 		       ONLINE	 TEMPORARY
+USERS			       ONLINE	 PERMANENT
+M05_STORE_TBS1		       ONLINE	 PERMANENT
+M05_STORE_MULTIPLE_TBS	       ONLINE	 PERMANENT
+M05_STORE_TBS_CUSTOM	       OFFLINE	 PERMANENT
+
+8 rows selected.
+
+[enter] para continuar
+
+5. Crear un usuario llamado m05_store_user.
+old   1: create user &t_user identified by &t_user
+new   1: create user m05_store_user identified by m05_store_user
+
+User created.
+
+old   1: grant create session, create table, create procedure to &t_user
+new   1: grant create session, create table, create procedure to m05_store_user
+
+Grant succeeded.
+
+6. Empleando al usuario m05_store_user, crear una tabla llamada store_data
+Connected.
+
+Table created.
+
+7. llenado de una TS store_data
+
+Procedure created.
+
+No errors.
+ejecutar procedimiento sp_e6_reserva_extensiones
+===> Sin espacio en TS
+===> Código error  -1653
+===> Mensaje error ORA-01653: unable to extend table M05_STORE_USER.STORE_DATA by 128 in tablespace M05_STORE_TBS1
+===>ORA-06512: at "M05_STORE_USER.SP_E6_RESERVA_EXTENSIONES", line 8
+
+
+Total de extenciones reservadas:  44
+Total de espacio reservado  MB	29
+
+PL/SQL procedure successfully completed.
+
+[Enter] para continuar
+
+8. Modificando TS para poder seguir almacenando
+Connected.
+
+Tablespace altered.
+
+9. Ejecutando nuevamente sp_e6_reserva_extensiones
+Connected.
+===> Sin espacio en TS
+===> Código error  -1653
+===> Mensaje error ORA-01653: unable to extend table M05_STORE_USER.STORE_DATA by 128 in tablespace M05_STORE_TBS1
+===>ORA-06512: at "M05_STORE_USER.SP_E6_RESERVA_EXTENSIONES", line 8
+
+
+Total de extenciones reservadas:  53
+Total de espacio reservado  MB	38
+
+PL/SQL procedure successfully completed.
+
+[Enter] para continuar
+
+10. ejecutando consultas
+Connected.
+
+TABLESPACE_NAME 	       TOTAL_SEGMENTOS
+------------------------------ ---------------
+SYSAUX					  2529
+SYSTEM					  2172
+USERS					    35
+UNDOTBS1				    10
+M05_STORE_TBS1				     1
+M05_STORE_MULTIPLE_TBS			     0
+TEMPTS1 				     0
+M05_STORE_TBS_CUSTOM			     0
+
+8 rows selected.
+
+[Enter] para continuar
+
+11 llamando script e-10-data-files
+11.2. Consultando datafiles empleando dba_data_files
+Connected.
+
+FILE_NAME		FILE_ID RELATIVE_FNO TABLESPACE_NAME		      BYTES_MB STATUS	 AUT INCREMENT_BY USER_BYTES_MB  HEADER_KB ONLINE_
+-------------------- ---------- ------------ ------------------------------ ---------- --------- --- ------------ ------------- ---------- -------
+/u01/app/oracle/orad	      1 	   1 SYSTEM				   760 AVAILABLE YES	     1280	    759       1024 SYSTEM
+ata/JBADIP02/system0
+1.dbf
+
+/u01/app/oracle/orad	      2 	   2 SYSAUX				   550 AVAILABLE YES	     1280	    549       1024 ONLINE
+ata/JBADIP02/sysaux0
+1.dbf
+
+/u01/app/oracle/orad	      3 	   3 UNDOTBS1				   200 AVAILABLE YES	      640	    199       1024 ONLINE
+ata/JBADIP02/undotbs
+01.dbf
+
+/u01/app/oracle/orad	      4 	   4 USERS				   500 AVAILABLE YES		1	    499       1024 ONLINE
+ata/JBADIP02/users01
+.dbf
+
+/u01/app/oracle/orad	      5 	   5 M05_STORE_TBS1			    30 AVAILABLE NO		0	     29       1024 ONLINE
+ata/JBADIP02/m05_sto
+re_tbs01.dbf
+
+/u01/app/oracle/orad	     10 	  10 M05_STORE_TBS1			    10 AVAILABLE NO		0	      9       1024 ONLINE
+
+FILE_NAME		FILE_ID RELATIVE_FNO TABLESPACE_NAME		      BYTES_MB STATUS	 AUT INCREMENT_BY USER_BYTES_MB  HEADER_KB ONLINE_
+-------------------- ---------- ------------ ------------------------------ ---------- --------- --- ------------ ------------- ---------- -------
+ata/JBADIP02/m05_sto
+re_tbs02.dbf
+
+/u01/app/oracle/orad	      6 	   6 M05_STORE_MULTIPLE_TBS		    15 AVAILABLE NO		0	     14       1024 ONLINE
+ata/JBADIP02/m05_sto
+re_multiple_tbs_01.d
+bf
+
+/u01/app/oracle/orad	      7 	   7 M05_STORE_MULTIPLE_TBS		    15 AVAILABLE NO		0	     14       1024 ONLINE
+ata/JBADIP02/m05_sto
+re_multiple_tbs_02.d
+bf
+
+/u01/app/oracle/orad	      8 	   8 M05_STORE_MULTIPLE_TBS		    15 AVAILABLE NO		0	     14       1024 ONLINE
+ata/JBADIP02/m05_sto
+re_multiple_tbs_03.d
+bf
+
+/u01/app/oracle/orad	      9 	   9 M05_STORE_TBS_CUSTOM		       AVAILABLE					   OFFLINE
+ata/JBADIP02/m05_sto
+re_tbs_custom_01.dbf
+
+FILE_NAME		FILE_ID RELATIVE_FNO TABLESPACE_NAME		      BYTES_MB STATUS	 AUT INCREMENT_BY USER_BYTES_MB  HEADER_KB ONLINE_
+-------------------- ---------- ------------ ------------------------------ ---------- --------- --- ------------ ------------- ---------- -------
+
+
+10 rows selected.
+
+11.3. consultando data_file de v$datafile
+
+NAME			  FILE# CREATION_CHANGE# CREATION_TIME	     CHECKPOINT_CHANGE# CHECKPOINT_TIME     LAST_CHANGE# LAST_TIME
+-------------------- ---------- ---------------- ------------------- ------------------ ------------------- ------------ -------------------
+/u01/app/oracle/orad	      1 	       8 19/11/2023 16:51:58		2698785 18/01/2024 19:33:37
+ata/JBADIP02/system0
+1.dbf
+
+/u01/app/oracle/orad	      2 	    2833 19/11/2023 16:52:39		2698785 18/01/2024 19:33:37
+ata/JBADIP02/sysaux0
+1.dbf
+
+/u01/app/oracle/orad	      3 	    3652 19/11/2023 16:53:10		2698785 18/01/2024 19:33:37
+ata/JBADIP02/undotbs
+01.dbf
+
+/u01/app/oracle/orad	      4 	    3812 19/11/2023 16:53:34		2698785 18/01/2024 19:33:37
+ata/JBADIP02/users01
+.dbf
+
+/u01/app/oracle/orad	      5 	 2707187 18/01/2024 21:44:23		2707193 18/01/2024 21:44:40
+ata/JBADIP02/m05_sto
+re_tbs01.dbf
+
+/u01/app/oracle/orad	      6 	 2707252 18/01/2024 21:45:57		2707272 18/01/2024 21:46:06
+
+NAME			  FILE# CREATION_CHANGE# CREATION_TIME	     CHECKPOINT_CHANGE# CHECKPOINT_TIME     LAST_CHANGE# LAST_TIME
+-------------------- ---------- ---------------- ------------------- ------------------ ------------------- ------------ -------------------
+ata/JBADIP02/m05_sto
+re_multiple_tbs_01.d
+bf
+
+/u01/app/oracle/orad	      7 	 2707269 18/01/2024 21:46:02		2707272 18/01/2024 21:46:06
+ata/JBADIP02/m05_sto
+re_multiple_tbs_02.d
+bf
+
+/u01/app/oracle/orad	      8 	 2707270 18/01/2024 21:46:04		2707272 18/01/2024 21:46:06
+ata/JBADIP02/m05_sto
+re_multiple_tbs_03.d
+bf
+
+/u01/app/oracle/orad	      9 	 2707302 18/01/2024 21:46:16		2707302 18/01/2024 21:46:16	 2707302 18/01/2024 21:46:16
+ata/JBADIP02/m05_sto
+re_tbs_custom_01.dbf
+
+/u01/app/oracle/orad	     10 	 2709039 18/01/2024 21:51:30		2709040 18/01/2024 21:51:32
+ata/JBADIP02/m05_sto
+re_tbs02.dbf
+
+NAME			  FILE# CREATION_CHANGE# CREATION_TIME	     CHECKPOINT_CHANGE# CHECKPOINT_TIME     LAST_CHANGE# LAST_TIME
+-------------------- ---------- ---------------- ------------------- ------------------ ------------------- ------------ -------------------
+
+
+10 rows selected.
+
+11.4. Analizar salidas [Enter] para continuar
+
+11.5 Mostrando datos del header de un datafile
+
+     FILE# NAME 		REC CHECKPOINT_CHANGE# CHECKPOINT_TIME
+---------- -------------------- --- ------------------ -------------------
+	 1 /u01/app/oracle/orad NO	       2698785 18/01/2024 19:33:37
+	   ata/JBADIP02/system0
+	   1.dbf
+
+	 2 /u01/app/oracle/orad NO	       2698785 18/01/2024 19:33:37
+	   ata/JBADIP02/sysaux0
+	   1.dbf
+
+	 3 /u01/app/oracle/orad NO	       2698785 18/01/2024 19:33:37
+	   ata/JBADIP02/undotbs
+	   01.dbf
+
+	 4 /u01/app/oracle/orad NO	       2698785 18/01/2024 19:33:37
+	   ata/JBADIP02/users01
+	   .dbf
+
+	 5 /u01/app/oracle/orad NO	       2707193 18/01/2024 21:44:40
+	   ata/JBADIP02/m05_sto
+	   re_tbs01.dbf
+
+	 6 /u01/app/oracle/orad NO	       2707272 18/01/2024 21:46:06
+
+     FILE# NAME 		REC CHECKPOINT_CHANGE# CHECKPOINT_TIME
+---------- -------------------- --- ------------------ -------------------
+	   ata/JBADIP02/m05_sto
+	   re_multiple_tbs_01.d
+	   bf
+
+	 7 /u01/app/oracle/orad NO	       2707272 18/01/2024 21:46:06
+	   ata/JBADIP02/m05_sto
+	   re_multiple_tbs_02.d
+	   bf
+
+	 8 /u01/app/oracle/orad NO	       2707272 18/01/2024 21:46:06
+	   ata/JBADIP02/m05_sto
+	   re_multiple_tbs_03.d
+	   bf
+
+	 9 /u01/app/oracle/orad NO	       2707302 18/01/2024 21:46:16
+	   ata/JBADIP02/m05_sto
+	   re_tbs_custom_01.dbf
+
+	10 /u01/app/oracle/orad NO	       2709040 18/01/2024 21:51:32
+	   ata/JBADIP02/m05_sto
+	   re_tbs02.dbf
+
+     FILE# NAME 		REC CHECKPOINT_CHANGE# CHECKPOINT_TIME
+---------- -------------------- --- ------------------ -------------------
+
+
+10 rows selected.
+
+[Enter] para continuar
+
+11.6. Mostrar datos referentes a los archivos temporales de la base de datos
+
+   FILE_ID TABLESPACE_NAME	STATUS	  BYTES_MB
+---------- -------------------- ------- ----------
+	 1 /u01/app/oracle/orad ONLINE		20
+	   ata/JBADIP02/temp01.
+	   dbf
+
+
+[Enter] para continuar
+
+12 limpieza
+Connected.
+
+Tablespace dropped.
+
+
+Tablespace dropped.
+
+
+Tablespace dropped.
+
+old   1: drop user &t_user cascade
+new   1: drop user m05_store_user cascade
+
+User dropped.
+
+Amonos!!!!
+sys@jbadip02> 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio podemos pudimos practicar usando diferentes configuraciones
+posibles al momento de crear un tablespace ademas de conocer las vistas
+en donde podemos consultar su información 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

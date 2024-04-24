@@ -1,0 +1,30 @@
+idle> start e-04-crea-spfile-ordinario.sql
+mostrando valor de ORACLE_SID: jbadip02
+
+¿Es correcto?  Enter para continuar
+
+conectando como sysdba
+Connected to an idle instance.
+creando SPFILE
+
+File created.
+
+comprobando la existencia del archivo
+-rw-rw----. 1 oracle oinstall 1536 Nov 19 15:59 /u01/app/oracle/product/19.3.0/dbhome_1/dbs/spfilejbadip02.ora
+
+Listo!
+Disconnected
+
+Conclusiones
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio reforzamos el conocimiento para la creación de un spfile 
+desde un pfile
+
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+No se presentaron problemas con la ejecución
+
+*Comentarios, sugerencias.
+Sin Comentarios

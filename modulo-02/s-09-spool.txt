@@ -1,0 +1,95 @@
+sys@jbadip01> !pwd
+
+sys@jbadip01> show parameter undo_retention
+
+NAME                                 TYPE        VALUE                          
+
+------------------------------------ ----------- ------------------------------ 
+
+undo_retention                       integer     900                            
+
+sys@jbadip01> start s-09-archivo-params.sql
+
+Autenticación como sys
+
+Connected.
+
+                                                                                
+
+1 crear archivo pfile en /tmp/pfile
+
+File created.
+
+2 crear archivo pfile desde memoria
+
+File created.
+
+cambiando permisos al archivo
+
+4 mostrar el parametro undo_retention
+
+NAME                                 TYPE        VALUE                          
+
+------------------------------------ ----------- ------------------------------ 
+
+undo_retention                       integer     900                            
+
+5 modificar el archivo pfile-memory.ora, enter para continuar
+
+Reiniciando BD, enter para continuar
+
+Database closed.
+
+Database dismounted.
+
+ORACLE instance shut down.
+
+iniciando instancia con pfile
+
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes                                       
+
+Fixed Size                  8901696 bytes                                       
+
+Variable Size             234881024 bytes                                       
+
+Database Buffers          553648128 bytes                                       
+
+Redo Buffers                7872512 bytes                                       
+
+Database mounted.
+
+Database opened.
+
+8
+
+¿qué pasará con la siguiente instrucción? no debería cambiarlo, porque se levantó con pfile y el scope quiere modificar spfile
+
+respuesta:  no debería cambiarlo, porque se levantó con pfile y el scope quiere modificar spfile
+
+  3  
+
+sys@jbadip01> alter system undo_retention=1500 scope=spfile;
+
+alter system undo_retention=1500 scope=spfile
+
+             *
+
+ERROR at line 1:
+
+ORA-02065: illegal option for ALTER SYSTEM 
+
+ CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio aprendí sobre la creación de archivos de parámetros
+o bien conocidos como pfile y spfile, cómo generar uno a partir del otro 
+ya que estos nos ayudan con la definición de parámetros necesarios para 
+levantar la instancia.
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

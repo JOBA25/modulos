@@ -1,0 +1,133 @@
+idle> start e-03-flashback-query.sql
+conectando como sys
+Connected.
+
+                                                                                                                                                                                        
+
+1. creando usuario user06
+
+User created.
+
+
+Grant succeeded.
+
+2. conectando como user06
+Connected.
+
+                                                                                                                                                                                        
+
+3. creando tabla fb_query
+
+Table created.
+
+insertando 3 registros en fb_query
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando datos de fb_query
+
+        ID NAME                                                                                                                                                                         
+---------- ----------                                                                                                                                                                   
+         1 Jorge                                                                                                                                                                        
+         2 Danna                                                                                                                                                                        
+         3 Tavo                                                                                                                                                                         
+
+esperando
+
+PL/SQL procedure successfully completed.
+
+4. Obtener el SCN y la marca de tiempo
+
+FECHAHORA1                                                                                                                                                                              
+-------------------                                                                                                                                                                     
+30-01-2024 18:08:24                                                                                                                                                                     
+
+
+      SCN1                                                                                                                                                                              
+----------                                                                                                                                                                              
+   3007705                                                                                                                                                                              
+
+5. modificando datos en fb_query
+
+1 row updated.
+
+
+Commit complete.
+
+Mostrando datos de fb_query
+
+        ID NAME                                                                                                                                                                         
+---------- ----------                                                                                                                                                                   
+         1 cambio1                                                                                                                                                                      
+         2 Danna                                                                                                                                                                        
+         3 Tavo                                                                                                                                                                         
+
+6. Obtener el SCN y la marca de tiempo nuevamente
+
+FECHAHORA2                                                                                                                                                                              
+-------------------                                                                                                                                                                     
+30-01-2024 18:08:25                                                                                                                                                                     
+
+
+      SCN2                                                                                                                                                                              
+----------                                                                                                                                                                              
+   3007709                                                                                                                                                                              
+
+7 eliminando registro de fb_query
+
+1 row deleted.
+
+
+Commit complete.
+
+esperando
+
+PL/SQL procedure successfully completed.
+
+8. Obtener el SCN y la marca de tiempo nuevamente
+
+FECHAHORA3                                                                                                                                                                              
+-------------------                                                                                                                                                                     
+30-01-2024 18:08:31                                                                                                                                                                     
+
+
+      SCN3                                                                                                                                                                              
+----------                                                                                                                                                                              
+   3007715                                                                                                                                                                              
+
+9. Mostrando info en diferentes momentos
+Enter value for fechahora1: 
+select * from fb_query as of
+              *
+ERROR at line 1:
+ORA-30055: NULL snapshot expression not allowed here 
+
+
+Enter value for scn3: 3007705
+
+        ID NAME                                                                                                                                                                         
+---------- ----------                                                                                                                                                                   
+         1 Jorge                                                                                                                                                                        
+         2 Danna                                                                                                                                                                        
+         3 Tavo                                                                                                                                                                         
+
+10 recuperado
+Enter value for scn2: 3007705
+select * from fb_query as of 3007705
+                             *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+Mostrando datos de fb_query
+SP2-0042: unknown command "m fb_query" - rest of line ignored.
+user06@jbadip02> exit

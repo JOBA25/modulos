@@ -1,0 +1,28 @@
+idle> start s-09-archivo-params.sql
+Autenticación como sys
+Connected.
+
+                                                                                
+
+1 crear archivo pfile en /tmp/pfile
+
+File created.
+
+2 crear archivo pfile desde memoria
+
+File created.
+
+cambiando permisos al archivo
+
+4 mostrar el parametro undo_retention
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+undo_retention                       integer     900                            
+5 modificar el archivo pfile-memory.ora, enter para continuar
+
+
+Reiniciando BD, enter para continuar
+
+
+sys@jbadip01> spool off

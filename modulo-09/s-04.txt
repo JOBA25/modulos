@@ -1,0 +1,205 @@
+
+sys@jbadip02> start s-04-merge-complex-view.sql
+Enter value for 1: traceonly
+conectando como control_medico
+Connected.
+Ejemplo Transformación OR
+Generando índices
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+conectando como SYS
+Connected.
+B. Recolectando estadísticas
+
+PL/SQL procedure successfully completed.
+
+conectando como control_medico
+Connected.
+Configurando autotrace 'set autotrace '
+====  Consulta 1
+
+117 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 876812259
+
+----------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |                          |    56 | 30744 |    82   (2)| 00:00:01 |
+|*  1 |  FILTER                 |                          |       |       |            |          |
+|   2 |   HASH GROUP BY         |                          |    56 | 30744 |    82   (2)| 00:00:01 |
+|*  3 |    HASH JOIN            |                          |  1107 |   593K|    81   (0)| 00:00:01 |
+|*  4 |     TABLE ACCESS FULL   | MEDICAMENTO              |   111 | 60495 |    68   (0)| 00:00:01 |
+|   5 |     INDEX FAST FULL SCAN| RECETA_MEDICAMENTO_ID_IX | 20000 | 80000 |    13   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(COUNT(*)<50)
+   3 - access("M"."MEDICAMENTO_ID"="MEDICAMENTO_ID")
+   4 - filter("M"."SUBCLAVE" LIKE '040%')
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+         47  recursive calls
+          5  db block gets
+        300  consistent gets
+          0  physical reads
+       1028  redo size
+      66002  bytes sent via SQL*Net to client
+        662  bytes received via SQL*Net from client
+          9  SQL*Net roundtrips to/from client
+          2  sorts (memory)
+          0  sorts (disk)
+        117  rows processed
+
+====== Consulta 2
+
+117 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 876812259
+
+----------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |                          |    56 | 30744 |    82   (2)| 00:00:01 |
+|*  1 |  FILTER                 |                          |       |       |            |          |
+|   2 |   HASH GROUP BY         |                          |    56 | 30744 |    82   (2)| 00:00:01 |
+|*  3 |    HASH JOIN            |                          |  1107 |   593K|    81   (0)| 00:00:01 |
+|*  4 |     TABLE ACCESS FULL   | MEDICAMENTO              |   111 | 60495 |    68   (0)| 00:00:01 |
+|   5 |     INDEX FAST FULL SCAN| RECETA_MEDICAMENTO_ID_IX | 20000 | 80000 |    13   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(COUNT(*)<50)
+   3 - access("M"."MEDICAMENTO_ID"="R"."MEDICAMENTO_ID")
+   4 - filter("M"."SUBCLAVE" LIKE '040%')
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          2  recursive calls
+          0  db block gets
+        240  consistent gets
+          0  physical reads
+          0  redo size
+      65635  bytes sent via SQL*Net to client
+        859  bytes received via SQL*Net from client
+          9  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        117  rows processed
+
+============== Consulta 3
+
+117 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 497295958
+
+----------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |                          |   100 | 57100 |    83   (3)| 00:00:01 |
+|*  1 |  HASH JOIN              |                          |   100 | 57100 |    83   (3)| 00:00:01 |
+|   2 |   VIEW                  |                          |   101 |  2626 |    14   (8)| 00:00:01 |
+|*  3 |    HASH GROUP BY        |                          |   101 |   404 |    14   (8)| 00:00:01 |
+|   4 |     INDEX FAST FULL SCAN| RECETA_MEDICAMENTO_ID_IX | 20000 | 80000 |    13   (0)| 00:00:01 |
+|*  5 |   TABLE ACCESS FULL     | MEDICAMENTO              |   111 | 60495 |    68   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - access("M"."MEDICAMENTO_ID"="Q"."MEDICAMENTO_ID")
+   3 - filter(COUNT(*)<50)
+   5 - filter("M"."SUBCLAVE" LIKE '040%')
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        246  consistent gets
+          0  physical reads
+          0  redo size
+      58261  bytes sent via SQL*Net to client
+        678  bytes received via SQL*Net from client
+          9  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        117  rows processed
+
+====== Consulta 4
+select m.medicamento_id,num_grupo_terapeutico,grupo_terapeutico,clave_cbcm,
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+Eliminando índices
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+control_medico@jbadip02> 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró verificar las optimizacviones que hace el manejador, en este 
+caso al extraer la subconsulta y utilizarla en el mismo nivel, aún cuando en esta se tiene una 
+función de agregación, en otros caso con mayor complejidad, el manejador no podria 
+crear un plna de ejcución optimo. Por los resultados podemos notar que
+no hay una gran diferencia entre la query optimizada y la que no en cuestion de tiempo pero podemos 
+ver la diferencia en el plan de ejcución.
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

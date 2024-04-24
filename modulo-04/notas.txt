@@ -1,0 +1,35 @@
+--@Autor: Jorge Octaviop Barcenas Avelar
+--@Fecha creación: Nov 24 2023
+--@Descripción: ejercicio 1 modos de startup
+
+
+A nivel general, un proceso representa un mecanismo que implementa un 
+algoritmo o programa para realizar ciertas tareas. 
+
+    -user processes
+    nace o se ejecuta del lado del cliente, remoto / local, necesita 
+    establecer una conexión 
+    
+    -procesos de la base de datos
+    correndentor del servidor
+        -server processes
+        representa a un usario
+        creado por el listener a causa de un user processes
+
+
+        -background processes
+         Se inician cuando se arranca una instancia y
+        quedan residentes en memoria realizando diversas labores.
+        
+        -slave processes
+        Realiza taras adicionales solicitadas por un background process.
+    
+    -Deamons 
+    no son especificos a una instancia de bases de datos en particular
+    listener de ejemplo
+
+procesos obligatorios son aquellos que ejecutan funciones vitales
+de la base 
+toda la instancia se va a caer
+
+procesos opcionales son aquellos que no son vitales de la base

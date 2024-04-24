@@ -1,0 +1,154 @@
+start e-08-encrypt-ts-oracle.sql
+conectando como sys
+Connected.
+2. crear y abrir el wallet
+
+System altered.
+
+3. Crear un nuevo tablespace empleando la cláusula encryption y de forma opcional el algoritmo a emplear.
+create tablespace m05_encrypted_ts
+*
+ERROR at line 1:
+ORA-01543: tablespace 'M05_ENCRYPTED_TS' already exists
+
+
+4 signarle cuota de almacenamiento al usuario jorge05
+
+User altered.
+
+5
+
+TABLESPACE_NAME 	       ENC
+------------------------------ ---
+SYSTEM			       NO
+SYSAUX			       NO
+UNDOTBS1		       NO
+TEMPTS1 		       NO
+USERS			       NO
+M05_ENCRYPTED_TS	       YES
+
+6 rows selected.
+
+[Enter] para continuar
+
+6 Empleando al usuario jorge05, crear algunos objetos para comprobar que los datos contenidos serán cifrados
+Connected.
+create table mensaje_seguro(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+create index mensaje_seguro_ix on mensaje_seguro(mensaje)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+1 row created.
+
+
+1 row created.
+
+7. creando la misma tabla en ts users
+create table mensaje_inseguro(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+8. forzando sincronización con checkpoint
+Connected.
+
+System altered.
+
+9. busqueda en ts cifrado
+
+[Enter] para continuar
+
+9. busqueda en ts users
+   -x             activa la salida del mensaje de depuraci
+   -x              activa la salida del mensaje de depuraci
+   -x             activa la salida del mensaje de depuraci
+   -x              activa la salida del mensaje de depuraci
+	mensaje 2,
+	mensaje 1,
+	mensaje 2,
+	mensaje 1
+
+10 reiniciando
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  666894336 bytes
+Database Buffers	  285212672 bytes
+Redo Buffers		    7868416 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+consultando datos nuevamente
+Connected.
+select * from mensaje_seguro
+              *
+ERROR at line 1:
+ORA-28365: wallet is not open
+
+
+[Enter] para continuar
+
+Connected.
+
+System altered.
+
+11 mostrando datos nuevamente
+Connected.
+
+	ID MENSAJE
+---------- --------------------
+	 1 mensaje 1
+	 2 mensaje 2
+	 1 mensaje 1
+	 2 mensaje 2
+
+[Enter] para continuar
+
+12 limpieza
+
+Table dropped.
+
+
+Table dropped.
+
+Connected.
+
+Tablespace dropped.
+
+sys@jbadip02> 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio podemos observar las diferencias entre un table spaces 
+que utiliza la encriptación y uno que no
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

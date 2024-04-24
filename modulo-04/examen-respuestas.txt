@@ -1,0 +1,109 @@
+sys@jbadip02> start examen-04-consultas.sql
+Connected.
+
+                                                                                                                                                                                                                                                           
+
+A- mostrando principales parámetros del modo compartido
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+max_shared_servers                   integer                                                                                                                                                                                                               
+shared_servers                       integer     3                                                                                                                                                                                                         
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+max_shared_servers                   integer                                                                                                                                                                                                               
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+shared_server_sessions               integer                                                                                                                                                                                                               
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+dispatchers                          string      (ADDRESS=(PROTOCOL=TCP)(PORT=5                                                                                                                                                                            
+                                                 000)), (ADDRESS=(PROTOCOL=TCP)                                                                                                                                                                            
+                                                 (PORT=5001))                                                                                                                                                                                              
+max_dispatchers                      integer                                                                                                                                                                                                               
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+max_dispatchers                      integer                                                                                                                                                                                                               
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                     
+------------------------------------ ----------- ------------------------------                                                                                                                                                                            
+circuits                             integer                                                                                                                                                                                                               
+B- Mostrando principales parámetros del modo pooled  dentro de la vista dba_cpool_info
+
+CONNECTION_POOL                STATUS              MINSIZE    MAXSIZE   INCRSIZE SESSION_CACHED_CURSORS INACTIVITY_TIMEOUT MAX_THINK_TIME MAX_USE_SESSION MAX_LIFETIME_SESSION  NUM_CBROK MAXCONN_CBROK MAX_TXN_THINK_TIME     CON_ID                      
+------------------------------ ---------------- ---------- ---------- ---------- ---------------------- ------------------ -------------- --------------- -------------------- ---------- ------------- ------------------ ----------                      
+SYS_DEFAULT_CONNECTION_POOL    ACTIVE                    5         10          2                     20               3600            300          500000                86400          1         40000                  0          0                      
+
+C- mostrando procesos tipo Server processes
+
+D- mostrando procesos tipo Background processes
+
+E- Mostrando info de conexiones
+
+       SID    SERIAL# PADDR            STATUS   SERVER    PROCESS                  PGA_MAX_MEM USERNAME                                                                                                                                                    
+---------- ---------- ---------------- -------- --------- ------------------------ ----------- ------------------------------                                                                                                                              
+       165            0000000075F01CB8 ACTIVE   DEDICATED 17975_17975                                                                                                                                                                                      
+       167            0000000075F0C7B8 ACTIVE   DEDICATED 17993                                                                                                                                                                                            
+       169            0000000075F172B8 ACTIVE   DEDICATED 18009                                                                                                                                                                                            
+       246            0000000075EFDC98 ACTIVE   DEDICATED 17971                                                                                                                                                                                            
+         7            0000000075F19D78 ACTIVE   DEDICATED 18013                                                                                                                                                                                            
+        17            0000000075F49EF8 ACTIVE   DEDICATED 18507                                                                                                                                                                                            
+        93            0000000075F2B358 ACTIVE   DEDICATED 18077                                                                                                                                                                                            
+       249            0000000075F0DD18 ACTIVE   DEDICATED 17995                                                                                                                                                                                            
+       164            0000000075EFC738 ACTIVE   DEDICATED 17969                                                                                                                                                                                            
+       168            0000000075F11D38 ACTIVE   DEDICATED 18001                                                                                                                                                                                            
+       171            0000000075F1C838 ACTIVE   DEDICATED 18023                                                                                                                                                                                            
+       179            0000000075F47438 ACTIVE   DEDICATED 18181                                                                                                                                                                                            
+        86            0000000075F107D8 ACTIVE   DEDICATED 17999                                                                                                                                                                                            
+       247            0000000075F03218 ACTIVE   DEDICATED 17980_17981                          SYS                                                                                                                                                         
+       254            0000000075F23318 ACTIVE   DEDICATED 18029                                                                                                                                                                                            
+       264            0000000075F43418 ACTIVE   DEDICATED 18505                                                                                                                                                                                            
+       269            0000000075835588 ACTIVE   DEDICATED 28806                                SYS                                                                                                                                                         
+         6            0000000075F147F8 ACTIVE   DEDICATED 18005                                                                                                                                                                                            
+        10            0000000075F24878 ACTIVE   DEDICATED 18047                                                                                                                                                                                            
+        14            0000000075846B68 ACTIVE   DEDICATED 18352                                                                                                                                                                                            
+       186            000000007584AB88 INACTIVE NONE      24525                                USUARIO                                                                                                                                                     
+       177            0000000075F41EB8 ACTIVE   DEDICATED 18172                                                                                                                                                                                            
+         1            0000000075EF9C78 ACTIVE   DEDICATED 17959                                                                                                                                                                                            
+        83            0000000075F00758 ACTIVE   DEDICATED 17975_17976                                                                                                                                                                                      
+       166            0000000075F07238 ACTIVE   DEDICATED 17985                                                                                                                                                                                            
+       174            0000000075F27338 ACTIVE   DEDICATED 18061                                                                                                                                                                                            
+       175            0000000075F2C8B8 ACTIVE   DEDICATED 18098                                                                                                                                                                                            
+       248            0000000075F08798 ACTIVE   DEDICATED 17987                                                                                                                                                                                            
+         2            0000000075EFF1F8 ACTIVE   DEDICATED 17978                                                                                                                                                                                            
+
+       SID    SERIAL# PADDR            STATUS   SERVER    PROCESS                  PGA_MAX_MEM USERNAME                                                                                                                                                    
+---------- ---------- ---------------- -------- --------- ------------------------ ----------- ------------------------------                                                                                                                              
+        13            0000000075F44978 ACTIVE   DEDICATED 18176                                                                                                                                                                                            
+        16            0000000075836AE8 INACTIVE DEDICATED 23781                                USUARIO                                                                                                                                                     
+        82            0000000075EFB1D8 ACTIVE   DEDICATED 17965                                                                                                                                                                                            
+        88            0000000075F1B2D8 ACTIVE   DEDICATED 18015                                                                                                                                                                                            
+       245            0000000075EF8718 ACTIVE   DEDICATED 17956                                                                                                                                                                                            
+       259            0000000075F2DE18 ACTIVE   DEDICATED 18128                                                                                                                                                                                            
+         3            0000000075F04778 ACTIVE   DEDICATED 17980_17980                                                                                                                                                                                      
+         4            0000000075F09CF8 ACTIVE   DEDICATED 17989                                                                                                                                                                                            
+         5            0000000075F0F278 ACTIVE   DEDICATED 17997                                                                                                                                                                                            
+         9            0000000075F1F2F8 ACTIVE   DEDICATED 18021                                                                                                                                                                                            
+       187            0000000075834028 INACTIVE DEDICATED 24822                                SYS                                                                                                                                                         
+        84            0000000075F05CD8 ACTIVE   DEDICATED 17983                                                                                                                                                                                            
+        85            0000000075F0B258 ACTIVE   DEDICATED 17991                                                                                                                                                                                            
+        87            0000000075F15D58 ACTIVE   DEDICATED 18007                                                                                                                                                                                            
+       163            0000000075EF71B8 ACTIVE   DEDICATED 17954                                                                                                                                                                                            
+       256            0000000075F28898 ACTIVE   DEDICATED 18070                                                                                                                                                                                            
+        91            0000000075F25DD8 ACTIVE   DEDICATED 18049                                                                                                                                                                                            
+        96            0000000075F20858 ACTIVE   DEDICATED 19901                                                                                                                                                                                            
+       100            0000000075F4B458 ACTIVE   DEDICATED 19913                                                                                                                                                                                            
+       172            0000000075F21DB8 ACTIVE   DEDICATED 18027                                                                                                                                                                                            
+       252            0000000075F1DD98 ACTIVE   DEDICATED 18019                                                                                                                                                                                            
+       261            0000000075F48998 ACTIVE   DEDICATED 19908                                                                                                                                                                                            
+        11            0000000075F29DF8 ACTIVE   DEDICATED 18075                                                                                                                                                                                            
+       250            0000000075F13298 ACTIVE   DEDICATED 18003                                                                                                                                                                                            
+       251            0000000075F18818 ACTIVE   DEDICATED 18011                                                                                                                                                                                            
+
+54 rows selected.
+
+sys@jbadip02> spool off

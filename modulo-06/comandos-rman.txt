@@ -1,0 +1,16 @@
+connect target "sys@jbadip02 as sysdba"
+rman target /
+
+
+show all; 
+##muestra la configuración 
+
+list backup;
+
+list backup summary;
+list backup by file;
+
+report obsolete;
+delete obsolete;
+
+

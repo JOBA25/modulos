@@ -1,0 +1,177 @@
+Creando PDB tipo refreshable
+iniciar jbadip03
+
+iniciar jbadip04
+
+conectando jbadip03
+Connected.
+
+                                                                                
+
+abriendo jbadip03_s1
+alter pluggable database jbadip03_s1 open read write
+*
+ERROR at line 1:
+ORA-65019: pluggable database JBADIP03_S1 already open 
+
+
+creando un usuario común
+
+User created.
+
+
+Grant succeeded.
+
+conectando a jbadip04 para crear la liga
+Connected.
+
+                                                                                
+
+crear liga
+
+Database link created.
+
+crear PDB tipo refreshable
+
+Pluggable database created.
+
+consultando el último refresh
+
+LAST_REFRESH_SCN                                                                
+----------------                                                                
+         2485587                                                                
+
+Analizar el valor del SCN [enter] para continuar
+
+Crear una tabla y un registro en jbadip03_s1
+Connected.
+
+                                                                                
+
+
+Tablespace created.
+
+Creando un usuario de prueba *
+
+User created.
+
+
+Grant succeeded.
+
+creando tabla  test_refresh
+
+Table created.
+
+insertando datos de prueba
+
+1 row created.
+
+
+Commit complete.
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+Revisar tabla y datos creados [Enter] para continuar
+
+conectando a la jbadip04_r3
+Connected.
+
+                                                                                
+
+abrir jbadip04_r3 en modo read only para hcer refresh
+
+Pluggable database altered.
+
+verificando datos
+
+Session altered.
+
+¿Qué se obtendría  al intentar consultar la tabla ? [Enter] para continuar
+hasta este momento no hemos hecho un refresh, por lo que esperamos obtener un ERROR
+ya que no se va a encontrar la tabla
+
+select * from jorge_refresh.test_refresh
+                            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+Hacer refresh (desde root)
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+System altered.
+
+
+Pluggable database altered.
+
+consultando datos nuevamente
+¿qué se esperaría ?[Enter] para continuar
+ya esperamos ver la tabla y el dato
+
+Pluggable database altered.
+
+
+Session altered.
+
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+
+consultando el último refresh
+
+no rows selected
+
+Analizar resultados, [Enter] para realizar limpieza
+
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Database link dropped.
+
+limpiar al usuario en común
+Connected.
+
+                                                                                
+
+
+User dropped.
+
+Eliminar tablespace
+
+Session altered.
+
+
+Tablespace dropped.
+
+Eliminar al usuario jorge_refresh
+
+User dropped.
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos crear una pdb refreshable la cual nos permite tener una copia de 
+los datos de otra pdb
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

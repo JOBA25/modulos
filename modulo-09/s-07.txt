@@ -1,0 +1,195 @@
+
+sys@jbadip02> start s-07-vm.sql
+Enter value for 1: traceonly
+conectando como SYS
+Connected.
+old   1: grant create materialized view to &t_user
+new   1: grant create materialized view to control_medico
+
+Grant succeeded.
+
+conectando como control_medico
+Connected.
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+conectando como SYS
+Connected.
+B. Recolectando estadísticas
+
+PL/SQL procedure successfully completed.
+
+conectando como control_medico
+Connected.
+Configurando autotrace 'set autotrace '
+creando consulta
+
+54 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 2782989119
+
+----------------------------------------------------------------------------------------------------
+| Id  | Operation                       | Name             | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                |                  |   194 | 33950 |   340   (2)| 00:00:01 |
+|*  1 |  HASH JOIN                      |                  |   194 | 33950 |   340   (2)| 00:00:01 |
+|*  2 |   HASH JOIN                     |                  |   194 | 27936 |   272   (2)| 00:00:01 |
+|*  3 |    HASH JOIN                    |                  |   123 | 16605 |   250   (2)| 00:00:01 |
+|   4 |     NESTED LOOPS                |                  |   123 | 15375 |   216   (2)| 00:00:01 |
+|   5 |      NESTED LOOPS               |                  |   123 | 15375 |   216   (2)| 00:00:01 |
+|*  6 |       HASH JOIN                 |                  |   123 | 13530 |    93   (5)| 00:00:01 |
+|   7 |        JOIN FILTER CREATE       | :BF0000          |   133 | 11172 |    78   (3)| 00:00:01 |
+|*  8 |         HASH JOIN               |                  |   133 | 11172 |    78   (3)| 00:00:01 |
+|*  9 |          VIEW                   | index$_join$_001 |   599 | 14376 |    32   (0)| 00:00:01 |
+|* 10 |           HASH JOIN             |                  |       |       |            |          |
+|* 11 |            INDEX RANGE SCAN     | PACIENTE_CURP    |   599 | 14376 |     4   (0)| 00:00:01 |
+|  12 |            INDEX FAST FULL SCAN | PACIENTE_PK      |   599 | 14376 |    35   (0)| 00:00:01 |
+|* 13 |          HASH JOIN              |                  |   633 | 37980 |    46   (5)| 00:00:01 |
+|  14 |           VIEW                  |                  |   633 | 16458 |    15   (7)| 00:00:01 |
+|* 15 |            HASH GROUP BY        |                  |   633 |  3165 |    15   (7)| 00:00:01 |
+|  16 |             INDEX FAST FULL SCAN| RECETA_CITA_ID   | 20000 |    97K|    14   (0)| 00:00:01 |
+|* 17 |           TABLE ACCESS FULL     | CITA             |  3032 |   100K|    31   (4)| 00:00:01 |
+|  18 |        VIEW                     |                  |   553 | 14378 |    14   (8)| 00:00:01 |
+|* 19 |         HASH GROUP BY           |                  |   553 |  2765 |    14   (8)| 00:00:01 |
+|  20 |          JOIN FILTER USE        | :BF0000          | 20000 |    97K|    13   (0)| 00:00:01 |
+|  21 |           INDEX FAST FULL SCAN  | CITA_PACIENTE_ID | 20000 |    97K|    13   (0)| 00:00:01 |
+|* 22 |       INDEX UNIQUE SCAN         | MEDICO_PK        |     1 |       |     0   (0)| 00:00:01 |
+|  23 |      TABLE ACCESS BY INDEX ROWID| MEDICO           |     1 |    15 |     1   (0)| 00:00:01 |
+|  24 |     TABLE ACCESS FULL           | DIAGNOSTICO      | 14423 |   140K|    34   (0)| 00:00:01 |
+|  25 |    TABLE ACCESS FULL            | RECETA           | 20000 |   175K|    22   (0)| 00:00:01 |
+|  26 |   TABLE ACCESS FULL             | MEDICAMENTO      |  2005 | 62155 |    68   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - access("R"."MEDICAMENTO_ID"="ME"."MEDICAMENTO_ID")
+   2 - access("C"."CITA_ID"="R"."CITA_ID")
+   3 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+   6 - access("Q1"."PACIENTE_ID"="P"."PACIENTE_ID")
+   8 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+   9 - filter("P"."CURP" LIKE 'C%')
+  10 - access(ROWID=ROWID)
+  11 - access("P"."CURP" LIKE 'C%')
+  13 - access("Q2"."CITA_ID"="C"."CITA_ID")
+  15 - filter(COUNT(*)<=2)
+  17 - filter(TO_NUMBER(TO_CHAR(INTERNAL_FUNCTION("FECHA_CITA"),'yyyy'))>=2005 AND
+              TO_NUMBER(TO_CHAR(INTERNAL_FUNCTION("FECHA_CITA"),'yyyy'))<=2015)
+  19 - filter(COUNT(*)<=3)
+  22 - access("C"."MEDICO_ID"="M"."MEDICO_ID")
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+         18  recursive calls
+          7  db block gets
+        666  consistent gets
+          0  physical reads
+        976  redo size
+       5782  bytes sent via SQL*Net to client
+       1148  bytes received via SQL*Net from client
+          5  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+         54  rows processed
+
+creando vista materializada
+
+Materialized view created.
+
+SP2-0734: unknown command beginning "Ejecutando..." - rest of line ignored.
+
+54 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 1508465341
+
+-------------------------------------------------------------------------------------------------
+| Id  | Operation                    | Name             | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT             |                  |    54 |  4266 |     3   (0)| 00:00:01 |
+|   1 |  MAT_VIEW REWRITE ACCESS FULL| MV_REPORTE_CITAS |    54 |  4266 |     3   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------
+
+
+Statistics
+----------------------------------------------------------
+         82  recursive calls
+         36  db block gets
+         73  consistent gets
+          5  physical reads
+       7088  redo size
+       5993  bytes sent via SQL*Net to client
+       1148  bytes received via SQL*Net from client
+          5  SQL*Net roundtrips to/from client
+          3  sorts (memory)
+          0  sorts (disk)
+         54  rows processed
+
+ELiminando índices
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Materialized view dropped.
+
+control_medico@jbadip02> 
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró verificar la optimización lograda al utilizar una vista materializada
+la cual nos permite usar el query rewrite y utilizar la vista para un query que tenga los mismos predicados
+que la query usada para la vista, con lo cual reducimos el costo de esta operación.
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

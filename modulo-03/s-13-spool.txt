@@ -1,0 +1,106 @@
+idle> start s-13-pga-stats.sql
+conectando como sys
+Connected.
+
+                                                                                
+
+consultando estadísticas - PGA
+
+NAME                                                             UNIT              VALUE                                                          
+---------------------------------------------------------------- ------------ ----------                                                          
+aggregate PGA target parameter                                   MB                  488                                                          
+aggregate PGA auto target                                        MB           323.542969                                                          
+maximum PGA allocated                                            MB           270.938477                                                          
+bytes processed                                                  MB           198.869141                                                          
+total PGA allocated                                              MB           198.583984                                                          
+total PGA inuse                                                  MB           130.525391                                                          
+cache hit percentage                                             percent             100                                                          
+global memory bound                                              MB           97.5996094                                                          
+total freeable PGA memory                                        MB              48.4375                                                          
+PGA memory freed back to OS                                      MB              29.1875                                                          
+maximum PGA used for auto workareas                              MB           1.22070313                                                          
+extra bytes read/written                                         MB                    0                                                          
+maximum PGA used for manual workareas                            MB                    0                                                          
+total PGA used for manual workareas                              MB                    0                                                          
+total PGA used for auto workareas                                MB                    0                                                          
+MGA allocated (under PGA)                                        MB                    0                                                          
+maximum MGA allocated                                            MB                    0                                                          
+
+17 rows selected.
+
+Analizar resultados, [Enter]  para continuar
+
+Creando usuario user03pga
+
+User created.
+
+
+Grant succeeded.
+
+Mostrando uso de la PGA para el server process
+
+SOSID           USERNAME        PROGRAM                                  PGA_USED_MEM_MB PGA_ALLOC_MEM_MB PGA_FREEABLE_MEM_MB PGA_MAX_MEM_MB      
+--------------- --------------- ---------------------------------------- --------------- ---------------- ------------------- --------------      
+24828           jorge           oracle@pc-joba.fi.unam (TNS V1-V3)            2.13536549       3.60019398               .6875     3.97519398      
+
+¿Cuánta memoria PGA se está empleando para este registro ? [Enter] continuar
+2.13536549 
+creando clon de all_objects ordenado
+
+Table created.
+
+ejecutar nuevamente consulta que muestra datos del server process
+
+SOSID           USERNAME        PROGRAM                                  PGA_USED_MEM_MB PGA_ALLOC_MEM_MB PGA_FREEABLE_MEM_MB PGA_MAX_MEM_MB      
+--------------- --------------- ---------------------------------------- --------------- ---------------- ------------------- --------------      
+24828           jorge           oracle@pc-joba.fi.unam (TNS V1-V3)            5.57417011       7.20892811               .9375      36.537694      
+
+Comparar valores de uso de la PGA, ¿qué sucedió ? [Enter] continuar
+crecieron todas las unidades
+
+ejecutar nuevamente estadísticas de la PGA
+
+NAME                                                             UNIT              VALUE                                                          
+---------------------------------------------------------------- ------------ ----------                                                          
+aggregate PGA target parameter                                   MB                  488                                                          
+aggregate PGA auto target                                        MB           318.726563                                                          
+maximum PGA allocated                                            MB           270.938477                                                          
+bytes processed                                                  MB           239.463867                                                          
+total PGA allocated                                              MB           202.754883                                                          
+total PGA inuse                                                  MB           134.152344                                                          
+cache hit percentage                                             percent             100                                                          
+global memory bound                                              MB           97.5996094                                                          
+PGA memory freed back to OS                                      MB              59.1875                                                          
+total freeable PGA memory                                        MB               48.875                                                          
+maximum PGA used for auto workareas                              MB               6.1875                                                          
+extra bytes read/written                                         MB                    0                                                          
+maximum PGA used for manual workareas                            MB                    0                                                          
+total PGA used for manual workareas                              MB                    0                                                          
+total PGA used for auto workareas                                MB                    0                                                          
+MGA allocated (under PGA)                                        MB                    0                                                          
+maximum MGA allocated                                            MB                    0                                                          
+
+17 rows selected.
+
+¿Qué componente se modificaron respeto a la primera consulta ? [Enter] continuar
+obserbamos que la áreas referentes a la PGA crecieron 
+
+realizando limpieza
+
+User dropped.
+
+sys@jbadip02> spool off
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio pudimos observar como la propia base
+hace crecer o decrecer las áreas de memoria, en este caso la PGA,
+según lo requiera 
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

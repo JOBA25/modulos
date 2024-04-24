@@ -1,0 +1,97 @@
+
+control_medico@jbadip02> start s-02-nested.sql
+Enter value for 1: traceonly
+
+Index created.
+
+
+Index created.
+
+conectando como control_medico
+Connected.
+Configurando autotrace 'set autotrace '
+join medico m on m.cita_id = r.cita_id
+                             *
+ERROR at line 3:
+ORA-00904: "R"."CITA_ID": invalid identifier
+
+
+
+6 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3773197897
+
+-------------------------------------------------------------------------------------------------------
+| Id  | Operation                    | Name                   | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT             |                        |     2 |    52 |    37   (0)| 00:00:01 |
+|   1 |  NESTED LOOPS                |                        |     2 |    52 |    37   (0)| 00:00:01 |
+|   2 |   NESTED LOOPS               |                        |     2 |    52 |    37   (0)| 00:00:01 |
+|*  3 |    TABLE ACCESS FULL         | DIAGNOSTICO            |     1 |    10 |    34   (0)| 00:00:01 |
+|*  4 |    INDEX RANGE SCAN          | CITA_DIAGNOSTICO_ID_IX |     2 |       |     1   (0)| 00:00:01 |
+|   5 |   TABLE ACCESS BY INDEX ROWID| CITA                   |     2 |    32 |     3   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("D"."CLAVE" LIKE 'A85%')
+   4 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        135  consistent gets
+          4  physical reads
+          0  redo size
+        772  bytes sent via SQL*Net to client
+        495  bytes received via SQL*Net from client
+          2  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+          6  rows processed
+
+limpieza
+
+Index dropped.
+
+
+Index dropped.
+
+control_medico@jbadip02> start s-02-nested.sql
+Enter value for 1: traceonly
+
+Index created.
+
+conectando como control_medico
+Connected.
+Configurando autotrace 'set autotrace '
+join medico m on m.cita_id = r.cita_id
+                             *
+ERROR at line 3:
+ORA-00904: "R"."CITA_ID": invalid identifier
+
+
+limpieza
+
+Index dropped.
+
+control_medico@jbadip02> 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró reforzar el tema de joins, en este caso el suo de Nested loop
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

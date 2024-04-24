@@ -1,0 +1,82 @@
+sys@jbadip01> start s-06-archivo-pwd.sql
+1 Autenticando como sysdba
+
+Connected.
+
+                                                    
+
+2 creando usuarios
+
+User created.
+
+
+User created.
+
+
+User created.
+
+
+3 asignando privilegios de administracion
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+4 consultando vista v$pwfile_users
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS         
+-------------------- ----- ----- ----- ----- ----- ----- --------------------   
+PASSWORD_PROFILE     LAST_LOGIN           LOCK_DATE          EXPIRY_DATE        
+-------------------- -------------------- ------------------ ------------------ 
+EXTERNAL_NAME        AUTHENTI COM     CON_ID                                    
+-------------------- -------- --- ----------                                    
+USER01               TRUE  TRUE  FALSE TRUE  FALSE FALSE OPEN                   
+                                                                                
+                     PASSWORD NO           0                                    
+                                                                                
+USER02               TRUE  TRUE  FALSE TRUE  FALSE FALSE OPEN                   
+                                                                                
+                     PASSWORD NO           0                                    
+
+USERNAME             SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS         
+-------------------- ----- ----- ----- ----- ----- ----- --------------------   
+PASSWORD_PROFILE     LAST_LOGIN           LOCK_DATE          EXPIRY_DATE        
+-------------------- -------------------- ------------------ ------------------ 
+EXTERNAL_NAME        AUTHENTI COM     CON_ID                                    
+-------------------- -------- --- ----------                                    
+                                                                                
+USER03               TRUE  TRUE  FALSE TRUE  FALSE FALSE OPEN                   
+                                                                                
+                     PASSWORD NO           0                                    
+                                                                                
+
+sys@jbadip01> start s-08-actualiza-usuarios-admon.sql
++conectando como sys
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+
++Consultando vista v$pwfile_users
+SP2-0640: Not connected
++Asignando permisos de administracion sysdba, sysoper y sysbackup
+a usaurios
+SP2-0640: Not connected
+SP2-0640: Not connected
+SP2-0640: Not connected
+
++Consultando nuevamente la vista v$pwfile_users
+SP2-0640: Not connected
++Reasignando password a sys
+SP2-0640: Not connected
+limpieza
+SP2-0640: Not connected
+SP2-0640: Not connected
+SP2-0640: Not connected
+sys@jbadip01> exit

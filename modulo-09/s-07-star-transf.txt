@@ -1,0 +1,140 @@
+
+sys@jbadip02> start s-07-star-transformation.sql
+Enter value for 1: traceonly
+conectando como control_medico
+Connected.
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+Configurando autotrace 'set autotrace '
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3146282438
+
+--------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                                    | Name                      | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                             |                           |     1 |    51 |   114   (0)| 00:00:01 |
+|   1 |  TEMP TABLE TRANSFORMATION                   |                           |       |       |            |          |
+|   2 |   LOAD AS SELECT (CURSOR DURATION MEMORY)    | SYS_TEMP_0FD9D6609_4AF987 |       |       |            |          |
+|*  3 |    VIEW                                      | index$_join$_094          |   438 |  6570 |    13   (0)| 00:00:01 |
+|*  4 |     HASH JOIN                                |                           |       |       |            |          |
+|*  5 |      INDEX RANGE SCAN                        | MEDICO_CEDULA_IX          |   438 |  6570 |     3   (0)| 00:00:01 |
+|   6 |      INDEX FAST FULL SCAN                    | MEDICO_PK                 |   438 |  6570 |    13   (0)| 00:00:01 |
+|*  7 |   HASH JOIN                                  |                           |     1 |    51 |   101   (0)| 00:00:01 |
+|*  8 |    HASH JOIN                                 |                           |     1 |    36 |    99   (0)| 00:00:01 |
+|   9 |     VIEW                                     | VW_ST_83EEE05A            |     1 |    26 |    95   (0)| 00:00:01 |
+|  10 |      NESTED LOOPS                            |                           |     1 |    47 |    57   (0)| 00:00:01 |
+|  11 |       BITMAP CONVERSION TO ROWIDS            |                           |     1 |    27 |    57   (0)| 00:00:01 |
+|  12 |        BITMAP AND                            |                           |       |       |            |          |
+|  13 |         BITMAP MERGE                         |                           |       |       |            |          |
+|  14 |          BITMAP KEY ITERATION                |                           |       |       |            |          |
+|  15 |           TABLE ACCESS BY INDEX ROWID BATCHED| DIAGNOSTICO               |   129 |  1290 |     4   (0)| 00:00:01 |
+|* 16 |            INDEX RANGE SCAN                  | DIAGNOSTICO_CLAVE_IX      |   129 |       |     2   (0)| 00:00:01 |
+|* 17 |           BITMAP INDEX RANGE SCAN            | CITA_DIAGNOSTICO_ID_BIX   |       |       |            |          |
+|  18 |         BITMAP MERGE                         |                           |       |       |            |          |
+|  19 |          BITMAP KEY ITERATION                |                           |       |       |            |          |
+|  20 |           TABLE ACCESS FULL                  | SYS_TEMP_0FD9D6609_4AF987 |   438 |  1752 |     2   (0)| 00:00:01 |
+|* 21 |           BITMAP INDEX RANGE SCAN            | CITA_MEDICO_ID_BIX        |       |       |            |          |
+|  22 |         BITMAP MERGE                         |                           |       |       |            |          |
+|  23 |          BITMAP KEY ITERATION                |                           |       |       |            |          |
+|* 24 |           VIEW                               | index$_join$_089          |   551 | 13224 |    32   (0)| 00:00:01 |
+|* 25 |            HASH JOIN                         |                           |       |       |            |          |
+|* 26 |             INDEX RANGE SCAN                 | PACIENTE_CURP_IX          |   551 | 13224 |     4   (0)| 00:00:01 |
+|  27 |             INDEX FAST FULL SCAN             | PACIENTE_PK               |   551 | 13224 |    35   (0)| 00:00:01 |
+|* 28 |           BITMAP INDEX RANGE SCAN            | CITA_PACIENTE_ID_BIX      |       |       |            |          |
+|  29 |       TABLE ACCESS BY USER ROWID             | CITA                      |     1 |    21 |    38   (0)| 00:00:01 |
+|  30 |     TABLE ACCESS BY INDEX ROWID BATCHED      | DIAGNOSTICO               |   129 |  1290 |     4   (0)| 00:00:01 |
+|* 31 |      INDEX RANGE SCAN                        | DIAGNOSTICO_CLAVE_IX      |   129 |       |     2   (0)| 00:00:01 |
+|  32 |    TABLE ACCESS FULL                         | SYS_TEMP_0FD9D6609_4AF987 |   438 |  6570 |     2   (0)| 00:00:01 |
+--------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("M"."CEDULA" LIKE '9%')
+   4 - access(ROWID=ROWID)
+   5 - access("M"."CEDULA" LIKE '9%')
+   7 - access("ITEM_1"="C0")
+   8 - access("ITEM_2"="D"."DIAGNOSTICO_ID")
+  16 - access("D"."CLAVE" LIKE 'Z%')
+       filter("D"."CLAVE" LIKE 'Z%')
+  17 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+  21 - access("C"."MEDICO_ID"="C0")
+  24 - filter("P"."CURP" LIKE 'Z%')
+  25 - access(ROWID=ROWID)
+  26 - access("P"."CURP" LIKE 'Z%')
+  28 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+  31 - access("D"."CLAVE" LIKE 'Z%')
+       filter("D"."CLAVE" LIKE 'Z%')
+
+Note
+-----
+   - star transformation used for this statement
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+         16  recursive calls
+          2  db block gets
+       1902  consistent gets
+        144  physical reads
+        404  redo size
+        745  bytes sent via SQL*Net to client
+        641  bytes received via SQL*Net from client
+          2  SQL*Net roundtrips to/from client
+          1  sorts (memory)
+          0  sorts (disk)
+          4  rows processed
+
+haciendo limpieza
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+control_medico@jbadip02> 
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se logró verificar las optimizaciones que hace el manejador, en este 
+caso al hacer uso de los indices bitmap para veitar hacer consultas a toda la tabla
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

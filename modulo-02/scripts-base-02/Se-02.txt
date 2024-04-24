@@ -1,0 +1,23 @@
+[oracle@pc-joba scripts-base-02]$ ./e-02-crea-pfile-oracle.sh 
+creando archivo pfile
+
+asignando el valor a ORACLE_SID: jbadip02
+comprobando creación
+
+-l
+-rw-r--r--. 1 oracle oinstall 269 Nov 19 15:13 /u01/app/oracle/product/19.3.0/dbhome_1/dbs/initjbadip02.ora
+
+Conclusiones
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Reforzamos el concepto para la creación del pfile, asi como su uso al crear 
+la nueva BD, ademas de que en este caso estamo usando el concepto de
+mutiplexación de los controlfiles.
+
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+No se presentaron problemas con la ejecución
+
+*Comentarios, sugerencias.
+Sin Comentarios

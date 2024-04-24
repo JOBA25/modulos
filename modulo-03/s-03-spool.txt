@@ -1,0 +1,208 @@
+idle> start s-03-shutdown.sql
+conectando como sys
+Connected.
+
+PL/SQL procedure successfully completed.
+
+creando usuario de prueba
+
+User created.
+
+
+Grant succeeded.
+
+
+Session altered.
+
+Realizar shutdown abort - Ejecutar scripts en terminales [Enter] para continuar
+
+mostrando datos de sesiones
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	     XID
+---------- ---------- ---------- ------------------- ----------------
+START_DATE
+-------------------
+       264	56679 USER01	 24/11/2023 20:37:27 03001300BB010000
+24/11/2023 20:41:00
+
+	 2	51257 SYS	 24/11/2023 19:22:22
+
+
+       182	53877 USER01	 24/11/2023 20:37:22
+
+
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	     XID
+---------- ---------- ---------- ------------------- ----------------
+START_DATE
+-------------------
+	97	33509 USER01	 24/11/2023 20:37:15
+
+
+	89	29523 SYS	 24/11/2023 20:37:07
+
+
+	21	13844 USER01	 24/11/2023 20:40:01
+
+
+
+6 rows selected.
+
+ORACLE instance shut down.
+iniciando nuevamente
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+Database mounted.
+Database opened.
+Realizar shutdown immediate - Ejecutar scripts en terminales [Enter] para continuar
+
+mostrando datos de sesiones
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	    XID
+---------- ---------- ---------- ------------------ ----------------
+START_DATE
+------------------
+	90	28280 USER01	 24-NOV-23	    01001000B3010000
+24-NOV-23
+
+	 3	32734 SYS	 24-NOV-23
+
+
+	16	23429 USER01	 24-NOV-23
+
+
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	    XID
+---------- ---------- ---------- ------------------ ----------------
+START_DATE
+------------------
+	89	61574 SYS	 24-NOV-23
+
+
+       180	36957 USER01	 24-NOV-23
+
+
+       263	 9311 USER01	 24-NOV-23
+
+
+
+6 rows selected.
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+iniciando nuevamente
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+Database mounted.
+Database opened.
+Realizar shutdown transactional - Ejecutar scripts en terminales [Enter] para continuar
+
+mostrando datos de sesiones
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	    XID
+---------- ---------- ---------- ------------------ ----------------
+START_DATE
+------------------
+       179	39839 USER01	 24-NOV-23	    06001100CA010000
+24-NOV-23
+
+	 2	23850 SYS	 24-NOV-23
+
+
+       262	43950 USER01	 24-NOV-23
+
+
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	    XID
+---------- ---------- ---------- ------------------ ----------------
+START_DATE
+------------------
+	95	13829 USER01	 24-NOV-23
+
+
+	89	56997 SYS	 24-NOV-23
+
+
+	90	45717 USER01	 24-NOV-23
+
+
+
+6 rows selected.
+
+¿Qué cambios mínimos se tendrían que hacer para que shutdown transactional termine?
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+iniciando nuevamente
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+Database mounted.
+Database opened.
+Realizar shutdown normal - Ejecutar scripts en terminales [Enter] para continuar
+mostrando datos de sesiones
+
+       SID    SERIAL# USERNAME	 LOGON_TIME	    XID
+---------- ---------- ---------- ------------------ ----------------
+START_DATE
+------------------
+	 2	58513 SYS	 24-NOV-23
+
+
+	89	30633 SYS	 24-NOV-23
+
+
+
+¿Qué  cambios se tendrían que hacer para que shutdown normal termine?
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+reiniciando para realizar limpieza
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  738197504 bytes
+Database Buffers	  318767104 bytes
+Redo Buffers		    7868416 bytes
+Database mounted.
+Database opened.
+
+User dropped.
+
+Listo!
+sys@jbadip02> 
+
+CONCLUSIONES 
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+    
+En este ejercicio aprendí el concepto de shutdown así como los modos
+en que este se puede llevar a cabo
+
+Para que el  shutdown transactional finalizara fue 
+necesario finalizar la transacción del programa 3c
+
+Para que el shutdown normal finalizara fue 
+necesario finalizar todas las sesiones abiertas  
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.

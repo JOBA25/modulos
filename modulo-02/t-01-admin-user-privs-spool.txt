@@ -1,0 +1,173 @@
+idle> start t-01-admin-user-privs.sql
++ conectando como sys
+Connected.
+
+                                                                                
+
++ creando usuario
+
+User created.
+
++ creando rol
+
+Role created.
+
++ Asignando privilegios al roles
+
+Grant succeeded.
+
++ asignando rol a joba01
+
+Grant succeeded.
+
++ conectando como joba01
+ERROR:
+ORA-28001: the password has expired 
+
+
+Changing password for joba01
+Password changed
+Connected.
+
+                                                                                
+
++ creando tabla amigo
+
+Table created.
+
++ insertando registro
+
+1 row created.
+
+
++ hacemos commit
+
+Commit complete.
+
++ conectando como sys
+Connected.
+
+                                                                                
+
++ creando  profile
+
+Profile created.
+
++ creando usuario worker con perfil session_limit_worker_profile
+
+User created.
+
++ asignando permisos de sesión
+
+Grant succeeded.
+
+
++ conectando como sys
+Connected.
+
+                                                                                
+
++ asignando permisos de inserción para joba_worker01 en joba01.amigo
+
+Grant succeeded.
+
++ conectando como joba_worker01
+Connected.
+
+                                                                                
+
++ insertando 3 registros
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
++ vamos a domrir 70 segundos
+
+PL/SQL procedure successfully completed.
+
+
++ se intenta volver a insertar
+insert into joba01.amigo values(5, 'Jose')
+                   *
+ERROR at line 1:
+ORA-02399: exceeded maximum connect time, you are being logged off 
+
+
++ conectando como sys
+Connected.
+
+                                                                                
+
++ creando usuario joba_slave
+
+User created.
+
++ asignado permisos a joba_slave
+
+Grant succeeded.
+
+
+Grant succeeded.
+
++ conectando como joba_slave
+Connected.
+
+                                                                                
+
++asignando permisos de delete a joba_worker01
+
+Grant succeeded.
+
+
++ conectando como joba_worker01
+Connected.
+
+                                                                                
+
++borrando registros de joba01.amigo
+
+1 row deleted.
+
+
+limpieza
+Connected.
+
+                                                                                
+
+Comprobando tabla  joba01.amigo
+
+no rows selected
+
+
+User dropped.
+
+
+User dropped.
+
+
+User dropped.
+
+
+Role dropped.
+
+
+Profile dropped.
+
+sys@jbadip01> spool off
+
+
+CONCLUSIONES
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+En este ejercicio pudmios practicar las sentencias y lógica necesaria para
+dar permisos a nuestros usarios, mediante roles, y asignar caracteristicas
+de administración mediante perfiles
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron problemas 
+
+Comentarios, sugerencias.

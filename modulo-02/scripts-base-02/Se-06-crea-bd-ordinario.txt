@@ -1,0 +1,44 @@
+idle> start e-06-crea-bd-ordinario.sql
+mostrando valor de ORACLE_SID: jbadip02
+
+¿Es correcto?  Enter para continuar
+
+conectando como sys
+Connected to an idle instance.
+inicando instancia en modo nomount
+ORACLE instance started.
+
+Total System Global Area 1073737800 bytes
+Fixed Size		    8904776 bytes
+Variable Size		  616562688 bytes
+Database Buffers	  440401920 bytes
+Redo Buffers		    7868416 bytes
+creando una nueva BD: jbadip02
+
+Database created.
+
+Homologando passwords
+Enter para confirmar cambio de passwords!
+
+
+User altered.
+
+
+User altered.
+
+idle> 
+
+Conclusiones
+
+*¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio creamos por primera vez una base de datos 
+desde sqlplus con comandos  
+
+
+*Problemas identificados durante su elaboración así como la forma en 
+la que se solucionaron
+No se presentaron errores
+
+
+*Comentarios, sugerencias.
+Sin Comentarios

@@ -1,0 +1,154 @@
+--@Autor: Jorge Octavio Barcenas Avelar
+--@Fecha creación: Febrero 16 2024
+--@Descripción: ejercicio 
+
+Creando  CDB a a partir de SEED  (from scratch)
+1. Iniciando CDB jbadip03
+
+2. Conectando como SYS en jbadip03
+Connected.
+
+                                                                                                                                      
+
+3. Configurando OMF
+
+System altered.
+
+4. Crear una PDB from scratch (desde cero) empleando OMF
+
+Pluggable database created.
+
+Mostrando los datos de las PDBs con SQL*Plus
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                       
+---------- ------------------------------ ---------- ----------                                                                       
+         2 PDB$SEED                       READ ONLY  NO                                                                               
+         3 JBADIP03_S1                    READ WRITE NO                                                                               
+         4 JBADIP03_S2                    READ WRITE NO                                                                               
+         5 JBADIP03_S3                    MOUNTED                                                                                     
+[Enter] para continuar
+
+5. Mostrando los datafiles a partir de bda_data_files
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- ------------------------------------------------------------                                                               
+         1 /u01/app/oracle/oradata/JBADIP03/system01.dbf                                                                              
+         3 /u01/app/oracle/oradata/JBADIP03/sysaux01.dbf                                                                              
+         4 /u01/app/oracle/oradata/JBADIP03/undotbs01.dbf                                                                             
+         7 /u01/app/oracle/oradata/JBADIP03/users01.dbf                                                                               
+
+Mostrando los datafiles a partir  de cdb_data_files
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- ------------------------------------------------------------                                                               
+        13 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/system01.dbf                                                                  
+        14 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/sysaux01.dbf                                                                  
+        15 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/undotbs01.dbf                                                                 
+        16 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/users01.dbf                                                                   
+         9 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/system01.dbf                                                                  
+        10 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/sysaux01.dbf                                                                  
+        11 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/undotbs01.dbf                                                                 
+        12 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/users01.dbf                                                                   
+         1 /u01/app/oracle/oradata/JBADIP03/system01.dbf                                                                              
+         3 /u01/app/oracle/oradata/JBADIP03/sysaux01.dbf                                                                              
+         4 /u01/app/oracle/oradata/JBADIP03/undotbs01.dbf                                                                             
+         7 /u01/app/oracle/oradata/JBADIP03/users01.dbf                                                                               
+
+12 rows selected.
+
+Analizar resutados. ¿Qué sucede con los datafiles de la nueva pdb?
+hasta este punto no son mostrados 
+[Enter] para continuar
+
+6. encendiendo  PDB
+
+Pluggable database altered.
+
+7. Mostrando datafiles de la CDB desde cdb_data_files
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- --------------------------------------------------------------------------------------------------------------             
+         1 /u01/app/oracle/oradata/JBADIP03/system01.dbf                                                                              
+         3 /u01/app/oracle/oradata/JBADIP03/sysaux01.dbf                                                                              
+         4 /u01/app/oracle/oradata/JBADIP03/undotbs01.dbf                                                                             
+         7 /u01/app/oracle/oradata/JBADIP03/users01.dbf                                                                               
+        23 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_system_lx009q8s_.dbf                      
+        24 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_sysaux_lx009q8x_.dbf                      
+        25 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_undotbs1_lx009q8x_.dbf                    
+        13 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/system01.dbf                                                                  
+        14 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/sysaux01.dbf                                                                  
+        15 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/undotbs01.dbf                                                                 
+        16 /u01/app/oracle/oradata/JBADIP03/jbadip03_s2/users01.dbf                                                                   
+         9 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/system01.dbf                                                                  
+        10 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/sysaux01.dbf                                                                  
+        11 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/undotbs01.dbf                                                                 
+        12 /u01/app/oracle/oradata/JBADIP03/jbadip03_s1/users01.dbf                                                                   
+
+15 rows selected.
+
+8. Mostrando datos de las PDBs con comando de SQL*Plus
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                       
+---------- ------------------------------ ---------- ----------                                                                       
+         2 PDB$SEED                       READ ONLY  NO                                                                               
+         3 JBADIP03_S1                    READ WRITE NO                                                                               
+         4 JBADIP03_S2                    READ WRITE NO                                                                               
+         5 JBADIP03_S3                    READ WRITE NO                                                                               
+Analizar [enter] para continuar
+
+id del contenedor
+
+CON_ID                                                                                                                                
+------------------------------                                                                                                        
+1                                                                                                                                     
+nombre del contenedor
+
+CON_NAME                                                                                                                              
+------------------------------                                                                                                        
+CDB$ROOT                                                                                                                              
+9. Mostrando datafiles desde la nueva PDB empleando cdb_data_files
+
+Session altered.
+
+
+   FILE_ID FILE_NAME                                                                                                                  
+---------- --------------------------------------------------------------------------------------------------------------             
+        23 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_system_lx009q8s_.dbf                      
+        24 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_sysaux_lx009q8x_.dbf                      
+        25 /u01/app/oracle/oradata/JBADIP03/118A26883848740FE0630100007FEE6F/datafile/o1_mf_undotbs1_lx009q8x_.dbf                    
+
+10. [Enter] para comenzar con la limpieza ...
+
+Cambiando a cdb$root
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+
+Pluggable database altered.
+
+Mostrando contenido de los metadatos [enter] para ejecutar..
+
+
+Analizar XML, [enter] para continuar (se eliminarán los archivos)
+
+
+Pluggable database dropped.
+
+
+
+System altered.
+
+apagando spool
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+Con este ejercicio logramos crear una la pdb s3 utilizando OMF, ademas de 
+poder revisar el archivo .xml que se genera al hacer un unplug de una pdb 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se presentaron problemas
+
+Comentarios, sugerencias.

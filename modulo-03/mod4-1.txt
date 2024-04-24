@@ -1,0 +1,5 @@
+1 single server
+2 Multiple single instance databases
+3 Real Application Cluster
+4 Arquitectura Multitenant
+5 ASM: (Automatic Storage Management)

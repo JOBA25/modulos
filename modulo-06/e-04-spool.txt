@@ -1,0 +1,143 @@
+[jorge@pc-joba modulo-06]$ sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 26 19:38:46 2024
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start e-04-flashback-version-query.sql
+1. conectando como jorge06
+Connected.
+Creando la tabla fb_version
+
+Table created.
+
+
+PL/SQL procedure successfully completed.
+
+insertando tres registros
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+mostrando info
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 1 valor1	   26-01-2024 19:42:27
+	 2 valor2	   26-01-2024 19:42:30
+	 3 valor3	   26-01-2024 19:42:30
+
+2. configurando el scn actual
+
+      SCN1
+----------
+   2925029
+
+
+PL/SQL procedure successfully completed.
+
+3. realizando actualización
+
+1 row updated.
+
+
+Commit complete.
+
+mostrando info
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 1 cambio1	   26-01-2024 19:42:36
+	 2 valor2	   26-01-2024 19:42:30
+	 3 valor3	   26-01-2024 19:42:30
+
+
+PL/SQL procedure successfully completed.
+
+4. realizando nuevo cambio
+
+1 row updated.
+
+
+Commit complete.
+
+mostrando info
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 1 cambio2	   26-01-2024 19:42:41
+	 2 valor2	   26-01-2024 19:42:30
+	 3 valor3	   26-01-2024 19:42:30
+
+
+PL/SQL procedure successfully completed.
+
+5. eliminando registro
+
+1 row deleted.
+
+
+Commit complete.
+
+mostrando info
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 2 valor2	   26-01-2024 19:42:30
+	 3 valor3	   26-01-2024 19:42:30
+
+
+PL/SQL procedure successfully completed.
+
+6. obteniendo scn actual
+
+      SCN2
+----------
+   2925045
+
+7. Mostrando el historico de los eventos en la tabla
+consulta con fechaHora
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 1 cambio2	   26-01-2024 19:42:41
+	 1 cambio2	   26-01-2024 19:42:41
+	 1 cambio1	   26-01-2024 19:42:36
+	 1 valor1	   26-01-2024 19:42:27
+
+consulta con scn
+Enter value for scn1: 2925029
+Enter value for scn2: 2925045
+
+	ID DATO 	   FECHAHORA
+---------- --------------- ------------------------------
+	 1 cambio2	   26-01-2024 19:42:41
+	 1 cambio2	   26-01-2024 19:42:41
+	 1 cambio1	   26-01-2024 19:42:36
+	 1 valor1	   26-01-2024 19:42:27
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba modulo-06]$ 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+con este ejercicio se pudo comprender el uso de flashback version el cual
+nos permite ver un historico de cambios para una determinada tabla o registro 
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+no se tuvo problemas
+
+Comentarios, sugerencias.

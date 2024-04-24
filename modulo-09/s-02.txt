@@ -1,0 +1,390 @@
+control_medico@jbadip02> start s-02-or-transformation.sql
+Enter value for 1: trace only
+conectando con control_medico
+Connected.
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+conectando como control_medico
+Connected.
+B. concetando como sys
+
+PL/SQL procedure successfully completed.
+
+conectando con control_medico
+Connected.
+SP2-0734: unknown command beginning "promt conf..." - rest of line ignored.
+SP2-0158: unknown SET option "only"
+====== Consulta 1
+=> sin transformacion OR
+
+242 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3821156224
+
+------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                               | Name                   | Rows  | Bytes | Cost (%CPU)| Time     |
+------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                        |                        |   324 | 16848 |   219   (0)| 00:00:01 |
+|   1 |  VIEW                                   | VW_ORE_5BF6BD7F        |   324 | 16848 |   219   (0)| 00:00:01 |
+|   2 |   UNION-ALL                             |                        |       |       |            |          |
+|   3 |    NESTED LOOPS                         |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   4 |     NESTED LOOPS                        |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   5 |      TABLE ACCESS BY INDEX ROWID BATCHED| CITA                   |     4 |   124 |     5   (0)| 00:00:01 |
+|*  6 |       INDEX RANGE SCAN                  | CITA_MEDICO_ID_IX      |     4 |       |     1   (0)| 00:00:01 |
+|*  7 |      INDEX UNIQUE SCAN                  | PACIENTE_PK            |     1 |       |     0   (0)| 00:00:01 |
+|   8 |     TABLE ACCESS BY INDEX ROWID         | PACIENTE               |     1 |    12 |     1   (0)| 00:00:01 |
+|*  9 |    HASH JOIN                            |                        |   320 | 17600 |   210   (0)| 00:00:01 |
+|  10 |     TABLE ACCESS BY INDEX ROWID BATCHED | PACIENTE               |   177 |  4248 |   180   (0)| 00:00:01 |
+|* 11 |      INDEX RANGE SCAN                   | PACIENTE_NUM_SEGURO_IX |   177 |       |     2   (0)| 00:00:01 |
+|* 12 |     TABLE ACCESS FULL                   | CITA                   | 19996 |   605K|    30   (0)| 00:00:01 |
+------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   6 - access("C"."MEDICO_ID"=2999)
+   7 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+   9 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+  11 - access("P"."NUM_SEGURO" LIKE '33%')
+       filter("P"."NUM_SEGURO" LIKE '33%')
+  12 - filter(LNNVL("C"."MEDICO_ID"=2999))
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        319  consistent gets
+          0  physical reads
+          0  redo size
+      10324  bytes sent via SQL*Net to client
+        701  bytes received via SQL*Net from client
+         18  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        242  rows processed
+
+=> sin transformacion OR
+
+242 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3821156224
+
+------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                               | Name                   | Rows  | Bytes | Cost (%CPU)| Time     |
+------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                        |                        |   324 | 16848 |   219   (0)| 00:00:01 |
+|   1 |  VIEW                                   | VW_ORE_5BF6BD7F        |   324 | 16848 |   219   (0)| 00:00:01 |
+|   2 |   UNION-ALL                             |                        |       |       |            |          |
+|   3 |    NESTED LOOPS                         |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   4 |     NESTED LOOPS                        |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   5 |      TABLE ACCESS BY INDEX ROWID BATCHED| CITA                   |     4 |   124 |     5   (0)| 00:00:01 |
+|*  6 |       INDEX RANGE SCAN                  | CITA_MEDICO_ID_IX      |     4 |       |     1   (0)| 00:00:01 |
+|*  7 |      INDEX UNIQUE SCAN                  | PACIENTE_PK            |     1 |       |     0   (0)| 00:00:01 |
+|   8 |     TABLE ACCESS BY INDEX ROWID         | PACIENTE               |     1 |    12 |     1   (0)| 00:00:01 |
+|*  9 |    HASH JOIN                            |                        |   320 | 17600 |   210   (0)| 00:00:01 |
+|  10 |     TABLE ACCESS BY INDEX ROWID BATCHED | PACIENTE               |   177 |  4248 |   180   (0)| 00:00:01 |
+|* 11 |      INDEX RANGE SCAN                   | PACIENTE_NUM_SEGURO_IX |   177 |       |     2   (0)| 00:00:01 |
+|* 12 |     TABLE ACCESS FULL                   | CITA                   | 19996 |   605K|    30   (0)| 00:00:01 |
+------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   6 - access("C"."MEDICO_ID"=2999)
+   7 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+   9 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+  11 - access("P"."NUM_SEGURO" LIKE '33%')
+       filter("P"."NUM_SEGURO" LIKE '33%')
+  12 - filter(LNNVL("C"."MEDICO_ID"=2999))
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (E - Syntax error (1))
+---------------------------------------------------------------------------
+
+   0 -  SEL$1
+         E -  no_query_transformationte
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        319  consistent gets
+          0  physical reads
+          0  redo size
+      10324  bytes sent via SQL*Net to client
+        735  bytes received via SQL*Net from client
+         18  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        242  rows processed
+
+=> optimizando Consulta
+
+242 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3325639126
+
+-----------------------------------------------------------------------------------------------------------------
+| Id  | Operation                              | Name                   | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                       |                        |   324 | 16492 |   219   (0)| 00:00:01 |
+|   1 |  UNION-ALL                             |                        |       |       |            |          |
+|   2 |   NESTED LOOPS                         |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   3 |    NESTED LOOPS                        |                        |     4 |   172 |     9   (0)| 00:00:01 |
+|   4 |     TABLE ACCESS BY INDEX ROWID BATCHED| CITA                   |     4 |   124 |     5   (0)| 00:00:01 |
+|*  5 |      INDEX RANGE SCAN                  | CITA_MEDICO_ID_IX      |     4 |       |     1   (0)| 00:00:01 |
+|*  6 |     INDEX UNIQUE SCAN                  | PACIENTE_PK            |     1 |       |     0   (0)| 00:00:01 |
+|   7 |    TABLE ACCESS BY INDEX ROWID         | PACIENTE               |     1 |    12 |     1   (0)| 00:00:01 |
+|*  8 |   HASH JOIN                            |                        |   320 | 16320 |   210   (0)| 00:00:01 |
+|   9 |    TABLE ACCESS BY INDEX ROWID BATCHED | PACIENTE               |   177 |  4248 |   180   (0)| 00:00:01 |
+|* 10 |     INDEX RANGE SCAN                   | PACIENTE_NUM_SEGURO_IX |   177 |       |     2   (0)| 00:00:01 |
+|  11 |    TABLE ACCESS FULL                   | CITA                   | 20000 |   527K|    30   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   5 - access("C"."MEDICO_ID"=2999)
+   6 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+   8 - access("C"."PACIENTE_ID"="P"."PACIENTE_ID")
+  10 - access("P"."NUM_SEGURO" LIKE '33%')
+       filter("P"."NUM_SEGURO" LIKE '33%')
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          6  recursive calls
+          0  db block gets
+        325  consistent gets
+          0  physical reads
+          0  redo size
+      10324  bytes sent via SQL*Net to client
+        832  bytes received via SQL*Net from client
+         18  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        242  rows processed
+
+[enter] para continuar
+
+==== consulta 2
+=> sentencia sin transformacion
+
+2222 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 4212194546
+
+-----------------------------------------------------------------------------------
+| Id  | Operation           | Name        | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |             |  2284 |   185K|   542   (1)| 00:00:01 |
+|*  1 |  HASH JOIN          |             |  2284 |   185K|   542   (1)| 00:00:01 |
+|   2 |   TABLE ACCESS FULL | DIAGNOSTICO | 14423 |   690K|    34   (0)| 00:00:01 |
+|*  3 |   HASH JOIN         |             | 20000 |   664K|   508   (1)| 00:00:01 |
+|   4 |    TABLE ACCESS FULL| CITA        | 20000 |   195K|    30   (0)| 00:00:01 |
+|   5 |    TABLE ACCESS FULL| PACIENTE    | 15000 |   351K|   477   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+       filter("P"."NUM_SEGURO" LIKE '3%' OR "D"."NOMBRE" LIKE 'HIPER%')
+   3 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+
+
+Statistics
+----------------------------------------------------------
+         35  recursive calls
+          0  db block gets
+       2127  consistent gets
+          0  physical reads
+          0  redo size
+     151670  bytes sent via SQL*Net to client
+       2201  bytes received via SQL*Net from client
+        150  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+       2222  rows processed
+
+=> sentencia con tranformacion
+
+2239 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 493343345
+
+-----------------------------------------------------------------------------------------------------------------
+| Id  | Operation                               | Name                  | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                        |                       |  3108 |   250K|   703   (1)| 00:00:01 |
+|   1 |  UNION-ALL                              |                       |       |       |            |          |
+|*  2 |   HASH JOIN                             |                       |  3002 |   243K|   542   (1)| 00:00:01 |
+|*  3 |    HASH JOIN                            |                       |  3002 |    99K|   508   (1)| 00:00:01 |
+|*  4 |     TABLE ACCESS FULL                   | PACIENTE              |  1660 | 39840 |   477   (0)| 00:00:01 |
+|   5 |     TABLE ACCESS FULL                   | CITA                  | 20000 |   195K|    30   (0)| 00:00:01 |
+|   6 |    TABLE ACCESS FULL                    | DIAGNOSTICO           | 14423 |   690K|    34   (0)| 00:00:01 |
+|   7 |   NESTED LOOPS                          |                       |   106 |  7526 |   161   (0)| 00:00:01 |
+|   8 |    NESTED LOOPS                         |                       |   106 |  7526 |   161   (0)| 00:00:01 |
+|*  9 |     HASH JOIN                           |                       |   106 |  6254 |    55   (0)| 00:00:01 |
+|  10 |      TABLE ACCESS BY INDEX ROWID BATCHED| DIAGNOSTICO           |    57 |  2793 |    25   (0)| 00:00:01 |
+|* 11 |       INDEX RANGE SCAN                  | DIAGNOSTICO_NOMBRE_IX |    57 |       |     2   (0)| 00:00:01 |
+|  12 |      TABLE ACCESS FULL                  | CITA                  | 20000 |   195K|    30   (0)| 00:00:01 |
+|* 13 |     INDEX UNIQUE SCAN                   | PACIENTE_PK           |     1 |       |     0   (0)| 00:00:01 |
+|  14 |    TABLE ACCESS BY INDEX ROWID          | PACIENTE              |     1 |    12 |     1   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+   3 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+   4 - filter("P"."NUM_SEGURO" LIKE '3%')
+   9 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+  11 - access("D"."NOMBRE" LIKE 'HIPER%')
+       filter("D"."NOMBRE" LIKE 'HIPER%')
+  13 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+       2624  consistent gets
+          0  physical reads
+          0  redo size
+     152556  bytes sent via SQL*Net to client
+       2387  bytes received via SQL*Net from client
+        151  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+       2239  rows processed
+
+[enter] para continuar
+
+===  Consulta 3
+=> sentencia sin transformacion
+
+387 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3516602577
+
+-------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                                | Name                   | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                         |                        |   426 |   119K|   406   (1)| 00:00:01 |
+|   1 |  VIEW                                    | VW_ORE_3D74A791        |   426 |   119K|   406   (1)| 00:00:01 |
+|   2 |   UNION-ALL                              |                        |       |       |            |          |
+|*  3 |    HASH JOIN                             |                        |   320 | 26560 |   244   (0)| 00:00:01 |
+|*  4 |     HASH JOIN                            |                        |   320 | 10880 |   210   (0)| 00:00:01 |
+|   5 |      TABLE ACCESS BY INDEX ROWID BATCHED | PACIENTE               |   177 |  4248 |   180   (0)| 00:00:01 |
+|*  6 |       INDEX RANGE SCAN                   | PACIENTE_NUM_SEGURO_IX |   177 |       |     2   (0)| 00:00:01 |
+|   7 |      TABLE ACCESS FULL                   | CITA                   | 20000 |   195K|    30   (0)| 00:00:01 |
+|   8 |     TABLE ACCESS FULL                    | DIAGNOSTICO            | 14423 |   690K|    34   (0)| 00:00:01 |
+|   9 |    NESTED LOOPS                          |                        |   106 |  8798 |   161   (0)| 00:00:01 |
+|  10 |     NESTED LOOPS                         |                        |   106 |  8798 |   161   (0)| 00:00:01 |
+|* 11 |      HASH JOIN                           |                        |   106 |  6254 |    55   (0)| 00:00:01 |
+|  12 |       TABLE ACCESS BY INDEX ROWID BATCHED| DIAGNOSTICO            |    57 |  2793 |    25   (0)| 00:00:01 |
+|* 13 |        INDEX RANGE SCAN                  | DIAGNOSTICO_NOMBRE_IX  |    57 |       |     2   (0)| 00:00:01 |
+|  14 |       TABLE ACCESS FULL                  | CITA                   | 20000 |   195K|    30   (0)| 00:00:01 |
+|* 15 |      INDEX UNIQUE SCAN                   | PACIENTE_PK            |     1 |       |     0   (0)| 00:00:01 |
+|* 16 |     TABLE ACCESS BY INDEX ROWID          | PACIENTE               |     1 |    24 |     1   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+   4 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+   6 - access("P"."NUM_SEGURO" LIKE '33%')
+       filter("P"."NUM_SEGURO" LIKE '33%')
+  11 - access("C"."DIAGNOSTICO_ID"="D"."DIAGNOSTICO_ID")
+  13 - access("D"."NOMBRE" LIKE 'HIPER%')
+       filter("D"."NOMBRE" LIKE 'HIPER%')
+  15 - access("P"."PACIENTE_ID"="C"."PACIENTE_ID")
+  16 - filter(LNNVL("P"."NUM_SEGURO" LIKE '33%'))
+
+Note
+-----
+   - this is an adaptive plan
+
+
+Statistics
+----------------------------------------------------------
+          1  recursive calls
+          0  db block gets
+        909  consistent gets
+          0  physical reads
+          0  redo size
+      26030  bytes sent via SQL*Net to client
+        849  bytes received via SQL*Net from client
+         27  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+        387  rows processed
+
+eliminando inidces
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+
+Index dropped.
+
+control_medico@jbadip02> 

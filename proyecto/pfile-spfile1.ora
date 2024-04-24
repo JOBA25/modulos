@@ -1,0 +1,30 @@
+jbadip02.__data_transfer_cache_size=0
+jbadip02.__db_cache_size=222298112
+jbadip02.__inmemory_ext_roarea=0
+jbadip02.__inmemory_ext_rwarea=0
+jbadip02.__java_pool_size=4194304
+jbadip02.__large_pool_size=4194304
+jbadip02.__oracle_base='/u01/app/oracle'#ORACLE_BASE set from environment
+jbadip02.__pga_aggregate_target=373293056
+jbadip02.__sga_target=700448768
+jbadip02.__shared_io_pool_size=12582912
+jbadip02.__shared_pool_size=335544320
+jbadip02.__streams_pool_size=0
+jbadip02.__unified_pga_pool_size=0
+*.control_files='/unam-diplomado-bd/disk-01/app/oracle/oradata/JBADIP02/control01.ctl','/unam-diplomado-bd/disk-02/app/oracle/oradata/JBADIP02/control02.ctl','/unam-diplomado-bd/disk-03/app/oracle/oradata/JBADIP02/control03.ctl'
+*.db_domain='fi.unam'
+*.db_flashback_retention_target=1440
+*.db_name='jbadip02'
+*.db_recovery_file_dest_size=21474836480
+*.db_recovery_file_dest='/unam-diplomado-bd/fast-recovery-area'
+*.db_securefile='PREFERRED'
+*.dispatchers='(ADDRESS=(PROTOCOL=TCP)(PORT=5000))','(ADDRESS=(PROTOCOL=TCP)(PORT=5001))'
+*.inmemory_size=104857600
+*.log_archive_dest_1='LOCATION=/unam-diplomado-bd/disk-041/archivelogs/jbadip02/disk_a MANDATORY'
+*.log_archive_dest_2='LOCATION=/unam-diplomado-bd/disk-042/archivelogs/jbadip02/disk_b'
+*.log_archive_format='arch_gbldip02_%t_%s_%r.arc'
+*.log_archive_max_processes=5
+*.log_archive_min_succeed_dest=1
+*.memory_target=1G
+*.shared_servers=3
+*.undo_retention=1800

@@ -1,0 +1,153 @@
+
+idle> start e-04-row-chaining.sql
+Connected.
+mostrando el contenido del parámetro db_block_size
+
+NAME				     TYPE	 VALUE
+------------------------------------ ----------- ------------------------------
+db_block_size			     integer	 8192
+conectando como jorge05 para generar una tabla grande
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Table created.
+
+insertando un primer registro
+
+1 row created.
+
+
+Commit complete.
+
+mostrando el tamaño de la columna c1
+
+LENGTH(C1)
+----------
+      2000
+
+actualizando estadísticas
+
+Table analyzed.
+
+consultando metadatos
+
+TABLESPACE_NAME 		        PCT_FREE   PCT_USED   NUM_ROWS     BLOCKS   EMPTY_BLOCKS    AVG_SPACE_KB     CHAIN_CNT  AVG_ROW_LEN_KB
+------------------------------ ---------- ---------- ---------- ---------- ------------    ------------     ----------  --------------
+USERS				       10		                    1   	 5	       3         5.91894531	      1      9.79199219
+
+Analizar, presionar [Enter] parar corregir problema
+
+Creando un nuevo tablespace con bloques de 16K, conectando como SYS
+Connected.
+
+System altered.
+
+
+PL/SQL procedure successfully completed.
+
+
+Tablespace created.
+
+otorgando quota de almacenamiento al usuario jorge05 en el nuevo TS
+
+User altered.
+
+moviendo datos al nuevo TS, conectando como jorge05
+Connected.
+
+Table altered.
+
+reconstruyendo el índice (por efectos del cambio del TS)
+
+Index altered.
+
+calculando estadísticas nuevamente
+
+Table analyzed.
+
+Mostrando metadatos nuevamente
+
+TABLESPACE_NAME 		        PCT_FREE   PCT_USED   NUM_ROWS    BLOCKS   EMPTY_BLOCKS AVG_SPACE_KB  CHAIN_CNT AVG_ROW_LEN_KB
+------------------------------ ---------- ---------- ---------- ---------- ------------ ------------ ---------- --------------
+DIP_M05_01			              10		             1 	    4	     60          6.06933594	      0     9.78613281
+
+Analizar y presionar [Enter] para continuar
+
+Mostrando el DDL de la tabla modificada
+
+
+  CREATE TABLE "JORGE05"."T03_ROW_CHAINING"
+   (	"ID" NUMBER(10,0),
+	"C1" CHAR(2000) DEFAULT 'A',
+	"C2" CHAR(2000) DEFAULT 'B',
+	"C3" CHAR(2000) DEFAULT 'C',
+	"C4" CHAR(2000) DEFAULT 'D',
+	"C5" CHAR(2000) DEFAULT 'E',
+	 CONSTRAINT "T03_ROW_CHAINING_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXT
+RANS 255 COMPUTE STATISTICS
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 M
+AXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_
+CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE
+   ) SEGMENT CREATION IMMEDIATE
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS
+ 255
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXE
+XTENTS 2147483645
+
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUP
+S 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CAC
+HE DEFAULT)
+  TABLESPACE "DIP_M05_01"
+
+
+Prueba terminada, presionar [Enter] para hacer limpieza
+
+eliminando tabla t03_row_chaining
+
+Table dropped.
+
+Eliminando TS
+Connected.
+
+Tablespace dropped.
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[jorge@pc-joba modulo-05]$ 
+
+
+
+
+Impacto de realizar encadenamiento de bloques durante 
+el escaneo de los bloques de una tabla
+- tiempo de lectura
+- mayor actividad de lectura
+
+Ventajas y desventajas de contar con bloques de mayor tamaño
+Ventajas
+- menor actividad de lectura de bloques 
+
+Desventajas
+- mayor desperdicio de memoria en caso de no usar todo el bloque 
+
+
+****CONCLUSIONES 
+****************
+
+¿El ejercicio aportó y/o mejoró la comprensión del concepto ?
+En este ejercicio pudimos observar las diferencias de usar tamaños diferente de bloques
+para un tablespace    
+
+
+Problemas identificados durante su elaboración así como la forma en la que se solucionaron
+No se presentaron errores
+
+Comentarios, sugerencias.
