@@ -1,0 +1,20 @@
+
+ASOCIACION:  poner constrain unique a clave_asociacion
+CERTIFICACION: poner constrain unique a clave_certificacion
+EMPLEADO: poner constrain unique a clave_empleado
+VERSION_LIDER: poner constrain unique a version_id - empleado_id
+CENTRO: poner constrain unique a clave_centro
+ACTIVIDAD: poner constrain unique a clave_actividad
+CENTRO_ACTIVIDAD:  poner constrain unique a actividad_id - centro_id
+
+CLIENTE:  poner constrain unique a clave_cliente
+MEMBRESIA:  poner constrain unique a numero_membresia
+TIPO_JUEGO:  poner constrain unique a clave_tipo_juego
+TIPO_DEPORTE:  poner constrain unique a clave_tipo_deporte
+
+
+
+
+
+
+
